@@ -1,0 +1,116 @@
+
+:root {
+  --colorMain: #222;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Layout
+ */
+
+html {
+ box-sizing: border-box;
+ font-size: 62.5%;
+ scroll-behavior: smooth;
+ height: 100%;
+}
+
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+ margin: 0;
+ padding: 0;
+ color: var(--colorMain);
+ background-color: #fff;
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ font-size: 2rem;
+ text-shadow: 0, 2px, 0 rgba(0,0,0, .07);
+ -webkit-overflow-scrolling: touch;
+ overflow-y: scroll;
+}
+
+section {
+  scroll-margin-top: .75em;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-weight: bold;
+ text-align: center;
+}
+
+p {
+ line-height: 1.45;
+ margin-bottom: 3.5rem;
+ text-align: center;
+ font-weight: 300;
+ font-size: 1.8rem;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+small {
+font-size: 1.5rem;
+}
+
+a {
+ text-decoration: none;
+ margin: 0;
+ font-weight: 300;
+ color: #ddd;
+}
+
+li {
+ list-style-type: none;
+}
+
+img {
+vertical-align: middle;
+padding: 10px;
+width: 100%;
+max-width: 100%;
+height: auto;
+}
+
+
+blockquote {
+position: relative;
+font-weight: bold;
+border-top: 1px dashed #cacaca;
+border-bottom: 1px dashed #cacaca;
+text-align: left;
+line-height: 1.6em;
+font-size: 100%;
+padding: 20px 5em;
+}
+
+blockquote:before {
+content: "\201c";
+position: absolute;
+left: 30px;
+color: #ededed;
+font-size:  10rem;
+top: 50px;
+}
