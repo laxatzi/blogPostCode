@@ -122,12 +122,14 @@ blockquote:before {
     align-items: center;
     flex-direction: column;
     margin: 50px 0;
-    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .fishsoup,
 .fish_grilled,
 .irish_stew {
     max-width: 40em;
-    margin: 50px 0;
+    margin: 25px 0;
+    padding: 25px 0;
+    border-bottom: 1px dotted black;
 }
