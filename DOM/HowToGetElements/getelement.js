@@ -4,3 +4,6 @@
 
 // this method follows the same pattern as css and enables developers to use complex selectors
 // for example const fishsoup_second_ingredient = document.querySelector(".fish_recipes .fishsoup li:nth-child(7)")
+const fishoup_heading = document.querySelector(".fish_recipe .fishoup h3");
+
+fishoup_heading.style.color = 'red';
