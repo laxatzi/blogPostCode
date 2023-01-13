@@ -17,23 +17,41 @@
   const fishsoup_ingredients = document.querySelector(".fishsoup ul");
   let ingredients = fishsoup_ingredients.querySelectorAll('li');
 
-   setTimeout(function() {
-    let li = document.createElement('li');
-    li.textContent = "Rosemary";
-    ingredients.append(li);
-    console.log(ingredients);
-   }, 3000);
+  //  for (let ingredient of ingredients) {
 
+  //   console.log(ingredient.textContent);
+  //  }
 
+// setTimeout(function () {
+
+// 	// Inject a new button
+// 	let li = document.createElement('li');
+// 	li.textContent = 'Chilly pepper';
+// 	fishsoup_ingredients.append(li);
+
+// 	// logs the first three buttons, but not the new one
+// 	for(let ingredient of ingredients) {
+//     console.log(ingredient.textContent);
+//   }
+
+// }, 3000);
 
 
 //You can also negate selectors:
 // const el = document.querySelector("div.user-panel:not(.main) input[name='login']");
 
 // useful links
-// https://gomakethings.com/either/or-selectors-with-the-vanilla-js-queryselector-and-queryselectorall-methods/
 // https://gomakethings.com/what-to-do-when-queryselector-fail-on-valid-selectors/
 // https://gomakethings.com/the-javascript-selector-methods-that-changed-everything/
 // https://gomakethings.com/challenges-and-limitations-with-advanced-selectors-and-the-document.queryselectorall-method/
 // https://gomakethings.com/live-vs.-static-nodelists-and-htmlcollections-in-vanilla-js/
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+
+// With querySelector() and querySelectorAll() you can get the first element in the DOM that have one of two or more selectors
+// To make it work, pass in your desired selectors separated with a comma, all within quotes as a single argument.
+
+// In my example i could select spices and vegetables from the ingredient list
+const fish_recipes =  document.querySelectorAll('[data-fish-recipe], .fish');
+	for(let fish_recipe of fish_recipes) {
+    fish_recipe.style.background = "beige";
+  }
