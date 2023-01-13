@@ -80,6 +80,9 @@ a {
     color: #ddd;
 }
 
+li {
+    list-style-type: none;
+}
 img {
     vertical-align: middle;
     padding: 10px;
@@ -130,6 +133,6 @@ blockquote:before {
 .irish_stew {
     max-width: 40em;
     margin: 25px 0;
-    padding: 25px 0;
+    padding: 25px;
     border-bottom: 1px dotted black;
 }
