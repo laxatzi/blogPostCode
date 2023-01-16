@@ -1,31 +1,19 @@
 // How to get elements in the DOM
-// By far, the most versatile method, elem.querySelectorAll(css) returns all elements inside elem matching the given CSS selector.
-// The call to elem.querySelector(css) returns the first element for the given CSS selector.
 
-// In other words, the result is the same as elem.querySelectorAll(css)[0], but the latter is looking for all elements and picking one, while elem.querySelector just looks for one. So it’s faster and also shorter to write.
-
-// querySelector()
-    // use querySelector() to find a matching element on the page. Any valid css selector can be used.
-
-    // this method follows the same pattern as css and enables developers to use complex selectors
-    // for example
-    const fishoup_heading = document.querySelector(".fish_recipes .fishsoup h3");
-
-    fishoup_heading.style.color = 'red';
-
-
-// querySelectorAll()
-  //The Document method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors.
-  // static vs live nodelist
-  // static means that it doesn’t change, even if the UI does.
+// elem.querySelectorAll(selectors) is the preferred and most flexible method for matching (returning) a group of selectors.
+// It returns a static NodeList that represents a list of the document's elements that match the selectors appearing in string format as this method's parameters. If there are no matches it returns null.
+// By static we mean that the NodeLis doesn't change, even if the UI does change.
+// Example:
   // suppose we want to add a new ingredient in the fishsoup recipe
   const fishsoup_ingredients = document.querySelector(".fishsoup ul");
 
 
-  //  for (let ingredient of ingredients) {
+  // suppose we want to add a new ingredient in the fishsoup recipe
+  // const fishsoup_ingredients = document.querySelector(".fishsoup ul");
 
-  //   console.log(ingredient.textContent);
-  //  }
+
+//   fishsoup_ingredients.style.background="beige";
+//   const ingredients = fishsoup_ingredients.querySelectorAll('li');
 
 // setTimeout(function () {
 
@@ -41,9 +29,18 @@
 
 // }, 3000);
 
+// The new ingredient is shown on browser but not on console.
 
+// querySelector() method
+// An Element object representing the first element in the document that matches the specified set of CSS selectors.  If there are no matches it returns null.
+// The querySelector(selector) result is the same as querySelectorAll(selectors)[0], but the latter is matching all elements and returning just one, while querySelector specifically looks for and returns one.
+// In querySelector() method any valid css selector can be used as parameter.
 
-// const el = document.querySelector("div.user-panel:not(.main) input[name='login']");
+    // It enables developers to use complex selectors
+    // for example
+    const fishoup_heading = document.querySelector(".fish_recipes .fishsoup h3");
+
+    fishoup_heading.style.color = 'red';
 
 
 // With querySelector() and querySelectorAll() you can get the first element in the DOM that have one of two or more selectors
@@ -60,7 +57,6 @@ for(let meat_recipe of only_meat_recipes) {
   meat_recipe.style.background = "pink";
 }
 // and now the meat recipe section is selected
-// notes from MDN
-//https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
-//https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll
+
+
 
