@@ -100,3 +100,6 @@ footer {
     color: rgb(186, 33, 33);
     margin-top: auto;
 }
+
+/* https://hackernoon.com/flexbox-s-best-kept-secret-bd3d892826b6 */
+/* If you apply auto margins to a flex item, that item will automatically extend its specified margin to occupy the extra space in the flex container, depending on the direction in which the auto-margin is applied.  */
