@@ -104,3 +104,4 @@ a:focus {
 footer {
     color: rgb(186, 33, 33);
 }
+/* fr is a flexible, fractional unit, hence the name fr. The fr value covers up the space that remains available after the other values are applied. Here, auto occupies the space covered by the content (in footer and header sections), so the left of the page is covered by fr (in  main section).
