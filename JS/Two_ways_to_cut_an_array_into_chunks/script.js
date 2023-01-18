@@ -46,3 +46,16 @@ console.log(cities_in_achaia);//["Patras"]
  const south_balkans = balkans.splice(0,2);
  console.log(south_balkans);
  console.log(balkans);// the Greece and Bulgaria are gone!
+ // Splice method not only removes but also replace elements in the original array
+ balkans.splice(1,0,"Croatia");
+ console.log(balkans);
+ // Also adds elements without removing or replacing one
+ balkans.splice(0,0,"Montenegro");
+ console.log(balkans);
+// We see here, the balkans array in line 55 is very different from line 45 where we declared it
+
+// So the conclusion is we can use both of these methods cut off a portion of an array.
+// The main difference is that slice() doesn't affect the original array. It is immutable.  Splice() on the other hand is mutable. That means it changes the original array by removing, replacing, or adding elements.
+//  Which one to use depend on what we want to achieve.
+// Use Splice() when you explicitly want to modify the original array.
+// Otherwise use Slice()
