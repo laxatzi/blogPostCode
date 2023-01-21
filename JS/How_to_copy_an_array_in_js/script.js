@@ -39,3 +39,13 @@ lovely_pets[2].push("burmese");
 
 // original array is affected. The same would have happened if we used the spread syntax operator or  the Array.slice() method
 console.log(pets);
+
+// How to create a deep copy of an array with JS
+// There is the structuredClone() native method. This method returns a deep copy of the array that is passed in as an argument.
+
+const lovely_pets_structured_clone = structuredClone(pets);
+lovely_pets_structured_clone[2].push("maine coon");
+console.log("Original Pets Array (not affected): ");
+console.log(pets);
+console.log("Copy of the original array: ");
+console.log(lovely_pets_structured_clone);
