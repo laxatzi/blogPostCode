@@ -23,23 +23,22 @@ The elem itself is also included in the search.
 
   Example:
 */
-const chapter = document.querySelector('.chapter'); // LI
 
-  console.log(chapter.closest('.book')); // UL
-  console.log(chapter.closest('.contents')); // DIV
+const outer = document.querySelector('#outer');
+const main = document.querySelector('#main');
+const inner = document.querySelector('#inner');
 
-  console.log(chapter.closest('h1')); // null (because h1 is not an ancestor)
 
-  const el = document.getElementById('div-03');
 
 // the closest ancestor with the id of "div-02"
-console.log(el.closest('#div-02')); // <div id="div-02">
+console.log(inner.closest('#main')); // <div id="main">
 
 // the closest ancestor which is a div in a div
-console.log(el.closest('div div')); // <div id="div-03">
+// The elem itself is also included in the search.
+console.log(inner.closest('div div')); // <div id="inner">
 
 // the closest ancestor which is a div and has a parent article
-console.log(el.closest("article > div")); // <div id="div-01">
+console.log(inner.closest("article > div")); // <div id="outer">
 
 // the closest ancestor which is not a div
-console.log(el.closest(":not(div)")); // <article>
+console.log(inner.closest(":not(div)")); // <article>
