@@ -1,6 +1,6 @@
 <?php
 
- <?php
+
  // Functions
 
 //  A function is a block of code designed to carry out a certain task.
