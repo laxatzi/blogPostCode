@@ -14,7 +14,8 @@
 
 // Here we make use of the function keyword followed by the name of the function and parenthesis.
 // Function names can only contain letters, numbers, and underscores. They cannot start with a number though.
-
+// Function names are case-insensitive, but it is considered good practice to call them as they are named in their declaration
+// The function say_hi() can be also written Say_Hi();
 // The above code merely enables the function to execute the code between the curly brackets but do not actually run it.
 // In order to run the code inside the function or more simply call the function, we enter the function's name followed by parenthesis.
 say_hi();
@@ -59,13 +60,22 @@ greet_name("Good morning", "Maria"); // Good morning Maria
 
 // In the above examples we just displayed the result of the functions for demonstration purposes.
 // In reality, functions are returning code rather than displaying it.
-// Returning means storing a value for later use.
+// These statements may include one or more
+// a return statement forces the function to cease execution and return to the calling code
+
+function phrases() {
+  echo "First phrase"; // First phrase
+  return;
+  echo "Second phrase"; // Second phrase will never be executed
+}
+
+// Returning the code enables us storing it to a variable for later use.
 // Regarding the previous example:
 
 function greet_name2($greeting, $name) {
   return $greeting. " ". $name;
 }
-// The result of the code executed inside the curly braces is now stored in the function itself
+// The result of the code executed inside the curly braces is now the value of the function itself
 // If we want to display this result to the browser, we must echoing the function.
 
 echo greet_name2("Hello", "John"); // Hello John
@@ -81,3 +91,11 @@ function greet_name3($greeting, $name) {
 }
 
 echo greet_name3("Hello", "Slay"); // null is returned resulting in displaying an empty page
+
+
+
+
+
+
+
+
