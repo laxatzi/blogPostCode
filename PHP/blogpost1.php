@@ -25,3 +25,5 @@ fn_name($parameter1, $parameter2);
  }
 
  greet_name("Hello", "John"); // Hello John
+ echo "<br>";
+ greet_name("Good morning", "Maria"); // Good morning Maria
