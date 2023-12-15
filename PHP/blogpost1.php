@@ -1,10 +1,13 @@
 <?php
  // PHP Functions from a JS programmer perspective
 
- // This is meant to be a comprehensive post about PHP functions. Since JS was my first language, I tend to compare everything I learn, outside of the JavaScript world, with the syntax and peculiarities of that beloved by me, hated by a lot of people, language.
+ // This is meant to be a comprehensive post about PHP functions. Since JS was my first language, I tend to compare everything I learn, outside of the JavaScript world, with the syntax and peculiarities of that loved by me, hated by a lot of other people, language.
+// So I thought it could be fun, and really less boring, for someone who want to learn PHP but is well versed in the concepts of programming through JS, to learn and at the same time, compare similarities and differences of the two core web languages.
 
- // If PHP is the first language you wish to get hands-on experience with, hold the line.
+ // If , however, PHP is the first language you wish to get hands-on experience with, hold the line.
  // The post is also catered to the absolute beginner. Just ignore the remarks about JS.
+
+ // What is a Function
 
 //  A function is a block of code designed to carry out a certain task.
 //  It can be used repeatedly within our codebase, enabling cleaner, easier to maintain, and more legible code.
@@ -67,7 +70,7 @@ function name($arg_1, $arg_2, /* ..., */ $arg_n) {
   // Statements...
 }
 
-// Function parameters are not mandatory, and there is no limit to how many you can use.
+// Function parameters are not mandatory, and there is no limit to how many we can use.
 // Parameters are a convenient way to create variables that are scoped to the function, thus are locally defined. The are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
 
 // Note that although arguments, and parameters are concepts that are used interchangeably, they are not the same.
@@ -103,7 +106,7 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // second call arguments $greeting="Good morning" , $name = "Maria"
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
-    // For those of you who doesn't come from another language and/or haven't met with the concept of scope yet I'll try to explain it bellow.
+    // For those of you who haven't met with the concept of scope yet I'll try to explain it bellow.
 
 // A few words about Scopes
 
@@ -136,7 +139,7 @@ function what_pet() {
 echo what_pet(); // My pet is a Cat
 
 // Now if we echo out the $pet variable outside of the local scope my pet is still also a Cat
-echo 'My pet is a '.$pet;
+echo 'My pet is a '.$pet; // My pet is a Cat
 
 // Changing the global variable inside the local scope, in the above example, want affect the global variable's value prior to the function being called.
 
@@ -153,10 +156,10 @@ echo 'My pet is a '.$pet; // My pet is still a Cat
 echo "<br>";
 echo what_pet3(); // My pet is a Dog inside the function
 
-// But if we echo it out after the function is called the pet becoming a Dog
+// But if we echo it out after the function is called the pet is now a Dog
 echo "<br>";
 echo 'My pet is a '. $pet;
-// So introducing global variable with the global keyword it can become messy, and you have constantly be aware of the scope level you operate you code in.
+// So introducing a global variable to a local scope with the global keyword it can become messy, and you have constantly be aware of the scope level you operate you code in.
 // Another way, the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
 // Note that encapsulation is the  the practice of bundling related data into a structured unit [link wikipedia]
 // So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
