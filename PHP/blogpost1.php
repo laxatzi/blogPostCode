@@ -71,7 +71,7 @@ function name($arg_1, $arg_2, /* ..., */ $arg_n) {
 }
 
 // Function parameters are not mandatory, and there is no limit to how many we can use.
-// Parameters are a convenient way to create variables that are scoped to the function, thus are locally defined. The are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
+// Parameters are a convenient way to create variables that are scoped to the function, thus are locally defined. They are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
 
 // Note that although arguments, and parameters are concepts that are used interchangeably, they are not the same.
 // Parameters are variables passed to a function or method in order to be used by that function when it is called.
@@ -138,7 +138,7 @@ function what_pet() {
 
 echo what_pet(); // My pet is a Cat
 
-// Now if we echo out the $pet variable outside of the local scope my pet is still also a Cat
+// Now if we echo out the $pet variable outside of the local scope nothing changes.
 echo 'My pet is a '.$pet; // My pet is a Cat
 
 // Changing the global variable inside the local scope, in the above example, want affect the global variable's value prior to the function being called.
@@ -159,9 +159,10 @@ echo what_pet3(); // My pet is a Dog inside the function
 // But if we echo it out after the function is called the pet is now a Dog
 echo "<br>";
 echo 'My pet is a '. $pet;
+
 // So introducing a global variable to a local scope with the global keyword it can become messy, and you have constantly be aware of the scope level you operate you code in.
 // Another way, the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
-// Note that encapsulation is the  the practice of bundling related data into a structured unit [link wikipedia]
+// Note that encapsulation is the practice of bundling related data into a structured unit [link wikipedia]
 // So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
 // That way everything is clear.
 
@@ -205,7 +206,7 @@ function hyphenated_word2($joiner='-', $word1, $word2) {
 echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
 
 // This is happening because arguments are parsed to function left-to-right,
-// In our example, we get the error because the first argument (short) we have provided to hyphenated_word2() function gets assigned to $joiner,overriding the '-' value. This is making $word2 unassigned.
+// In our example, we get the error because the first argument (short) we have provided to hyphenated_word2() function gets assigned to $joiner,overriding the '-' value. This is making $word2 unassigned, that's why the uncaught argument error
 
 // In the above example the function definition should be modified like this:
   function hyphenated_word3($word1, $word2, $joiner='-') {
