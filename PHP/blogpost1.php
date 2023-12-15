@@ -1,12 +1,12 @@
 <?php
- // Functions
+ // A Comprehensive Guide to PHP Functions
 
 //  A function is a block of code designed to carry out a certain task.
 //  It can be used repeatedly within our codebase, enabling cleaner, easier to maintain, and more legible code.
 
  // Function Syntax
 
- // The basic syntax for a function is this:
+ // The basic syntax for a function is as follows:
  function say_hi() {
    // code to be executed
    echo "Hi";
@@ -14,14 +14,20 @@
 
 // Here we make use of the function keyword followed by the name of the function and parenthesis.
 // Function names can only contain letters, numbers, and underscores. They cannot start with a number though.
-// Function names are case-insensitive, but it is considered good practice to call them as they are named in their declaration
-// The function say_hi() can be also written Say_Hi();
-// The above code merely enables the function to execute the code between the curly brackets but do not actually run it.
-// In order to run the code inside the function or more simply call the function, we enter the function's name followed by parenthesis.
-say_hi();
+// Function names are case-insensitive, so the above function could be written as Say_Hi(), but it is considered good practice to call them as they are named in their declaration.
 
-// Inside the parens, we can make use of parameters. Function parameters are not mandatory as we saw in the syntax
-// but they are a convenient way to create variables that are scoped to the function, thus locally defined. The are also convenient regarding naming, since we can give them any name that fits the semantics of our program.
+// The above code enables the function to execute the code between the curly brackets but do not actually run it.
+// In order to run the code inside the function, we enter the function's name followed by parenthesis(call operator).
+// We refer to this expression as calling the function.
+say_hi(); // Hi
+
+// Inside the parens, we can make use of parameters.
+
+function name($arg_1, $arg_2, /* ..., */ $arg_n) {
+  // Statements...
+}
+// Function parameters are not mandatory, and there is no limit to how many you can use.
+// Parameters are a convenient way to create variables that are scoped to the function, thus are locally defined. The are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
 
 // Note that although arguments, and parameters are concepts that are used interchangeably, they are not the same.
 // Parameters are variables passed to a function or method in order to be used by that function when it is called.
@@ -44,7 +50,6 @@ greet_name("Hello", "John"); // Hello John
 echo "<br>";
 greet_name("Good morning", "Maria"); // Good morning Maria
 
-
 // We see that we can call the function multiple times with different arguments and different results.
 // By using parameters, we can take a variable from a function scope, and give its value to a local scope.
 // More specifically to our example, breaking down the different scopes:
@@ -58,12 +63,10 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
 
-
 // Return a value
 // In the above examples we just displayed the result of the functions for demonstration purposes.
 // In reality, functions are returning code rather than displaying it.
-// These statements may include one or more
-// a return statement forces the function to cease execution and return to the calling code
+// a return statement forces the function to cease execution.
 
 function phrases() {
   echo "First phrase"; // First phrase
@@ -111,8 +114,8 @@ echo "<br>";
 echo hyphenated_word('short', 'term', ' '); // short term
 
   // Order of default arguments matters
-   // It is a good practice to place default arguments on the right side of any non-default parameter.
-   //
+   // It is a good practice to place default arguments on the right side of any non-default parameter as we did in the previous example.
+
 function hyphenated_word2($joiner='-', $word1, $word2) {
   return $word1.$joiner.$word2;
 }
