@@ -21,6 +21,40 @@
 // We refer to this expression as calling the function.
 say_hi(); // Hi
 
+// Return a value
+// In the above examples we just displayed the result of the functions for demonstration purposes.
+// In reality, functions are returning code rather than displaying it.
+// a return statement forces the function to cease execution.
+
+function phrases() {
+  echo "First phrase"; // First phrase
+  return;
+  echo "Second phrase"; // Second phrase will never be executed
+}
+
+// Returning the code enables us storing it to a variable for later use.
+// Regarding the previous example:
+
+function greet_name2($greeting, $name) {
+  return $greeting. " ". $name;
+}
+// The result of the code executed inside the curly braces is now the value of the function itself
+// If we want to display this result to the browser, we must echoing the function.
+
+echo greet_name2("Hello", "John"); // Hello John
+
+// We can also pass this returned value to another variable and use it as we wish.
+$greeting_john = greet_name2("Hello", "John");
+echo $greeting_john.". How are you?"; // Hello John. How are you?
+
+// In a function with the return omitted, the value null will be returned.
+
+function greet_name3($greeting, $name) {
+ $greeting. " ". $name; // return keyword omitted
+}
+
+echo greet_name3("Hello", "Slay"); // null is returned resulting in displaying an empty page
+
 // Inside the parens, we can make use of parameters.
 
 function name($arg_1, $arg_2, /* ..., */ $arg_n) {
@@ -62,40 +96,47 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // second call arguments $greeting="Good morning" , $name = "Maria"
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
+    // For those of you who doesn't come from another language and/or haven't met with the concept of scope yet I'll try to explain it above.
 
-// Return a value
-// In the above examples we just displayed the result of the functions for demonstration purposes.
-// In reality, functions are returning code rather than displaying it.
-// a return statement forces the function to cease execution.
+// A few words about Scopes
 
-function phrases() {
-  echo "First phrase"; // First phrase
-  return;
-  echo "Second phrase"; // Second phrase will never be executed
+// In programming, scope denotes the area where a function or a variable is accessible to other code.
+// The concept of scope is fundamental to programming. But each programming language implement it in its own way.
+// The highest level of scope is global scope.
+$pet = 'Cat';
+
+echo $pet; // Cat
+echo "<br>";
+// Here we both define and echoing $pet variable in the global scope. So Cat is displayed in the browser. No problem with that!
+// Now if a have a function that demonstrate what my pet is, trying to access the global $pet variable from the function's local scope is going to generate a warning!
+
+// function what_pet() {
+//   // local scope
+//   return 'My pet is a '. $pet;
+// }
+
+// echo what_pet(); // Warning: Undefined variable $pet
+
+// From a JS programmer perspective this is very weird, since in JS we can actually do this due to lexical scoping[link mine].
+// PHP behaves differently.
+// In order to have access to global scope we need to introduce the 'global' statement and define the variable as global.
+function what_pet() {
+  // local scope
+  global $pet;
+  return 'My pet is a '. $pet;
 }
 
-// Returning the code enables us storing it to a variable for later use.
-// Regarding the previous example:
+echo what_pet(); // My pet is a Cat
 
-function greet_name2($greeting, $name) {
-  return $greeting. " ". $name;
-}
-// The result of the code executed inside the curly braces is now the value of the function itself
-// If we want to display this result to the browser, we must echoing the function.
+// Another way , the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
+// Note that encapsulation is the  the practice of bundling related data into a structured unit [link wikipedia]
+// So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
 
-echo greet_name2("Hello", "John"); // Hello John
-
-// We can also pass this returned value to another variable and use it as we wish.
-$greeting_john = greet_name2("Hello", "John");
-echo $greeting_john.". How are you?"; // Hello John. How are you?
-
-// In a function with the return omitted, the value null will be returned.
-
-function greet_name3($greeting, $name) {
- $greeting. " ". $name; // return keyword omitted
+function what_pet2($pet) {
+  return 'My pet is a '. $pet;
 }
 
-echo greet_name3("Hello", "Slay"); // null is returned resulting in displaying an empty page
+echo what_pet2($pet); // My pet is a Cat
 
 
 // Default arguments
@@ -132,11 +173,12 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
 
   // How to use Variadic parameters in PHP
   // In Programming, a variadic function is a function of indefinite arity, i.e., one which accepts a variable number of arguments
-  // They are handy in cases where we do not know all the parameters our function needs at the time of definition.
+  // Variadic functions are handy in cases where we do not know all the parameters our function needs at the time of definition.
   // If you come from a js background like I do, it is the equivelant of the spread operator.
   // Lets see an example:
   // We create a function and we want to be able to take in as many numbers as we want and add them together.
-  // So we use the splat operator, also known as three dots operator, or spread operator for people with a javascript background.
+  // So we use the splat operator, also known as three dots operator.
+
   function add_numbers(...$numbers) {
     // variable to store the sum of the summation
     $sum = 0;
@@ -147,10 +189,16 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
 
     return $sum;
   }
-
+  // So now when calling the function I can pass in as many numbers as I want
   echo add_numbers(2, 3, 4, 5); // 14
   echo "<br>";
   echo add_numbers(2, 3, 4, 5, 25); // 39
+
+  // Function Scope
+  // Scope is an important concept in programming.
+  //
+
+
 
 
 
