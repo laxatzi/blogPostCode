@@ -114,13 +114,21 @@ echo "<br>";
 echo hyphenated_word('short', 'term', ' '); // short term
 
   // Order of default arguments matters
-   // It is a good practice to place default arguments on the right side of any non-default parameter as we did in the previous example.
+   // The parameter list should have default values at the very end.
+   //  Creating a function that will have an optional parameter before mandatory parameters would result in an error (Uncaught ArgumentCountError)
 
 function hyphenated_word2($joiner='-', $word1, $word2) {
   return $word1.$joiner.$word2;
 }
 
-echo hyphenated_word('short', 'term'); //
+echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
+// This is happening because arguments are parsed to function left-to-right,
+// In our example, we get the error because the first argument (short) we have provided to hyphenated_word2() function gets assigned to $joiner,overriding the '-' value. This is making $word2 unassigned.
+
+// In the above example the function definition should be modified like this:
+  function hyphenated_word3($word1, $word2, $joiner='-') {
+    return $word1.$joiner.$word2;
+  }
 
 
 
