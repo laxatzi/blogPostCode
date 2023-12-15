@@ -156,19 +156,24 @@ echo what_pet3(); // My pet is a Dog inside the function
 // But if we echo it out after the function is called the pet becoming a Dog
 echo "<br>";
 echo 'My pet is a '. $pet;
-
+// So introducing global variable with the global keyword it can become messy, and you have constantly be aware of the scope level you operate you code in.
 // Another way, the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
 // Note that encapsulation is the  the practice of bundling related data into a structured unit [link wikipedia]
 // So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
+// That way everything is clear.
 
 function what_pet2($pet) {
   return 'My pet is a '. $pet;
 }
 
-echo what_pet2($pet); // My pet is a Cat
+echo what_pet2($pet); // My pet is a Cat since I haven't change the global scope
+// If I want to be a Dog I assign the Dog argument to my parameter
 
+function what_pet4($pet) {
+  return 'My pet is a '. $pet;
+}
 
-
+echo what_pet4('Dog'); // My pet is a Dog
 
 // Default arguments
   // In PHP, you can set a default argument for a parameter.
