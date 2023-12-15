@@ -58,6 +58,8 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
 
+
+// Return a value
 // In the above examples we just displayed the result of the functions for demonstration purposes.
 // In reality, functions are returning code rather than displaying it.
 // These statements may include one or more
@@ -91,6 +93,31 @@ function greet_name3($greeting, $name) {
 }
 
 echo greet_name3("Hello", "Slay"); // null is returned resulting in displaying an empty page
+
+
+// Default arguments
+  // In PHP, you can set a default argument for a parameter.
+  // This is handy for cases where a specific value is very common
+  // and it is repetitive to define it again and again.
+
+  function hyphenated_word($word1, $word2, $joiner='-'){
+    return $word1.$joiner.$word2;
+  }
+// When you call the hyphenated_word() function and don’t pass the $joiner argument, the function will use the '-' as the default argument:
+echo  hyphenated_word('short', 'term'); // short-term
+
+// However, if we do pass a third argument the default argument will be ignored
+echo "<br>";
+echo hyphenated_word('short', 'term', ' '); // short term
+
+  // Order of default arguments matters
+   // It is a good practice to place default arguments on the right side of any non-default parameter.
+   //
+function hyphenated_word2($joiner='-', $word1, $word2) {
+  return $word1.$joiner.$word2;
+}
+
+echo hyphenated_word('short', 'term'); //
 
 
 
