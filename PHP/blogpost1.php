@@ -130,6 +130,27 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
     return $word1.$joiner.$word2;
   }
 
+  // How to use Variadic parameters in PHP
+  // In Programming, a variadic function is a function of indefinite arity, i.e., one which accepts a variable number of arguments
+  // They are handy in cases where we do not know all the parameters our function needs at the time of definition.
+  // If you come from a js background like I do, it is the equivelant of the spread operator.
+  // Lets see an example:
+  // We create a function and we want to be able to take in as many numbers as we want and add them together.
+  // So we use the splat operator, also known as three dots operator, or spread operator for people with a javascript background.
+  function add_numbers(...$numbers) {
+    // variable to store the sum of the summation
+    $sum = 0;
+    // loop through the numbers to add one by one to our sum
+    foreach($numbers as $number) {
+      $sum += $number;
+    }
+
+    return $sum;
+  }
+
+  echo add_numbers(2, 3, 4, 5); // 14
+  echo "<br>";
+  echo add_numbers(2, 3, 4, 5, 25); // 39
 
 
 
