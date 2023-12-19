@@ -22,9 +22,9 @@
 
 // Here we make use of the function keyword followed by the name of the function and parenthesis.
 // Function names can only contain letters, numbers, and underscores. They cannot start with a number though.
-// Function names are case-insensitive, so the above function could be written as Say_Hi(), but it is considered good practice to call them as they are named in their declaration.
+// Function names are case-insensitive, so the above function could also be written as Say_Hi(), but it is considered good practice to call them as they are named in their declaration.
 
-// The above code enables the function to execute the code between the curly brackets but do not actually run it.
+// The example code enables the function to execute the code between the curly brackets but do not actually run it.
 // In order to run the code inside the function, we enter the function's name followed by parenthesis(call operator).
 // We refer to this expression as calling the function.
 say_hi(); // Hi
@@ -46,6 +46,7 @@ function phrases() {
 function greet_name2($greeting, $name) {
   return $greeting. " ". $name;
 }
+
 // The result of the code executed inside the curly braces is now the value of the function itself
 // If we want to display this result to the browser, we must echoing the function.
 
@@ -71,7 +72,7 @@ function name($arg_1, $arg_2, /* ..., */ $arg_n) {
 }
 
 // Function parameters are not mandatory, and there is no limit to how many we can use.
-// Parameters are a convenient way to create variables that are scoped to the function, thus are locally defined. They are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
+// Parameters are a convenient way to create variables that are scoped to the function. They are also convenient regarding naming, since we can give them any name that aligns with the purpose of our program.
 
 // Note that although arguments, and parameters are concepts that are used interchangeably, they are not the same.
 // Parameters are variables passed to a function or method in order to be used by that function when it is called.
@@ -106,12 +107,12 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // second call arguments $greeting="Good morning" , $name = "Maria"
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
-    // For those of you who haven't met with the concept of scope yet I'll try to explain it bellow.
+    // For those of you who haven't met with the concept of scope yet, let's dig in it a little further.
 
 // A few words about Scopes
 
 // In programming, scope denotes the area where a function or a variable is accessible to other code.
-// The concept of scope is fundamental to programming. But each programming language implement it in its own way.
+// The concept of scope is fundamental to programming. Each programming language implement it in its own way.
 // The highest level of scope is global scope.
 $pet = 'Cat';
 
@@ -160,7 +161,7 @@ echo what_pet3(); // My pet is a Dog inside the function
 echo "<br>";
 echo 'My pet is a '. $pet;
 
-// So introducing a global variable to a local scope with the global keyword it can become messy, and you have constantly be aware of the scope level you operate you code in.
+// So introducing a global variable to a local scope with the global keyword it can become messy, and you have to constantly be aware of the scope level you operate your code in.
 // Another way, the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
 // Note that encapsulation is the practice of bundling related data into a structured unit [link wikipedia]
 // So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
