@@ -1,11 +1,4 @@
 <?php
- // PHP Functions from a JS programmer perspective
-
- // This is a comprehensive article about PHP functions. Since JS was my first language, I tend to compare everything I learn, outside of the JavaScript world, with the syntax and peculiarities of that loved by me, hated by a lot of other people, language.
-// So I thought it could be fun, for someone who want to learn PHP but is well versed in the concepts of programming through JS, to learn PHP and at the same time, compare similarities and differences between the two core web languages.
-
- // If, however, PHP is the first language you wish to get hands-on experience with, hold the line.
- // The post is also catered to the absolute beginner. Just ignore the remarks about JS.
 
  // What is a Function
 
