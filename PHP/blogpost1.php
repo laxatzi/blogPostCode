@@ -5,6 +5,30 @@
 //  A function is a block of code designed to carry out a certain task.
 //  It can be used repeatedly within our codebase, enabling cleaner, easier to maintain, and more legible code.
 
+// Lets see an example:
+function convertCtoF($celsius) {
+  $fahrenheit = $celsius * (9 / 5) + 32;
+  return $fahrenheit;
+}
+// This is an example of a function converting celsius degrees to fahrenheit
+// By writing this function we can now easily convert different celsius values to fahrenheit
+// convert 30 celsius degrees and then 40, 42, 47 to fahrenheit.
+echo convertCtoF(30); //86
+echo convertCtoF(40); // 104
+echo convertCtoF(42); // 107.6
+echo convertCtoF(47); // 116.6
+
+//We only need to change the $celsius parameter and we get the respective result.
+// Had we not built a function, we should write the same code again and again.
+// convert 30 celsius degrees and then 40 celsius degrees to fahrenheit
+echo 30 * (9/5) + 32; // 86
+echo 40 * (9/5) + 32; // 104
+echo 42 * (9/5) + 32; // 107.6
+echo 47 * (9/5) + 32; // 116.6
+
+// This is repetitive code, a big no no for programming, but also more difficult to read, comprehend and maintain.
+// Regarding the last one, maintainability, is probably the biggest advantage we have.
+
  // Function Syntax
 
  // The basic syntax for a function is as follows:
