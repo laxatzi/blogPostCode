@@ -196,7 +196,7 @@ function what_pet4($pet) {
 
 echo what_pet4('Dog'); // My pet is a Dog
 
-// NOTE: In cases where the global variable is a constant, we can access it from the function scope without the use of the global statement or importing it as a parameter, since it has global scope by default.
+// NOTE: In cases where the global variable is a constant, we can access it within the function scope without the use of the global statement or the need of importing it as a parameter, since it has global scope by default.
 
 const KEY_NUMBER = 123456789;
 
@@ -205,6 +205,7 @@ function reveal_my_key() {
 }
 
 echo reveal_my_key(); // 123456789
+
 
 // Default arguments
   // In PHP, you can set a default argument for a parameter.
@@ -263,8 +264,39 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
   echo "<br>";
   echo add_numbers(2, 3, 4, 5, 25); // 39
 
+ // Type declarations
 
+ // From PHP 7 onwards, we have the option to declare the type of the parameters we're going to use in a function, as well as the type of the value that function is going to return.
+// The advantage of type declarations is code that is more robust and less vulnerable to errors.
 
+// For example:
+// If we want to declare a function that accepts two strings as arguments:
+
+//  we first need to declare and turn on (value of 1) the strict_types directive, otherwise arguments will be coerced.
+//  In our example the 56.7 float will be coerced to a string and we are going to get "Hi 56.7"
+
+// Turning on the strict_types directive
+declare(strict_types=1);
+
+// Prefixing arguments with data type
+ function greet(string $greeting, string $name) {
+   return $greeting. " ".$name;
+ }
+
+ echo greet("Hello", "Mike"); // "Hello, Mike"
+
+ echo "<br>";
+
+ //echo greet("Hi", 56.7); // Fatal error: Uncaught TypeError: greet(): Argument #2 ($name) must be of type string, float given
+
+// In the same way, you can also specify the return type of a function.
+
+function points_per_game(int $total_points, int $games):string {
+  $avg_points = round($total_points/$games, 3);
+  return (string)$avg_points;
+}
+
+echo points_per_game(10, 3); // 3.333
 
 
 
