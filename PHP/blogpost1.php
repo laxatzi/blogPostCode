@@ -32,19 +32,18 @@ echo 47 * (9/5) + 32; // 116.6
  // Function Syntax
 
  // The basic syntax for a function is as follows:
- function say_hi() {
+ function function_name() {
    // code to be executed
-   echo "Hi";
  }
 
 // Here we make use of the function keyword followed by the name of the function and parenthesis.
 // Function names can only contain letters, numbers, and underscores. They cannot start with a number though.
-// Function names are case-insensitive, so the above function could also be written as Say_Hi(), but it is considered good practice to call them as they are named in their declaration.
+// Function names are case-insensitive, so the above function could also be written as Function_Name(), or Function_name, but it is considered good practice to call them as they are named in their declaration.
 
 // The example code enables the function to execute the code between the curly brackets but do not actually run it.
 // In order to run the code inside the function, we enter the function's name followed by parenthesis(call operator).
 // We refer to this expression as calling the function.
-say_hi(); // Hi
+function_name();
 
 // Return a value
 // In the above example we just displayed the result of the functions for demonstration purposes.
@@ -124,7 +123,7 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // second call arguments $greeting="Good morning" , $name = "Maria"
     // We notice that regarding both calls the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
-    // For those of you who haven't met with the concept of scope yet, let's dig in it a little further.
+    // For those of you who haven't met with the concept of scope yet, let's dig in a little further.
 
 // A few words about Scopes
 
@@ -176,7 +175,7 @@ echo what_pet3(); // My pet is a Dog inside the function
 
 // But if we echo it out after the function is called the pet is now a Dog
 echo "<br>";
-echo 'My pet is a '. $pet;
+echo 'My pet is a '. $pet; // My pet is a Dog
 
 // So introducing a global variable to a local scope with the global keyword it can become messy, and you have to constantly be aware of the scope level you operate your code in.
 // Another way, the preferred way since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
@@ -196,6 +195,16 @@ function what_pet4($pet) {
 }
 
 echo what_pet4('Dog'); // My pet is a Dog
+
+// NOTE: In cases where the global variable is a constant, we can access it from the function scope without the use of the global statement or importing it as a parameter, since it has global scope by default.
+
+const KEY_NUMBER = 123456789;
+
+function reveal_my_key() {
+  return KEY_NUMBER;
+}
+
+echo reveal_my_key(); // 123456789
 
 // Default arguments
   // In PHP, you can set a default argument for a parameter.
