@@ -307,8 +307,55 @@ function greeting(string $name):void {
 
 echo greeting('Paul');
 
+// Anonymous Functions
+// Aside from named functions, PHP allows you to define anonymous functions.
+function ($n) {
+  return $n * $n;
+};
+
+// The above function has no name and it is ending in a semicolon since it is treated as an expression.
+// An anonymous function can be stored to a variable.
+$divide = function($x, $y) {
+  return $x / $y;
+};
+
+echo $divide(21, 7); // 3
+
+// When we var_dump the info of the $divide variable we see that it is a closure
+
+//object(Closure)#1 (1) {
+  // ["parameter"]=> array(2) {
+  //   ["$x"]=> string(10) ""
+  //   ["$y"]=> string(10) ""
+  // }
+  // }
+
+// So an anonymous function is a closure object and as such it can be passed as argument to another function or be returned from a function
+
+// Being passed as argument to another function
+$cities = ["athens", "milan", "saragossa", "toulon"];
+
+$capitalize = array_map(function($item){
+  return ucfirst($item);
+},$cities);
+
+print_r($capitalize); // Array ( [0] => Athens [1] => Milan [2] => Saragossa [3] => Toulon )
+
+// Return an anonymous function from a function
+function multiplier_generator($n) {
+  return function ($x) use ($n){
+    return $n * $x;
+  };
+}
+
+// the above multiplier_generator function doesn't work because php has function scope, thus variables inside a function are available only inside that function.
+// $n is considered undefined inside the anonymous function.
+// To anticipate this behavior we use the 'use' construct
 
 
+$five_times = multiplier_generator(5);
+
+echo $five_times(3); // 15
 
 
 
