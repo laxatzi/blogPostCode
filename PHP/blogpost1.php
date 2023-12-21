@@ -299,8 +299,13 @@ function points_per_game(int $total_points, int $games):string {
 
 echo points_per_game(10, 3); // 3.333
 
+// Suppose that we have a function which doesn't return a value.
+// In that case we use the void declaration
+function greeting(string $name):void {
+  echo "Hello ".$name;
+}
 
-
+echo greeting('Paul');
 
 
 
