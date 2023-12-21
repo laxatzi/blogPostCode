@@ -290,13 +290,16 @@ declare(strict_types=1);
  //echo greet("Hi", 56.7); // Fatal error: Uncaught TypeError: greet(): Argument #2 ($name) must be of type string, float given
 
 // In the same way, you can also specify the return type of a function.
-
+// We have a function that takes as arguments the total points scored by a player and number of games he played to score these points. The function return avg points per game
+// We declare the type of the arguments to be integer and the return number to be a string
 function points_per_game(int $total_points, int $games):string {
   $avg_points = round($total_points/$games, 3);
   return (string)$avg_points;
 }
 
 echo points_per_game(10, 3); // 3.333
+
+
 
 
 
