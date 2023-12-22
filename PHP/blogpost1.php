@@ -429,7 +429,7 @@ print_r($capitalize2); // Array ( [0] => Athens [1] => Milan [2] => Saragossa [3
 
 // We see that, unlike js, we can't omit the parentheses around a single argument.
 
-
+// If you have any questions about functions in PHP, don’t hesitate to leave them in the comments section below
 
 
 
