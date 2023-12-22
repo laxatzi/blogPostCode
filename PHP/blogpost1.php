@@ -6,17 +6,17 @@
 //  It can be used repeatedly within our codebase, enabling cleaner, easier to maintain, and more legible code.
 
 // Lets see an example:
-function convertCtoF($celsius) {
+function cToF($celsius) {
   $fahrenheit = $celsius * (9 / 5) + 32;
   return $fahrenheit;
 }
 // This is an example of a function converting celsius degrees to fahrenheit
 // By writing this function we can now easily convert different celsius values to fahrenheit
 // convert 30 celsius degrees and then 40, 42, 47 to fahrenheit.
-echo convertCtoF(30); //86
-echo convertCtoF(40); // 104
-echo convertCtoF(42); // 107.6
-echo convertCtoF(47); // 116.6
+echo cToF(30); //86
+echo cToF(40); // 104
+echo cToF(42); // 107.6
+echo cToF(47); // 116.6
 
 //We only need to change the $celsius parameter and we get the respective result.
 // Had we not built a function, we should write the same code again and again.
@@ -46,7 +46,7 @@ echo 47 * (9/5) + 32; // 116.6
 function_name();
 
 // Return a value
-// In the above example we just displayed the result of the functions for demonstration purposes.
+// In the above example we just displayed the result of the functions in the browser for demonstration.
 // In reality, functions are returning code rather than displaying it.
 // a return statement forces the function to cease execution.
 
@@ -206,13 +206,42 @@ function reveal_my_key() {
 
 echo reveal_my_key(); // 123456789
 
+// Passing arguments by reference
+// When we pass an argument to a function, PHP creates a copy of it within the function's scope. Any changes made to the variable inside the function do not affect the original variable outside the function.
+
+function addOne($number) {
+   return $number += 1;
+}
+
+$value = 10;
+echo addOne($value); // variables value in function scope: 11
+echo "<br>";
+echo $value; // variables value in global scope: 10
+
+// We have, however, the option to pass an argument by reference using the & symbol in the function definition.
+// In that case the function takes a reference to the original variable.
+// From now on, any modifications made to the variable inside the function will directly affect the original variable outside the function.
+function addTwo(&$number) {
+   return $number += 2;
+}
+
+$another_val = 10;
+echo addTwo($another_val); // variables value in function scope: 12
+echo "<br>";
+echo $another_val; // variables value in global scope: 12
+
+//In this example, the addTwo function takes an argument $number by reference.
+//  When the function is called with $another_val as argument, any changes made to $number inside the function directly affect the original value of $another_val outside the function. As a result, the value of $another_val is modified to 12 after the function call.
+// The option of passing arguments by reference must be used carefully, since it can lead to unexpected behavior and loss of transparency in our code.
+// Passing arguments by value and have functions return the modified value, is more simple and adds predictability to the code.
+
 
 // Default arguments
   // In PHP, you can set a default argument for a parameter.
   // This is handy for cases where a specific value is very common
   // and it is repetitive to define it again and again.
 
-  function hyphenated_word($word1, $word2, $joiner='-'){
+function hyphenated_word($word1, $word2, $joiner='-'){
     return $word1.$joiner.$word2;
   }
 
@@ -223,9 +252,9 @@ echo  hyphenated_word('short', 'term'); // short-term
 echo "<br>";
 echo hyphenated_word('short', 'term', ' '); // short term
 
-  // Order of default arguments matters
-   // The parameter list should have default values at the very end.
-   //  Creating a function that will have an optional parameter before mandatory parameters would result in an error (Uncaught ArgumentCountError)
+// Order of default arguments matters
+// The parameter list should have default values at the very end.
+//  Creating a function that will have an optional parameter before mandatory parameters would result in an error (Uncaught ArgumentCountError)
 
 function hyphenated_word2($joiner='-', $word1, $word2) {
   return $word1.$joiner.$word2;
@@ -259,11 +288,12 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
 
     return $sum;
   }
-  // So now when calling the function I can pass in as many numbers as I want
+  // So now when calling the function we can pass in as many numbers as we want
   echo add_numbers(2, 3, 4, 5); // 14
   echo "<br>";
   echo add_numbers(2, 3, 4, 5, 25); // 39
- // A variadic argument can be combined with not variadic ones, as long as the former are the placed to the end of the parameter queue. We can only have one argument with variable length in a function.
+
+ // A variadic argument can be combined with not variadic ones, as long as the former is placed to the end of the parameter queue. We can only have one argument with variable length in a function.
    function joiner($merge, ...$words) {
 
         return ($merge($words));
