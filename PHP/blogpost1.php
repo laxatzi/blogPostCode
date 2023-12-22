@@ -263,6 +263,14 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
   echo add_numbers(2, 3, 4, 5); // 14
   echo "<br>";
   echo add_numbers(2, 3, 4, 5, 25); // 39
+ // A variadic argument can be combined with not variadic ones, as long as the former are the placed to the end of the parameter queue. We can only have one argument with variable length in a function.
+   function joiner($merge, ...$words) {
+
+        return ($merge($words));
+    }
+
+    echo joiner("join", "I ", "Love ", "Salonika");
+
 
  // Type declarations
 
@@ -308,12 +316,12 @@ function greeting(string $name):void {
 echo greeting('Paul');
 
 // Anonymous Functions
-// Aside from named functions, PHP allows you to define anonymous functions.
+// Aside from named functions, PHP allows us to define anonymous functions.
 function ($n) {
   return $n * $n;
 };
 
-// The above function has no name and it is ending in a semicolon since it is treated as an expression.
+// The above function has no name. We also notice that it ends in a semicolon. The semicolon is needed since the function is treated as an expression.
 // An anonymous function can be stored to a variable.
 $divide = function($x, $y) {
   return $x / $y;
@@ -321,7 +329,7 @@ $divide = function($x, $y) {
 
 echo $divide(21, 7); // 3
 
-// When we var_dump the info of the $divide variable we see that it is a closure
+// When we var_dump the info of the $divide variable we see that it is actually a closure object
 
 //object(Closure)#1 (1) {
   // ["parameter"]=> array(2) {
@@ -332,9 +340,9 @@ echo $divide(21, 7); // 3
 
 // So an anonymous function is a closure object and as such it can be passed as argument to another function or be returned from a function
 
-// Being passed as argument to another function
+// Being passed as argument(callback) to another function
 $cities = ["athens", "milan", "saragossa", "toulon"];
-
+// here we use array_map built-in function to apply an anonymous callback function to every element of an array (the array $cities in the example)
 $capitalize = array_map(function($item){
   return ucfirst($item);
 },$cities);
@@ -350,12 +358,42 @@ function multiplier_generator($n) {
 
 // the above multiplier_generator function doesn't work because php has function scope, thus variables inside a function are available only inside that function.
 // $n is considered undefined inside the anonymous function.
-// To anticipate this behavior we use the 'use' construct
+// To anticipate this behavior we use the 'use' construct which unable us to inherit variables from the parent scope
 
-
+//We call the function which return an anonymous function that we then store in the $five_times variable.
 $five_times = multiplier_generator(5);
-
+// Now the variable can be invoked like a normal function. It remembers the anonymous function's return value and reference it in function scope.
 echo $five_times(3); // 15
+
+// Arrow functions
+// PHP 7.4 introduced arrow functions. Arrow functions are very popular in JS, so for programmers with js background this is not a new concept.
+// The benefits of using arrow functions are cleaner syntax, improved readability and the implication of return statements which of course contribute to the former two.
+// Example:
+// Lets say we have a very simple function that add two arguments
+function adder($n, $x) {
+  return $n + $x;
+}
+
+echo adder(5, 6); // 11
+
+// We could write it like:
+
+$adder = fn ($n, $x)=> $n + $x;
+
+echo $adder(2,3); // 5
+
+// We see that we do not use the function keyword but the fn keyword instead
+// then we use, what's called, a fat arrow with arrow functions we cannot use curly braces nor the return statement.
+// This is a fundamental difference to Javascript, where using curly braces and the return statement with arrow functions is optional.
+// Being strictly one liners, arrow functions in PHP are suitable for small, helper functions or callbacks.
+// Lets refactor the capitalized function we used before to use an arrow function
+
+// $cities = ["athens", "milan", "saragossa", "toulon"];
+// here we use array_map built-in function to apply an anonymous callback function to every element of an array (the array $cities in the example)
+$capitalize2 = array_map( fn ($item) => ucfirst($item) ,$cities);
+
+print_r($capitalize2); // Array ( [0] => Athens [1] => Milan [2] => Saragossa [3] => Toulon )
+
 
 
 
