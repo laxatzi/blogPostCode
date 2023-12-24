@@ -7,8 +7,7 @@
 
 // Lets see an example:
 function cToF($celsius) {
-  $fahrenheit = $celsius * (9 / 5) + 32;
-  return $fahrenheit;
+  return $celsius * (9 / 5) + 32;
 }
 // This is an example of a function converting celsius degrees to Fahrenheit
 // By writing this function, we can now easily convert different celsius values to Fahrenheit
@@ -20,7 +19,7 @@ echo cToF(47); // 116.6
 
 //We only need to change the $celsius parameter and we get the respective result.
 // Had we not built a function, we should write the same code again and again.
-// convert 30 celsius degrees and then 40 celsius degrees to Fahrenheit.
+// convert 30 celsius degrees and then 40, 42, 47 celsius degrees to Fahrenheit.
 echo 30 * (9/5) + 32; // 86
 echo 40 * (9/5) + 32; // 104
 echo 42 * (9/5) + 32; // 107.6
@@ -427,7 +426,7 @@ $capitalize2 = array_map( fn ($item) => ucfirst($item) ,$cities);
 
 print_r($capitalize2); // Array ( [0] => Athens [1] => Milan [2] => Saragossa [3] => Toulon )
 
-// We see that, unlike js, we can't omit the parentheses around a single argument.
+// Unlike js, we can't omit the parentheses around a single argument.
 
 // If you have any questions about functions in PHP, don’t hesitate to leave them in the comments section below
 
