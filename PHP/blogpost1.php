@@ -6,16 +6,16 @@
 //  It can be used repeatedly within our codebase, enabling cleaner, easier to maintain, and more legible code.
 
 // Lets see an example:
-function cToF($celsius) {
+function c_to_f($celsius) {
   return $celsius * (9 / 5) + 32;
 }
 // This is an example of a function converting celsius degrees to Fahrenheit
 // By writing this function, we can now easily convert different celsius values to Fahrenheit
 // convert 30 celsius degrees and then 40, 42, 47 to Fahrenheit.
-echo cToF(30); //86
-echo cToF(40); // 104
-echo cToF(42); // 107.6
-echo cToF(47); // 116.6
+echo c_to_f(30); //86
+echo c_to_f(40); // 104
+echo c_to_f(42); // 107.6
+echo c_to_f(47); // 116.6
 
 //We only need to change the $celsius parameter and we get the respective result.
 // Had we not built a function, we should write the same code again and again.
