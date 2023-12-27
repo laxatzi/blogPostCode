@@ -121,7 +121,7 @@ greet_name("Good morning", "Maria"); // Good morning Maria
     // second call arguments $greeting="Good morning" , $name = "Maria"
     // We notice that regarding both calls, the parameter is maintaining the integrity of the argument outside that function scope.
     // Put it simply, when we assign a value to one call, the other is not affected. We can greet both "John" and "Maria" using the same parameter ($name).
-    // For those of you who haven't met with the concept of scope yet, let's dig in a little further.
+    // For those of you who haven't met with the concept of scopes yet, let's dig in a little further.
 
 // A few words about Scopes
 
