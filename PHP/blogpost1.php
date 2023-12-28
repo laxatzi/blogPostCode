@@ -175,7 +175,7 @@ echo what_pet3(); // My pet is a Dog inside the function
 echo "<br>";
 echo 'My pet is a '. $pet; // My pet is a Dog
 
-// Introducing a global variable to a local scope with the global keyword can lead to messiness, and you must constantly know the scope level at which you operate your code.
+// As we see in the above example, introducing a global variable to a local scope with the global keyword can lead to messiness, and you must constantly know the scope level at which you operate your code.
 // Another way, the preferred way, since it adheres to the concept of encapsulation, is to pass the global variable as a parameter.
 // Note that encapsulation is the practice of bundling related data into a structured unit [link wikipedia]
 // So now everything we need 'lives' in that function and everything from the outside is coming in as an argument.
@@ -207,28 +207,28 @@ echo reveal_my_key(); // 123456789
 // Passing arguments by reference
 // When we pass an argument to a function, PHP creates a copy within the function's scope. Any changes made to the variable inside the function do not affect the original variable outside the function.
 
-function addOne($number) {
+function add_one($number) {
    return $number += 1;
 }
 
 $value = 10;
-echo addOne($value); // variables value in function scope: 11
+echo add_one($value); // variables value in function scope: 11
 echo "<br>";
 echo $value; // variables value in global scope: 10
 
 // We have, however, the option to pass an argument by reference using the & symbol in the function definition.
 // In that case, the function takes a reference to the original variable.
 // From now on, any modifications made to the variable inside the function will directly affect the original variable outside the function.
-function addTwo(&$number) {
+function add_two(&$number) {
    return $number += 2;
 }
 
 $another_val = 10;
-echo addTwo($another_val); // variables value in function scope: 12
+echo add_two($another_val); // variables value in function scope: 12
 echo "<br>";
 echo $another_val; // variables value in global scope: 12
 
-//In this example, the addTwo function takes an argument $number by reference.
+//In this example, the add_two function takes an argument $number by reference.
 //  When the function is called with $another_val as argument, any changes made to $number inside the function directly affect the original value of $another_val outside the function. As a result, the value of $another_val is modified to 12 after the function call.
 // We must use the option of passing arguments by reference carefully because it can lead to unexpected behavior and loss of transparency in our code.
 // Passing arguments by value and have functions return the modified value, is more simple and adds predictability to the code.
@@ -294,7 +294,7 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
   echo "<br>";
   echo add_numbers(2, 3, 4, 5, 25); // 39
 //Combining a variadic argument with non-variadic ones is possible if the variadic argument is at the end.We can only have one argument with variable length in a function.
- // We can only have one argument with variable length in a function.
+
    function joiner($merge, ...$words) {
 
         return ($merge($words));
@@ -312,7 +312,7 @@ echo hyphenated_word('short', 'term'); // Uncaught ArgumentCountError
 // If we want to declare a function that accepts two strings as arguments:
 
 //  we first need to declare and turn on (value of 1) the strict_types directive, otherwise arguments will be coerced.
-//  In our example, the 56.7 float will be coerced to a string and we are going to get "Hi 56.7"
+
 
 // Turning on the strict_types directive
 declare(strict_types=1);
@@ -327,6 +327,7 @@ declare(strict_types=1);
  echo "<br>";
 
  //echo greet("Hi", 56.7); // Fatal error: Uncaught TypeError: greet(): Argument #2 ($name) must be of type string, float given
+// Had we not declare strict_types=1, the 56.7 float will be coerced to a string and we are going to get "Hi 56.7"
 
 // In the same way, you can also specify the return type of a function.
 // We have a function that takes as arguments the total points scored by a player and the number of games he played to score these points. The function return avg points per game.
