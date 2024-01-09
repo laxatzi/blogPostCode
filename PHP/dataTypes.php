@@ -73,8 +73,25 @@
 
 // Floating Point Numbers
  // A float is a number that can have a decimal point or be in exponential form.
- // In the following example both $f and $fl are floating point numbers or more simply floats.
-$f = 2e1;
-var_dump($f); // float(20)
+
 $fl = 34.5;
 var_dump($fl); // float(34.5)
+//Another way of typing floating-point numbers is to use scientific notation.
+$f = 2e1;
+var_dump($f); // float(20)
+// In the above example both $f and $fl are floating point numbers or more simply floats.
+
+// # Floating point number's precision
+ // In PHP, and all CS languages for that matter, the following expression evaluates to true:
+  $sum = (.1 + .2) == .3;
+  echo $sum == false; // 1
+ // What is going on here?
+ // My calc says this is not right.
+ // .1 + .2 do actually make .3
+ // The thing is that we humans use the decimal notation system and our computers use the binary system.
+ // Binary numbers have only 2 as a prime factor, limiting the expression of fractions.
+ // In binary, 1/2, 1/4, 1/8 would all be represented accurately as decimals.
+ // On the other hand, 0.1 and 0.2 (1/10 and 1/5) are repeating decimals in the binary system the computer uses.
+ // .1 + .2 = .29999...
+
+
