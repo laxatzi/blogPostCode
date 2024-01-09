@@ -133,5 +133,74 @@ echo 2_345_000.45; // 2345000.45
 echo "<br>";
 echo 2345000.45; // 2345000.45
 
+// # Strings
+ // In PHP, as in most computer languages, a string represents a sequence of characters.
+ // These sequence can consist of various kinds of characters that are wrapped inside quotes.
+ // The quotes can be single or double, as long as they are consistent. (For example starting with, and also finishing with double quotes).
+ // These two methods of specifying a string value do have some differences though.
+
+ // # Single quoted strings
+ // Every character in a single quoted string is literal.
+ // Be it escape characters (\r, \n, \b), or variable names ($value), they will be represented literally.
+ $number_of_hours = 24;
+ echo 'A day has $number_of_hours hours!';
+ // A day has $numbers_of_hours hours!
+
+ // The only ecxeption to that rule is the backlash character, which we can use to escape a single quote
+ echo 'this isn\'t the first time won\'t be the last time';
+ // this isn't the first time won't be the last time
+
+ // # double quoted strings
+  // Contrary to the single quoted string method, with double string we can be abstract.
+  // Here variables are evaluated. In programming we call this process of placeholders being replaced by their corresponding values, string interpolation:
+ $number_of_hours2 = 24;
+ echo 'A day has $number_of_hours2 hours!';
+// A day has 24 hours!
+// In PHP, using \n or \r\n inside double strings will create new lines.
+  echo "Hello\r\nWorld";
+  // Hello
+  // World
+
+// Heredoc/Nowdoc
+ // PHP provides a more efficient method for directly writing multi-line string variables using Heredoc and Nowdoc syntax.
+ // The sole difference between a heredoc and a nowdoc is that a heredoc performs string interpolation, while nowdoc doesn’t.
+ // So we are going to see how  heredoc works and it is pretty much the same with nowdoc.
+ // After the <<< operator, we specify an identifier. We can use whatever name we like. Next we add the string itself.
+ // The heredoc should be closed by placing the same identifier at the end.
+ // Before PHP 7.3 the closing identifier should have no white space in front of it in order to be valid.
+ // From PHP 7.3 and on, we can use whitespace in front of the closing identifier as long as the same amount of whitespace is subtracted from the start of each line of the string.
+
+// echo <<<greetWorld
+// Hello
+// World.
+// I Love You!
+//  greetWorld;
+// The above is invalid
+
+echo <<<greetWorld
+  Hello
+  World.
+  I Love You!
+  greetWorld;
+
+// Hello
+// World.
+// I Love You!
+
+// With heredoc a multiline string is easier to read especially in the case of HTML documents.
+
+$author = 'Lambros Hatzinikolaou';
+
+$copyright = <<<footer
+<footer>
+    <p>© Copyright 2023 $author. All rights reserved</p>
+</footer>
+footer;
+
+echo $copyright; // © Copyright 2023 Lambros Hatzinikolaou. All rights reserved
+
+
+
+
 
 
