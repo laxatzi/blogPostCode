@@ -7,15 +7,15 @@
 
 // Lets see an example:
 function c_to_f($celsius) {
-  return $celsius * (9 / 5) + 32;
+  echo $celsius * (9 / 5) + 32;
 }
 // This is an example of a function converting celsius degrees to Fahrenheit
 // By writing this function, we can now easily convert different celsius values to Fahrenheit
 // convert 30 celsius degrees and then 40, 42, 47 to Fahrenheit.
-echo c_to_f(30); //86
-echo c_to_f(40); // 104
-echo c_to_f(42); // 107.6
-echo c_to_f(47); // 116.6
+c_to_f(30); //86
+c_to_f(40); // 104
+c_to_f(42); // 107.6
+c_to_f(47); // 116.6
 
 //We only need to change the $celsius parameter and we get the respective result.
 // Had we not built a function, we should write the same code again and again.
@@ -44,7 +44,7 @@ echo 47 * (9/5) + 32; // 116.6
 function_name();
 
 // Return a value
-// In the above example, we just displayed the result of the functions in the browser for demonstration.
+// In the previous example, we just displayed the result of the functions in the browser for demonstration.
 // In reality, functions are returning code rather than displaying it.
 // a return statement forces the function to cease execution.
 
