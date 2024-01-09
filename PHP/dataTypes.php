@@ -31,7 +31,7 @@
    // $124_user = "Daniel Crouch";
    // echo $124_user; // syntax error, unexpected integer "124"
 
- // In PHP variables are case sensitive.
+ // NOTE: In PHP variables are case sensitive.
  // Capital letters do matter.
  // We have declared the variable $name already, but not a variable named $Name.
  echo $Name; // Undefined variable $Name
@@ -47,14 +47,16 @@
  // # Data types
   // PHP supports the following data types:
 
-    // String
+
     // Integer
     // Float (floating point numbers - also called double)
+    // String
     // Boolean
+    // NULL
     // Array
     // Object
-    // NULL
     // Resource
+
 // Let's dive deep into them:
 
  // Integer
@@ -70,15 +72,22 @@
  $f = 2e3;
  var_dump($f); // 2000
 
+ // # Testing an integer value
+   // To find weather the type of a variable is integer we can use the is_int() method.
+  //Syntax: is_int($value): bool
+
+    var_dump(is_int(17)); // bool(true)
+    var_dump(is_int(22.45)); // bool(false)
+    // NOTE: We check the type of the variable NOT the actual value.
+    var_dump(is_int('2.25')); // bool(false)
 
 // Floating Point Numbers
- // A float is a number that can have a decimal point or be in exponential form.
-
+ // A float is a number that can have a decimal point.
 $fl = 34.5;
 var_dump($fl); // float(34.5)
 //Another way of typing floating-point numbers is to use scientific notation.
-$f = 2e1;
-var_dump($f); // float(20)
+$f = 5.327496e3; ;
+var_dump($f); // float(5327.496)
 // In the above example both $f and $fl are floating point numbers or more simply floats.
 
 // # Floating point number's precision
@@ -89,9 +98,40 @@ var_dump($f); // float(20)
  // My calc says this is not right.
  // .1 + .2 do actually make .3
  // The thing is that we humans use the decimal notation system and our computers use the binary system.
- // Binary numbers have only 2 as a prime factor, limiting the expression of fractions.
+ // Binary numbers have only 2 as a prime factor, limiting the representation of fractions.
  // In binary, 1/2, 1/4, 1/8 would all be represented accurately as decimals.
- // On the other hand, 0.1 and 0.2 (1/10 and 1/5) are repeating decimals in the binary system the computer uses.
+ // On the other hand, 0.1 and 0.2 (1/10 and 1/5) are repeating decimals in the binary system.
+ // So a more accurate representation would be:
  // .1 + .2 = .29999...
+ // and that is the reason for the line 86 equation being true.
+
+ // # Testing a floating value
+   // To find weather the type of a variable is float we can use the is_float() method.
+
+    //Syntax: is_float($value): bool
+    var_dump(is_float(2.25)); // bool(true)
+    var_dump(is_float(225)); // bool(false)
+    // NOTE: We check the type of the variable NOT the actual value.
+     var_dump(is_float('2.25')); // bool(false)
+    // NOTE: NAN being a special constant, holds a float datatype in PHP.
+    // Thus:
+    var_dump(is_float(NAN)); // bool(true)
+
+// # is_numeric() method
+// Since both integers and floats are numbers, we can check them regarding this attribute with the
+// is_numeric() method.
+// Syntax: is_numeric($value): bool
+    var_dump(is_numeric(2.25)); // bool(true)
+    var_dump(is_numeric(225)); // bool(true)
+    var_dump(is_numeric('A piece of string')); // bool(false);
+  // Bear in mind that this method returns true for a numeric string.
+    var_dump(is_numeric('225')); // bool(true)
+
+// NOTE: From PHP 7.4 onwards, integers and floats may contain underscores between digits for improving readability.
+// These underscores are removed at the lexing stage, so the numeric value does not change.
+echo 2_345_000.45; // 2345000.45
+echo "<br>";
+echo 2345000.45; // 2345000.45
+
 
 

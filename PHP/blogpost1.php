@@ -73,8 +73,8 @@ echo $greeting_john.". How are you?"; // Hello John. How are you?
 // In a function with the return omitted, the value null will be returned.
 
 function greet_name3($greeting, $name) {
- $greeting. " ". $name; // return keyword omitted
-}
+  $greeting. " ". $name; // return keyword omitted
+ }
 
 echo greet_name3("Hello", "Slay"); // null is returned resulting in displaying an empty page
 
