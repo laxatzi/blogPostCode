@@ -32,7 +32,7 @@
    // echo $124_user; // syntax error, unexpected integer "124"
 
  // NOTE: In PHP variables are case sensitive.
- // Capital letters do matter.
+ // Capital letters matter.
  // We have declared the variable $name already, but not a variable named $Name.
  echo $Name; // Undefined variable $Name
 
@@ -47,9 +47,8 @@
  // # Data types
   // PHP supports the following data types:
 
-
     // Integer
-    // Float (floating point numbers - also called double)
+    // Float (floating point numbers)
     // String
     // Boolean
     // NULL
@@ -65,12 +64,12 @@
   // and must not have a decimal point.
   // Integers can be either positive or negative.
   // Regarding integers in CS, we must note that:
-  // We humans use the decimal number system for counting and measuring, but computers operate using a binary number system, with transistors functioning in two states - on and off.
+  // We use the decimal number system for counting and measuring, but computers operate using a binary number system, with transistors functioning in two states - on and off.
   // In computing, we also use hexadecimal and octal number systems in order to represent binary numbers more efficiently.
   // That is why in PHP integers can be defined in: decimal (base 10), hexadecimal (base 16), octal (base 8), or binary (base 2) notation.
 // In the following example $n is an integer. The PHP var_dump() function returns the data type and value:
  $f = 2e3;
- var_dump($f); // 2000
+ var_dump($f); // float(2000)
 
  // # Testing an integer value
    // To find weather the type of a variable is integer we can use the is_int() method.
@@ -82,22 +81,22 @@
     var_dump(is_int('2.25')); // bool(false)
 
 // Floating Point Numbers
- // A float is a number that can have a decimal point.
+ // A floating point number or more simply float is a number that can have a decimal point.
 $fl = 34.5;
 var_dump($fl); // float(34.5)
-//Another way of typing floating-point numbers is to use scientific notation.
+//Another way of typing floats is to use scientific notation.
 $f = 5.327496e3; ;
 var_dump($f); // float(5327.496)
-// In the above example both $f and $fl are floating point numbers or more simply floats.
+// In the above example both $f and $fl are floats.
 
 // # Floating point number's precision
- // In PHP, and all CS languages for that matter, the following expression evaluates to true:
+ // In PHP, and in most CS languages, the following expression evaluates to true:
   $sum = (.1 + .2) == .3;
   echo $sum == false; // 1
- // What is going on here?
- // My calc says this is not right.
- // .1 + .2 do actually make .3
- // The thing is that we humans use the decimal notation system and our computers use the binary system.
+ // But hey, my calc says this is not right.
+  // .1 + .2 do actually make .3
+  // What is going on here?
+ // The thing is that, as we have already note, we humans use the decimal notation system and our computers use the binary system.
  // Binary numbers have only 2 as a prime factor, limiting the representation of fractions.
  // In binary, 1/2, 1/4, 1/8 would all be represented accurately as decimals.
  // On the other hand, 0.1 and 0.2 (1/10 and 1/5) are repeating decimals in the binary system.
@@ -129,6 +128,10 @@ var_dump($f); // float(5327.496)
 
 // NOTE: From PHP 7.4 onwards, integers and floats may contain underscores between digits for improving readability.
 // These underscores are removed at the lexing stage, so the numeric value does not change.
+// In computing, lexing is the process of converting a string of characters into tokens.
+// These tokens constitute the smallest meaningful units in a program.
+// The lexical analyzer of each language identifies these tokens, and passes them to the next stage of the compiler for further processing. In the case of PHP, the underscores inside a numeric type are excluded from this elevation.
+
 echo 2_345_000.45; // 2345000.45
 echo "<br>";
 echo 2345000.45; // 2345000.45
@@ -136,12 +139,12 @@ echo 2345000.45; // 2345000.45
 // # Strings
  // In PHP, as in most computer languages, a string represents a sequence of characters.
  // These sequence can consist of various kinds of characters that are wrapped inside quotes.
- // The quotes can be single or double, as long as they are consistent. (For example starting with, and also finishing with double quotes).
+ // The quotes can be single or double, as long as they are consistent. (For example both start, and finish with double quotes).
  // These two methods of specifying a string value do have some differences though.
 
  // # Single quoted strings
  // Every character in a single quoted string is literal.
- // Be it escape characters (\r, \n, \b), or variable names ($value), they will be represented literally.
+ // Be it escape characters (\r, \n, \b), or variable names ($value), it will be represented literally.
  $number_of_hours = 24;
  echo 'A day has $number_of_hours hours!';
  // A day has $numbers_of_hours hours!
@@ -152,7 +155,7 @@ echo 2345000.45; // 2345000.45
 
  // # double quoted strings
   // Contrary to the single quoted string method, with double string we can be abstract.
-  // Here variables are evaluated. In programming we call this process of placeholders being replaced by their corresponding values, string interpolation:
+  // Here variables are evaluated. In programming we call the process of placeholders being replaced by their corresponding values in a string, string interpolation:
  $number_of_hours2 = 24;
  echo 'A day has $number_of_hours2 hours!';
 // A day has 24 hours!
@@ -160,11 +163,22 @@ echo 2345000.45; // 2345000.45
   echo "Hello\r\nWorld";
   // Hello
   // World
+// This is not only true for new line escape character but for all escape characters in general (/b, /f, /r etc)
 
 // Heredoc/Nowdoc
  // PHP provides a more efficient method for directly writing multi-line string variables using Heredoc and Nowdoc syntax.
  // The sole difference between a heredoc and a nowdoc is that a heredoc performs string interpolation, while nowdoc doesn’t.
- // So we are going to see how  heredoc works and it is pretty much the same with nowdoc.
+ // So we are going to see how heredoc works and it is pretty much the same with nowdoc.
+ // This is an example of a heredoc:
+ echo <<<greetWorld
+  Hello
+  World.
+  I Love You!
+  greetWorld;
+
+// Hello
+// World.
+// I Love You!
  // After the <<< operator, we specify an identifier. We can use whatever name we like. Next we add the string itself.
  // The heredoc should be closed by placing the same identifier at the end.
  // Before PHP 7.3 the closing identifier should have no white space in front of it in order to be valid.
@@ -175,17 +189,8 @@ echo 2345000.45; // 2345000.45
 // World.
 // I Love You!
 //  greetWorld;
+
 // The above is invalid
-
-echo <<<greetWorld
-  Hello
-  World.
-  I Love You!
-  greetWorld;
-
-// Hello
-// World.
-// I Love You!
 
 // With heredoc a multiline string is easier to read especially in the case of HTML documents.
 
@@ -193,7 +198,7 @@ $author = 'Lambros Hatzinikolaou';
 
 $copyright = <<<footer
 <footer>
-    <p>© Copyright 2023 $author. All rights reserved</p>
+    <p>© Copyright 2024 $author. All rights reserved</p>
 </footer>
 footer;
 
