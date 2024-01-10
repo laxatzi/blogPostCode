@@ -205,6 +205,115 @@ footer;
 echo $copyright; // © Copyright 2023 Lambros Hatzinikolaou. All rights reserved
 
 
+// # Booleans
+ //  The boolean data type only has two values, it can be either set or not-set.
+ // To denote a boolean literal we use the true or false constants.
+ // Both are case insensitive.
+ // We declare variables of the boolean type in the following example:
+ $is_valid = true;
+ $is_number = FALSE;
+ $is_checked = True; // bool constants are case insensitive
+
+ // In the PHP language, unless explicitly coerced, almost all values are true except for the following exceptions:
+  // The integer zero:
+  var_dump((bool) 0); // bool(false)
+  // The floating point zero:
+  var_dump((bool) 0.0); // bool(false)
+  // empty string
+  var_dump((bool) ""); // bool(false)
+// NULL
+var_dump((bool) NULL); // bool(false)
+
+ // There is also a peculiar case:
+
+  var_dump((bool) "0"); // bool(false)
+ // But
+  var_dump((bool) "false"); // bool(true)
+  var_dump((bool) "0.0"); // bool(true)
+
+  // We notice, that one single zero inside a string is falsy.
+  // This is due to bad design, since it would be cleaner to not have any exception to the rule that dictates that ALL strings are truthy. And it is something we must consider while casting.
+
+// NOTE: Programmers with a Javascript background should bear in mind that while in JS an empty array evaluates to true, since it is actually considered to be an object,
+// in PHP it evaluates to false.
+// An empty array
+ var_dump((bool) array()); //  bool(false)
+
+ // Booleans are mostly used in conditional testing where a boolean value is checked and the execution of the code is depended in this boolean value.
+
+function is_a_bigger($a, $b) {
+  if ($a > $b) {
+    return $a;
+ }
+};
+
+echo is_a_bigger(3, 2); // 3
+
+// In PHP, alike with JS, all negative numbers are considered truthy.
+
+var_dump((bool) -1); // bool(true)
+
+//In order to check if a variable is boolean or not, we can  use the is_bool() built in function.
+// Example:
+$var1 = false;
+$var2 = 'false';
+
+//check if $var1 is a boolean // Echoes: Variable $var1 is a boolean
+if (is_bool($var1)) {
+  echo 'Variable $var1 is a boolean.';
+} else {
+    echo 'Variable $var1 is not a boolean.';
+}
+
+//check if $var2 is a boolean // Echoes: Variable $var2 is NOT a boolean
+if (is_bool($var2)){
+  echo 'Variable $var2 is a boolean.';
+} else {
+    echo 'Variable $var2 is NOT a boolean.';
+}
+
+// NULL
+  // The data type NULL denotes a variable with no assigned value. Thus this data type's only value can be NULL.
+  // NULL is case insensitive
+  $no_value_var = null;
+  $nullish_value_var = Null;
+  var_dump($no_value_var); //NULL
+  var_dump($nullish_value_var); // NULL
+
+  // Variables can be emptied by setting the value to NULL:
+  // We can empty a variable by setting it's value to NULL
+  $city_name = "Thessaloniki";
+  $city_name = null;
+  var_dump($city_name); // NULL
+
+  // Undefined variables resolve to the value of NULL:
+
+  $country_name; // We, of course, get the "Undefined variable $country_name..." Warning!
+  var_dump($country_name); // NULL
+
+  // This is also the case with unset() variables:
+  $country_name2 = "Greece";
+  unset($country_name2);
+  var_dump($country_name2); // We get "Undefined variable $country_name2 in" and the type which is: NULL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
