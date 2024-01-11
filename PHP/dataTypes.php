@@ -136,7 +136,7 @@ echo 2_345_000.45; // 2345000.45
 echo "<br>";
 echo 2345000.45; // 2345000.45
 
-// # Strings
+// # String
  // In PHP, as in most computer languages, a string represents a sequence of characters.
  // These sequence can consist of various kinds of characters that are wrapped inside quotes.
  // The quotes can be single or double, as long as they are consistent. (For example both start, and finish with double quotes).
@@ -205,7 +205,7 @@ footer;
 echo $copyright; // © Copyright 2023 Lambros Hatzinikolaou. All rights reserved
 
 
-// # Booleans
+// # Boolean
  //  The boolean data type only has two values, it can be either set or not-set.
  // To denote a boolean literal we use the true or false constants.
  // Both are case insensitive.
@@ -273,14 +273,13 @@ if (is_bool($var2)){
 }
 
 // NULL
-  // The data type NULL denotes a variable with no assigned value. Thus this data type's only value can be NULL.
+  // The data type NULL explicitly defines an empty variable. One with no assigned value. Thus this data type's only value can be NULL.
   // NULL is case insensitive
   $no_value_var = null;
   $nullish_value_var = Null;
   var_dump($no_value_var); //NULL
   var_dump($nullish_value_var); // NULL
 
-  // Variables can be emptied by setting the value to NULL:
   // We can empty a variable by setting it's value to NULL
   $city_name = "Thessaloniki";
   $city_name = null;
@@ -296,6 +295,83 @@ if (is_bool($var2)){
   unset($country_name2);
   var_dump($country_name2); // We get "Undefined variable $country_name2 in" and the type which is: NULL
 
+  // To find weather a variable is NULL we can use the built-in is_nun() method
+  // Syntax:
+  is_null($value); // bool
+  // If the variable is NULL this method returns true
+
+  var_dump(is_null($nonexistent));
+  // Warning: Undefined variable $nonexistent
+  //  bool(true)
+
+  // Another way to check for Null is the identical operator (===):
+    $website = null;
+    $result = ($website === null);
+    var_dump($result); // bool(true)
+
+    $website2 = 'lambroshatzinikolaou.com';
+    $result = ($website === null);
+    var_dump($result); // bool(false)
+
+  // What is NULL good for?
+  // A common application of null is in default arguments.
+  // In a case where we want to know if a value has been provided or not, but at the same time an empty one is acceptable too:
+  function user($name, $age = null) {
+    if($age === null) { return "The name is $name. The age is not revealed!"; } else {
+        return "The name is $name. The age is $age";
+    }
+}
+
+echo user('Lambros'); // The name is Lambros. The age is not revealed!
+
+// Array
+ // The array data type is a compound data type, one that can hold multiple values in one single variable.
+// In programming a compound type is one that can be structured using other data types both primitive and compound.
+// Arrays values can be of any data type, even other arrays
+
+$cities = array("Athens", "Thessaloniki", "Herakleion");
+$misc = array("String", 45, Null, 4.5, $cities);
+
+var_dump($misc); // array(5) {
+//     [0]=> string(6) "String"
+//     [1]=> int(45)
+//     [2]=> NULL
+//     [3]=> float(4.5)
+//     [4]=> array(3) {
+//         [0]=> string(6) "Athens"
+//         [1]=> string(12) "Thessaloniki"
+//         [2]=> string(10) "Herakleion"
+//     }
+// }
+
+
+// Array Syntax:
+// In the prev examples, the arrays have been created with the use of the array() construct.
+// $array =array(
+//       key  => value,
+//       key2 => value2,
+//       key3 => value3,
+//       ...
+//    )
+
+// We can also create arrays using the short array syntax
+// This syntax replaces array() with [].
+// $array = [
+//       key  => value,
+//       key2 => value2,
+//       key3 => value3,
+//       ...
+//    ]
+
+
+// Since the topic of arrays is a large one we will cover it in a lot more detail in a later post.
+
+// Object
+ // Like Array, Object is also a compound data type in PHP.
+ // Unlike Array, though, an object must be explicitly declared.
+ // Object is an instance of a class.
+ // So the Class of the Object should be declared first.
+ // The data type is defined firstly in the class, so that we can later use the data type in instances of the class.
 
 
 
