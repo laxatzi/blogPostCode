@@ -325,13 +325,15 @@ if (is_bool($var2)){
 echo user('Lambros'); // The name is Lambros. The age is not revealed!
 
 // Array
- // The array data type is a compound data type, one that can hold multiple values in one single variable.
+ // The array data type can hold multiple values of any data type, even other arrays, in one single variable.
+ // The array data type, as well as the Object data type that we going to cover next, are called compound types.
 // In programming a compound type is one that can be structured using other data types both primitive and compound.
-// Arrays values can be of any data type, even other arrays
+// Let's see an example:
 
 $cities = array("Athens", "Thessaloniki", "Herakleion");
 $misc = array("String", 45, Null, 4.5, $cities);
 
+// The $misc array consist of multiple data types, a string, a number, a Null, a float, and an array of strings
 var_dump($misc); // array(5) {
 //     [0]=> string(6) "String"
 //     [1]=> int(45)
@@ -368,10 +370,55 @@ var_dump($misc); // array(5) {
 
 // Object
  // Like Array, Object is also a compound data type in PHP.
- // Unlike Array, though, an object must be explicitly declared.
- // Object is an instance of a class.
- // So the Class of the Object should be declared first.
- // The data type is defined firstly in the class, so that we can later use the data type in instances of the class.
+ // Unlike Array, though, an object must be declared as an instance of a class.
+ // So the Class of the Object should be declared first, and then be used as a template for the object.
+ // The data type is defined firstly in the class, so that we can later use the data type in instances of that class.
+
+ // Syntax
+     class student {
+           // properties
+           public $name;
+        }
+    $student1 = new student;
+  // To create the $student1 object, we use the 'new' keyword followed by the class name
+
+  var_dump($student1); // object(student)#1 (1) { ["name"]=> NULL }
+  // We see, that $student1 is an object, the first instance of student Class containing one property ("name")
+
+  // Understanding objecs deeply is crucial for performing complex operations such as encaplulation. We are going to elaborate more on them in a later post.
+
+  // # Resource
+  // The resource data type is one of the two special types, the other being NULL, in PHP>
+  // We use it to represent external resources such as database connections, file pointers, images, and more.
+  // In order to create and manipulate these resources we use special PHP functions that interact with external services or libraries.
+
+  //  When we need them
+
+   // When connecting to a database with the use of functions like 'PDO', a resource is returned that holds a reference to this connection.
+
+   // When we want to read, write, manipulate, and manage files and directories on a server or local machine.
+     // We call these activities 'file handling' [link: https://www.geeksforgeeks.org/php-basics-file-handling/].
+     // PHP provides build-in functions like fopen(), and fclose() to enable this processes.
+     // Every time we use this functions a resource is returned representing the particular file hande.
+
+     // When we want to manipulate images .
+     // Functions like imagecreatefromjpeg in the GD library [link: https://en.wikipedia.org/wiki/GD_Graphics_Library] return a resource representing an image.
+
+     // When we initialize HTTP requests with CURL.
+     // When we use CURL handles [link: https://www.php.net/manual/en/ref.curl.php], a resource is returned representing this CURL session
+
+     //NOTE:
+     // Resource to Object Migration
+     // One of the long-term goals in PHP is to convert resource type to appropriate class objects. [In PHP 8, the Curl functionality is transformed into class object based resources. link: https://php.watch/versions/8.0/resource-CurlHandle]
+     // PHP is gradually phasing out all resource types with class objects,
+     // and this migration is one step of the Resource to Object Migration plan.
+
+     $curl = curl_init();
+     var_dump(gettype($curl)); // string(6) "object"
+     // In versions prior to 8 var_dump() would return //  string(8) "resource"
+
+
+
 
 
 
