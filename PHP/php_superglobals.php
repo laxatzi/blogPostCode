@@ -114,6 +114,40 @@ function get_students_age2() {
   the_first_number(); //First number: 1, Second number: 2
 }
 
+//NOTE:  As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
+// So for the post PHP 8.1 versions of PHP, global variables cannot be modified through their copy.
+
+//Example:
+ // Before PHP 8.1
+  $email = 'myemail@gmail.com';
+  $globals_copy = $GLOBALS;
+  $globals_copy['email'] = 'mysecondemail@gmail.com';
+  echo $email; // mysecondemail@gmail.com
+  echo $globals_copy['email']; // mysecondemail@gmail.com
+  echo $GLOBALS['email'];  // mysecondemail@gmail.com
+ // By modifying the copy we do modify the $GLOBALS array itself
+
+ // After PHP 8.1
+ {
+  $email = 'myemail@gmail.com';
+  $globals_copy = $GLOBALS;
+  $globals_copy['email'] = 'mysecondemail@gmail.com';
+  echo $email; // myemail@gmail.com
+  echo $globals_copy['email']; // mysecondemail@gmail.com
+  echo $GLOBALS['email'];  // myemail@gmail.com
+ // Copy modification does not affect $GLOBALS
+ }
+
+// ## The $SERVER superglobal
+
+ //The $SERVER superglobal array makes available information about the server in which the current script is being executed.
+
+// Information such as the server name, the user agent, the queryString and other variables.
+
+// PHP automatically defines the array based on the server configuration and the current HTTP request, and therefore there is no guarantee that every single variable will be provided.
+// [link: http://www.faqs.org/rfcs/rfc3875.html]In any case, the » CGI/1.1 specification covers most of these variables and they are likely to be defined.
+
+
 
 
 
