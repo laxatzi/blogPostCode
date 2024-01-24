@@ -1,6 +1,4 @@
 {
-    "git.ignoreLimitWarning": true,
-    "cSpell.words": [
-        "fishsoup"
-    ]
+  "git.ignoreLimitWarning": true,
+  "cSpell.words": ["fishsoup", "superglobal"]
 }
