@@ -91,8 +91,8 @@ var_dump($f); // float(5327.496)
 
 // # Floating point number's precision
  // In PHP, and in most CS languages, the following expression evaluates to true:
-  $sum = (.1 + .2) == .3;
-  echo $sum == false; // 1
+$sum = (.1 + .2) == .3;
+echo $sum == false; // 1
  // But hey, my calc says this is not right.
   // .1 + .2 do actually make .3
   // What is going on here?
@@ -258,14 +258,16 @@ var_dump((bool) -1); // bool(true)
 $var1 = false;
 $var2 = 'false';
 
-//check if $var1 is a boolean // Echoes: Variable $var1 is a boolean
+//check if $var1 is a boolean
+// Echoes: Variable $var1 is a boolean
 if (is_bool($var1)) {
   echo 'Variable $var1 is a boolean.';
 } else {
     echo 'Variable $var1 is not a boolean.';
 }
 
-//check if $var2 is a boolean // Echoes: Variable $var2 is NOT a boolean
+//check if $var2 is a boolean
+// Echoes: Variable $var2 is NOT a boolean
 if (is_bool($var2)){
   echo 'Variable $var2 is a boolean.';
 } else {
@@ -280,6 +282,8 @@ if (is_bool($var2)){
   var_dump($no_value_var); //NULL
   var_dump($nullish_value_var); // NULL
 
+  // NEW - Both variables are of type NULL no matter the case.
+
   // We can empty a variable by setting it's value to NULL
   $city_name = "Thessaloniki";
   $city_name = null;
@@ -290,10 +294,16 @@ if (is_bool($var2)){
   $country_name; // We, of course, get the "Undefined variable $country_name..." Warning!
   var_dump($country_name); // NULL
 
+  // NEW- $The country_name variable is empty, since we haven't assign any value yet, thus it return NULL
+  // NEW - NOTE: In Javascript an undefined variable would be of the Undefined data type.
+  // NEW - This is not the case in PHP. Such data type doesn't exist, so the variable is considered empty, thus NULL.
+
   // This is also the case with unset() variables:
   $country_name2 = "Greece";
   unset($country_name2);
-  var_dump($country_name2); // We get "Undefined variable $country_name2 in" and the type which is: NULL
+  var_dump($country_name2);
+  // Undefined variable $country_name2 in
+  // NULL
 
   // To find weather a variable is NULL we can use the built-in is_nun() method
   // Syntax:
@@ -326,7 +336,7 @@ echo user('Lambros'); // The name is Lambros. The age is not revealed!
 
 // Array
  // The array data type can hold multiple values of any data type, even other arrays, in one single variable.
- // The array data type, as well as the Object data type that we going to cover next, are called compound types.
+ // This data type, along with the Object data type that we going to cover next, are called compound types.
 // In programming a compound type is one that can be structured using other data types both primitive and compound.
 // Let's see an example:
 
@@ -365,8 +375,7 @@ var_dump($misc); // array(5) {
 //       ...
 //    ]
 
-
-// Since the topic of arrays is a large one we will cover it in a lot more detail in a later post.
+// As the subject of arrays is broad, we will delve into it with more detail in a future post.
 
 // Object
  // Like Array, Object is also a compound data type in PHP.
@@ -385,10 +394,10 @@ var_dump($misc); // array(5) {
   var_dump($student1); // object(student)#1 (1) { ["name"]=> NULL }
   // We see, that $student1 is an object, the first instance of student Class containing one property ("name")
 
-  // Understanding objecs deeply is crucial for performing complex operations such as encaplulation. We are going to elaborate more on them in a later post.
+  // Understanding objects deeply is crucial for performing complex operations such as encapsulation. We are going to elaborate more on them in a later post.
 
   // # Resource
-  // The resource data type is one of the two special types, the other being NULL, in PHP>
+  // The resource data type is one of the two special types, the other being NULL, in PHP.
   // We use it to represent external resources such as database connections, file pointers, images, and more.
   // In order to create and manipulate these resources we use special PHP functions that interact with external services or libraries.
 
@@ -399,7 +408,7 @@ var_dump($misc); // array(5) {
    // When we want to read, write, manipulate, and manage files and directories on a server or local machine.
      // We call these activities 'file handling' [link: https://www.geeksforgeeks.org/php-basics-file-handling/].
      // PHP provides build-in functions like fopen(), and fclose() to enable this processes.
-     // Every time we use this functions a resource is returned representing the particular file hande.
+     // Every time we use this functions a resource is returned representing the particular file handle.
 
      // When we want to manipulate images .
      // Functions like imagecreatefromjpeg in the GD library [link: https://en.wikipedia.org/wiki/GD_Graphics_Library] return a resource representing an image.
@@ -409,13 +418,24 @@ var_dump($misc); // array(5) {
 
      //NOTE:
      // Resource to Object Migration
-     // One of the long-term goals in PHP is to convert resource type to appropriate class objects. [In PHP 8, the Curl functionality is transformed into class object based resources. link: https://php.watch/versions/8.0/resource-CurlHandle]
-     // PHP is gradually phasing out all resource types with class objects,
-     // and this migration is one step of the Resource to Object Migration plan.
+     // PHP, from PHP.8 version and on, is gradually phasing out all resource types with class objects,
+     // and this migration is one step of the Resource to Object Migration plan.link: https://php.watch/versions/8.0/resource-CurlHandle]
 
      $curl = curl_init();
      var_dump(gettype($curl)); // string(6) "object"
-     // In versions prior to 8 var_dump() would return //  string(8) "resource"
+     // In versions prior to PHP8 var_dump() would return //  string(8) "resource"
+
+     // Resource Management
+     // PHP takes care of freeing and destroying resources internally, so there's usually no need to do it yourself.
+
+     // Checking Resource Type:
+     // You can use the get_resource_type function to determine the type of a resource.
+
+    $fp = fopen("index.php", 'r');
+    echo get_resource_type($fp); // stream
+
+    // The variable is of type stream. There is a list of all functions which create, use or destroy PHP resources in the PHP documentation [https://www.php.net/manual/en/resource.php].
+
 
 
 
