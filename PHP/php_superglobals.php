@@ -1,4 +1,5 @@
 <?php
+// # Superglobal Variables in PHP
 
 // Superglobals are special built-in variables in PHP, that are available from any function, class, or file without previous declaration of them as global variables.
 
@@ -146,8 +147,27 @@ function get_students_age2() {
 
 // PHP automatically defines the array based on the server configuration and the current HTTP request, and therefore there is no guarantee that every single variable will be provided.
 // [link: http://www.faqs.org/rfcs/rfc3875.html]In any case, the » CGI/1.1 specification covers most of these variables and they are likely to be defined.
+ // Example of $_SERVER in use:
+ {
+  echo $_SERVER['SERVER_NAME']; // myWebsite.local
+  //
+ }
+ // We can list all available elements with the following code:
+ {
+  foreach ($_SERVER as $parm => $value)  echo "$parm = '$value' <br>";
+ }
+ // It's going to print, depending in our server config, something similar to the above image:
+ // [site the image]
 
+// We are going to look at some of the most commonly used elements of the PHP $_SERVER superglobal.
+// A complete list is available in the PHP documentation [link: https://www.php.net/manual/en/reserved.variables.server.php]
 
+// $_SERVER['REQUEST_METHOD']: It returns the request method that is used to access the page.
+// This can be a 'POST', a 'GET', a 'PUT' method e.t.c
+// Example:
+{
+  echo $_SERVER["REQUEST_METHOD"]; // GET
+}
 
 
 
