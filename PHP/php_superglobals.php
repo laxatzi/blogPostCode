@@ -237,11 +237,47 @@ function get_students_age2() {
 }
 
 // ..................  $_SERVER['PHP_SELF'] to be continues
-// https://www.joe0.com/2016/12/08/cross-site-scripting-xss-and-exploiting-_serverphp_self/#google_vignette
-// https://stackoverflow.com/questions/20735027/basic-form-security?rq=3
-//  https://seancoates.com/blogs/xss-woes
-// https://stackoverflow.com/questions/6080022/php-self-and-xss
-// https://www.edureka.co/community/63727/what-are-the-vulnerability-related-to-php-form
+
+
+
+// // $_SERVER['REMOTE_ADDR']:
+// It returns the IP address of the client.
+// NOTE: It gives the address of the machine where the connection is coming from, not the address of the connecting computer.
+// NOTE: In the case of a local connection, like in the bellow example, both client and server has (obviously) the same address, namely 124.0.0.1, so that is what is returned. This address is universally used by all computers, and is commonly called 'localhost'.
+//There is also a second IP address, in the form of 45.139.....,   which is provided from an ISP and is used for communicating with other computers. Since in a local connection our computer is both the server and the client, the former address is the one returned.
+// Example:
+{
+  echo "The remote address is: " . $_SERVER['REMOTE_ADDR']; // The remote address is, since I use my local host : 127.0.0.1
+
+}
+
+
+// // $_SERVER['HTTP_HOST']:
+// It returns the HTTP host header from the current request. The HTTP host specifies the domain name that the client try to access. If a user wants to visit mywebsite.com, their client needs to make a request with the HTTP host header as shown bellow:
+// Host: mywebsite.com and this is the value returned by the $_SERVER['HTTP_HOST']
+// Example:
+{
+  echo "The client wants to access: " . $_SERVER['HTTP_HOST']; // mywebsite.com
+}
+
+// // $_SERVER['HTTP_REFERER']:
+// It returns, if available, an absolute or partial address from which a resource has been requested.
+// Example:
+{
+  echo "The referring page was: " . $_SERVER['HTTP_REFERER']; // Referer: https://example.com/page?q=123
+}
+
+//It is not always available though, since the current page could be accessed by typing the URL into the address bar or using a bookmark. In that case there will be no referring page and $_SERVER['HTTP_REFERER'] will not be set.
+//
+// Example:
+{
+  echo "The referring page was: " . $_SERVER['HTTP_REFERER']; // The referring page was: Undefined index: HTTP_REFERER
+}
+
+
+
+
+
 
 
 
