@@ -21,6 +21,7 @@ echo subtract(); // 8
 // Superglobals do not need the global keyword
 {
   session_start();
+  // $_SESSION is a superglobal
   $_SESSION["newSession"]= 1.1;
 
   function get_session() {
@@ -79,40 +80,40 @@ function get_students_age2() {
 // We can possibly use this superglobal in order to pass variables between functions
 // Examples:
 {
-  function first_number(){
+  function first(){
     $GLOBALS['a'] = 1;
-    echo "First number: " . $GLOBALS['a']."<br>";
+    echo "First: " . $GLOBALS['a']."<br>";
     ++$GLOBALS['a'];
 
     // NOTE: This is a closure. We'll talk extensively about closures in a later post
-    $second_number = function(){
-        echo "Second number: ". $GLOBALS['a'];
+    $second = function(){
+        echo "Second: ". $GLOBALS['a'];
     };
 
-    $second_number();
+    $second();
   };
 
- first_number(); // First number: 1, Second number: 2
+ first(); // First: 1, Second: 2
 }
 
 // But there is a better, less verbose, way to do the same thing with the USE keyword.
 // Used in an anonymous function the ‘use’ keyword enables us to introduce, in that function scope, variables from outer scope.
 
 {
-    function the_first_number(){
+    function the_first(){
       $a = 1;
-      echo "First number: " . $a."<br>";
+      echo "First: " . $a."<br>";
       ++$a;
 
       // NOTE: This is a closure. We'll talk extensively about closures in a later post
-      $the_second_number = function() USE ($a){
-          echo "Second number: ". $a;
+      $the_second = function() USE ($a){
+          echo "Second: ". $a;
       };
 
-    $the_second_number();
+    $the_second();
   };
 
-  the_first_number(); //First number: 1, Second number: 2
+  the_first(); //First: 1, Second: 2
 }
 
 //NOTE:  As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
@@ -126,7 +127,7 @@ function get_students_age2() {
   echo $email; // mysecondemail@gmail.com
   echo $globals_copy['email']; // mysecondemail@gmail.com
   echo $GLOBALS['email'];  // mysecondemail@gmail.com
- // By modifying the copy we do modify the $GLOBALS array as well.
+ // Here by modifying the copy we do modify the $GLOBALS array as well.
 
  // From version PHP 8.1 and on:
  {
@@ -170,6 +171,7 @@ function get_students_age2() {
   echo "The server request method is: ". $_SERVER["REQUEST_METHOD"]; // GET
 }
 
+// $_SERVER['SERVER_PROTOCOL']:
 // It stores the name and version of the protocol of the request like HTTP 1, or HTTP/2 e.t.c
 // Example:
 {
@@ -184,7 +186,7 @@ function get_students_age2() {
 }
 
 // // $_SERVER['SERVER_PORT']:
-//  It returns the port number the server machine (not the client’s machine) use for communication.
+//  It returns the port number that the server machine (not the client’s machine) use for communication.
 // Example:
 {
   echo "The server port is: " . $_SERVER['SERVER_PORT']; // The server port is: 10023
@@ -194,9 +196,8 @@ function get_students_age2() {
 // It is used to get the server identification string, that contains details of the server software.  
 // Example:
 {
-  echo "The server software is: " . $_SERVER['SERVER_SOFTWARE']; // The server name is:  Apache/2.4.43 (Win32) mod_fcgid/2.3.9a
+  echo "The server software is: " . $_SERVER['SERVER_SOFTWARE']; // The server software is:  Apache/2.4.43 (Win32) mod_fcgid/2.3.9a
 }
-
 
 // // $_SERVER['SERVER_ADMIN']:
 // It is used to store the email address of the server administrator/webmaster.
@@ -204,7 +205,6 @@ function get_students_age2() {
 {
   echo "The server admin is: " . $_SERVER['SERVER_ADMIN']; // The server admin is: webmaster@localhost
 }
-
 
 // // $_SERVER['DOCUMENT_ROOT']:
 // It returns the root of the document. That's where the script that we are running resides.
@@ -230,11 +230,20 @@ function get_students_age2() {
 }
 
 // // $_SERVER['PHP_SELF']:
-// Just like $SERVER['SCRIPT_NAME'], it returns the file name of the script currently executed on the server. It does include the URL query string though.
+// Just like $SERVER['SCRIPT_NAME'], it returns the file name of the script currently executed on the server. It can include the URL query string though.
 // Example:
 {
  echo "The file name of the current script currently executed on the server is: " . $_SERVER['PHP_SELF']; // The file name of the script currently executed on the server is: /test.php
 }
+
+// ..................  $_SERVER['PHP_SELF'] to be continues
+// https://www.joe0.com/2016/12/08/cross-site-scripting-xss-and-exploiting-_serverphp_self/#google_vignette
+// https://stackoverflow.com/questions/20735027/basic-form-security?rq=3
+//  https://seancoates.com/blogs/xss-woes
+// https://stackoverflow.com/questions/6080022/php-self-and-xss
+// https://www.edureka.co/community/63727/what-are-the-vulnerability-related-to-php-form
+
+
 
 
 
