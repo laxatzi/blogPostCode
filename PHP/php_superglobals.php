@@ -264,15 +264,59 @@ function get_students_age2() {
 // It returns, if available, an absolute or partial address from which a resource has been requested.
 // Example:
 {
-  echo "The referring page was: " . $_SERVER['HTTP_REFERER']; // Referer: https://example.com/page?q=123
+  echo "The referring page is: " . $_SERVER['HTTP_REFERER']; // Referer: https://example.com/page?q=123
 }
 
 //It is not always available though, since the current page could be accessed by typing the URL into the address bar or using a bookmark. In that case there will be no referring page and $_SERVER['HTTP_REFERER'] will not be set.
 //
 // Example:
 {
-  echo "The referring page was: " . $_SERVER['HTTP_REFERER']; // The referring page was: Undefined index: HTTP_REFERER
+  echo "The referring page is: " . $_SERVER['HTTP_REFERER']; // Undefined index: HTTP_REFERER
 }
+
+// For avoiding the later warning we can check this element's presence with the help of the isset() function
+{
+  if (isset($_SERVER['HTTP_REFERER'])) {
+    $the_referrer = $_SERVER['HTTP_REFERER'];
+    echo "The referring page is: " . $the_referer; // The referring page is: https://example.com/page?q=123
+
+  } else {
+  // The HTTP_REFERER variable is not set
+   $the_referrer = "unknown";
+   echo "The referring page is:" . $the_referer; // The referring page is unknown.
+  }
+}
+
+// // $_SERVER['HTTP_USER_AGENT']:
+// It returns the user agent string which gives information about the application type, operating system, software vendor or software version of the requesting software user agent.
+// Example:
+{
+    echo $_SERVER['HTTP_USER_AGENT']; // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+}
+
+// NOTE: We see in our example, that although the use agent string indicates that I'm on a Chrome browser of the 120.0.0.0 version, we also get, at the beginning of the string, a 'Mozilla/5.0' token. We get this regardless of the browser that we use, even if it is Chrome, Safari, Opera or any other browser for that matter.
+// Mozilla/5.0 is the general token that says that the browser is Mozilla-compatible. For historical reasons, almost every browser today sends it.[link: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent]
+
+
+// // $_SERVER['QUERY_STRING']:
+// It returns, if applicable, the URL query string.
+// Example:
+{
+    echo "The query string is: " .$_SERVER['QUERY_STRING']; // The query string is: page=home&category=php
+}
+
+
+// // $_SERVER['REQUEST_URI']:
+// It returns the URL of the request including the query string, if there is one.
+// Example:
+{
+    echo "This is the URI: " . $_SERVER['REQUEST_URI'];  //This is the URI: /test.php?page=home&category=php
+}
+// If there would be a query string we would get:
+{
+  echo "This is the URI: ". $_SERVER['REQUEST_URI']; // This is the URI: /test.php?
+}
+
 
 
 
