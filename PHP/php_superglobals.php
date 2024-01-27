@@ -233,10 +233,11 @@ function get_students_age2() {
 // Just like $SERVER['SCRIPT_NAME'], it returns the file name of the script currently executed on the server. It can include the URL query string though.
 // Example:
 {
- echo "The file name of the current script currently executed on the server is: " . $_SERVER['PHP_SELF']; // The file name of the script currently executed on the server is: /test.php
+ echo "The file name of the script currently executed on the server is: " . $_SERVER['PHP_SELF']; // The file name of the script currently executed on the server is: /test.php
 }
 
-// ..................  $_SERVER['PHP_SELF'] to be continues
+// SPECIAL NOTE:
+// It is essential to perform HTML encoding on $_SERVER['PHP_SELF'] when used in the action attribute of your form tag in order to avoid cross site scripting (XSS) attacks. [link to own site page post about it]
 
 
 
@@ -316,6 +317,10 @@ function get_students_age2() {
 {
   echo "This is the URI: ". $_SERVER['REQUEST_URI']; // This is the URI: /test.php?
 }
+
+
+
+
 
 
 
