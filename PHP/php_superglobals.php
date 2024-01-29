@@ -322,17 +322,17 @@ function get_students_age2() {
 
 // ## The $_ENV superglobal
  //The $_ENV superglobal  is an associative array of variables passed from the environment in which PHP is running.
- // These variables are called environmental variables and are set by the web server or the server's operating system.
+ // These variables are called environment variables and are set by the web server or the server's operating system.
  // They are not PHP specific, but rather system wide and can be accessed by other programming languages as well.
 
- // #getenv
- // To get an environmental variable we use the getenv() function.
+ // # Using getenv
+ // To get an environment variable we use the getenv() function.
  // Example:
  {
     $root = getenv('SYSTEMROOT');
     echo "The system root directory is: ". $root; //The system root directory is: C:\WINDOWS
  }
- // If we want to get the values of all the available environmental variables we can use the following script:
+ // If we want to get the values of all the available environment variables we can use the following script:
  {
    $env_vars = getenv();
 
@@ -344,6 +344,47 @@ function get_students_age2() {
  // We get:
 // envs.bat
 
+// NOTE: Environment variables are case sensitive on UNIX and case insensitive on Windows
+{
+
+   $max_requests = getenv('php_fcgi_max_requests');
+   echo "A PHP job can handle up to " . $max_requests . " requests!"; // PHP can handle up to 1000 requests!
+
+}
+
+//PHP_FCGI_MAX_REQUESTS determines how many requests a PHP job should handle before ending and restarting.
+// I enter this variable in lowercase, and since I'm on a Windows machine it is case insensitive.
+
+// # Using putenv()
+  // By using this function, we can easily set a new environment variable, for the duration of the current request.
+  //The putenv() function can alter the value of an existing environment variable or set the value of a newly created.
+  // Variables set with the putenv function, are only available by calling the getenv function.
+ {
+// Echo out the existing environment variable, PHP_FCGI_MAX_REQUESTS current limit.
+   echo getenv('PHP_FCGI_MAX_REQUESTS') . "<br>"; // 1000
+// Set the environment variable, PHP_FCGI_MAX_REQUESTS to a new limit.
+   putenv('PHP_FCGI_MAX_REQUESTS=100');
+   echo "Now: ". getenv('PHP_FCGI_MAX_REQUESTS'). "<br>"; // 100
+ }
+// Regarding existing environment variables:
+
+ // We can set a new variable from scratch:
+ {
+  // Set the environment variable, NAME
+  putenv('NAME="Lambros"');
+  // Get and echo the variable NAME
+  echo "The name is: ". getenv('NAME'). "<br>"; // The name is: "Lambros"
+  // Unset the variable NAME
+  putenv('NAME');
+  echo "The name is: ".getenv('NAME'); // The name is:
+ }
+
+ // NOTE: White spaces are allowed in environment variables.
+ {
+   putenv('NAME ="Lambros"');
+   echo "The name is: ". getenv('NAME'). "<br>"; // The name is:
+   echo "The name is: ". getenv('NAME '); // The name is: Lambros
+ }
 
 
 
