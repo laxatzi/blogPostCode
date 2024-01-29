@@ -117,7 +117,7 @@ function get_students_age2() {
 }
 
 //NOTE:  As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
-// So for the post PHP 8.1 versions of PHP, global variables cannot be modified through their copy.
+// So for the post PHP 8.1 versions of PHP, global variables cannot be modified through its copy.
 
 //Example:
  // Before PHP 8.1:
@@ -139,6 +139,7 @@ function get_students_age2() {
   echo $GLOBALS['email'];  // myemail@gmail.com
  // Copy modification does not affect $GLOBALS
  }
+
 
 // ## The $SERVER superglobal
 
@@ -317,6 +318,37 @@ function get_students_age2() {
 {
   echo "This is the URI: ". $_SERVER['REQUEST_URI']; // This is the URI: /test.php?
 }
+
+
+// ## The $_ENV superglobal
+ //The $_ENV superglobal  is an associative array of variables passed from the environment in which PHP is running.
+ // These variables are called environmental variables and are set by the web server or the server's operating system.
+ // They are not PHP specific, but rather system wide and can be accessed by other programming languages as well.
+
+ // #getenv
+ // To get an environmental variable we use the getenv() function.
+ // Example:
+ {
+    $root = getenv('SYSTEMROOT');
+    echo "The system root directory is: ". $root; //The system root directory is: C:\WINDOWS
+ }
+ // If we want to get the values of all the available environmental variables we can use the following script:
+ {
+   $env_vars = getenv();
+
+   foreach ($env_vars as $key=>$var) {
+      echo "$key=>$var";
+   }
+ }
+
+ // We get:
+// envs.bat
+
+
+
+
+
+
 
 
 
