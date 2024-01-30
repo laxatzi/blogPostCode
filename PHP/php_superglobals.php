@@ -321,12 +321,12 @@ function get_students_age2() {
 
 
 // ## The $_ENV superglobal
- //The $_ENV superglobal  is an associative array of variables passed from the environment in which PHP is running.
+ //The $_ENV superglobal is an associative array of variables passed from the environment in which PHP is running.
  // These variables are called environment variables and are set by the web server or the server's operating system.
  // They are not PHP specific, but rather system wide and can be accessed by other programming languages as well.
 
  // # Using getenv
- // To get an environment variable we use the getenv() function.
+ // To retrieve an environment variable we use the getenv() function.
  // Example:
  {
     $root = getenv('SYSTEMROOT');
@@ -349,11 +349,11 @@ function get_students_age2() {
 
    $max_requests = getenv('php_fcgi_max_requests');
    echo "A PHP job can handle up to " . $max_requests . " requests!"; // PHP can handle up to 1000 requests!
-
 }
-
+// Since I am on a Windows machine I can write the environment variable PHP_FCGI_MAX_REQUESTS in lowercase character.
+// That wouldn't be the case in a Linux machine.
 //PHP_FCGI_MAX_REQUESTS determines how many requests a PHP job should handle before ending and restarting.
-// I enter this variable in lowercase, and since I'm on a Windows machine it is case insensitive.
+
 
 // # Using putenv()
   // By using this function, we can easily set a new environment variable, for the duration of the current request.
@@ -366,9 +366,9 @@ function get_students_age2() {
    putenv('PHP_FCGI_MAX_REQUESTS=100');
    echo "Now: ". getenv('PHP_FCGI_MAX_REQUESTS'). "<br>"; // 100
  }
-// Regarding existing environment variables:
 
- // We can set a new variable from scratch:
+// Regarding existing environment variables:
+// We can set a new variable from scratch:
  {
   // Set the environment variable, NAME
   putenv('NAME="Lambros"');
@@ -379,12 +379,14 @@ function get_students_age2() {
   echo "The name is: ".getenv('NAME'); // The name is:
  }
 
- // NOTE: White spaces are allowed in environment variables.
+ // NOTE: White spaces are allowed in environment variables and must be taken into account.
  {
    putenv('NAME ="Lambros"');
    echo "The name is: ". getenv('NAME'). "<br>"; // The name is:
    echo "The name is: ". getenv('NAME '); // The name is: Lambros
  }
+// 'NAME' and 'NAME ' are two distinct variables
+
 
 
 
