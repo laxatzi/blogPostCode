@@ -127,7 +127,7 @@ function get_students_age2() {
   echo $email; // mysecondemail@gmail.com
   echo $globals_copy['email']; // mysecondemail@gmail.com
   echo $GLOBALS['email'];  // mysecondemail@gmail.com
- // Here by modifying the copy we do modify the $GLOBALS array as well.
+ // Here by modifying the copy we modify the $GLOBALS array as well.
 
  // From version PHP 8.1 and on:
  {
@@ -169,14 +169,14 @@ function get_students_age2() {
 // This can be a 'POST', a 'GET', a 'PUT' method e.t.c
 // Example:
 {
-  echo "The server request method is: ". $_SERVER["REQUEST_METHOD"]; // GET
+  echo "The server request method is: ". $_SERVER["REQUEST_METHOD"]; // The server request method is: GET
 }
 
 // $_SERVER['SERVER_PROTOCOL']:
 // It stores the name and version of the protocol of the request like HTTP 1, or HTTP/2 e.t.c
 // Example:
 {
-  echo "The server protocol is: " . $_SERVER['SERVER_PROTOCOL']; // HTTP/1.0
+  echo "The server protocol is: " . $_SERVER['SERVER_PROTOCOL']; //The server protocol is:  HTTP/1.0
 }
 
 // // $_SERVER['SERVER_NAME']:
@@ -190,7 +190,7 @@ function get_students_age2() {
 //  It returns the port number that the server machine (not the client’s machine) use for communication.
 // Example:
 {
-  echo "The server port is: " . $_SERVER['SERVER_PORT']; // The server port is: 10023
+  echo "The server port number is: " . $_SERVER['SERVER_PORT']; // The server port number is: 10023
 }
 
 // // $_SERVER['SERVER_SOFTWARE']:
@@ -386,6 +386,16 @@ function get_students_age2() {
    echo "The name is: ". getenv('NAME '); // The name is: Lambros
  }
 // 'NAME' and 'NAME ' are two distinct variables
+
+
+// # The $_GET superglobal
+
+  // The $_GET superglobal is an associative array of variables. These variables are received via the HTTP GET method.
+  // This method is one of the two ways browsers use to send information to the web server.
+  // The other is the POST method that we are going to talk later on.
+  // A GET request is sent as a URL containing a query string added to its end with a question mark. This query string has name-value pairs as parameters.
+  // These parameters are separated by ampersands
+  // Example: http://www.mywebsite.com/about.php?name="Lambros"&surname="Hatzinikolaou"
 
 
 
