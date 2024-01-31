@@ -143,7 +143,7 @@ function get_students_age2() {
 
 // ## The $SERVER superglobal
 
- //The $SERVER superglobal array makes available information about the server in which the current script is being executed.
+//The $SERVER superglobal array makes available information about the server in which the current script is being executed.
 
 // Information such as the server name, the user agent, the queryString and other variables.
 
@@ -396,9 +396,52 @@ function get_students_age2() {
   // A GET request is sent as a URL containing a query string added to its end with a question mark. This query string has name-value pairs as parameters.
   // These parameters are separated by ampersands
   // Example: http://www.mywebsite.com/about.php?name="Lambros"&surname="Hatzinikolaou"
+  // The above query string contains two variables
+  // name="Lambros"
+  // surname="Hatzinikolaou"
+
+  // The $_GET superglobal enables us to retrieve this variables
+  // Regarding the previous example of a get request we would retrieve the variables 'name' and 'surname':
+  {
+    echo "This page is about ". $_GET['name']. " ". $_GET['surname']. "!"; // This page is about "Lambros" "Hatzinikolaou"!
+  }
+
+  // We should avoid using GET requests for sensitive data as it can be easily viewed, cached, or bookmarked.
+  // GET requests can be subject to XSS so it is good practice to be escaped before they are displayed on our web page.
+  // Escaping means converting special characters in user input to HTML entities.
+  //This conversion prevents them from being interpreted as code by the browser.
+  // In PHP, we can use the htmlentities() built in function to achieve this. This function converts special characters in user input into their HTML entities.
+
+   // Example:
+   // Lets say we get user input from a from regarding a name and we store it in the $name variable
+
+   {
+     $name = $_GET["name"];
+     echo isset($name) ? "The name is " . $name : "No input"; // The name is John
+   }
+
+   // In the example a well meaning user with the name of John filled his name in and we get the respective string on our browser.
+   // But what if the user is not so benevolent?
+   // Lets say he puts, instead of his name, something like:
+   // <script>alert%28"This%20is%20XSS%20attack"%29</script>
+   // Now when we load our page we get an alert box with the string "This is XSS attack"
+
+   // We could have prevent this by escaping our code in the previous example
+  {
+     $name = $_GET["name"];
+    // Escape output using htmlentities()
+     $name = htmlentities($name);
+     echo isset($_GET['name']) ? "The name is " . $name : "No input";
+   }
+  // Now we get the string:
+  // The name is <script>alert("This is XSS attack")</script>
+  // Now the malicious code the malevolent user inject in the input is displayed a simple text. So nothing to be executed by the browser.
 
 
 
+
+  // # The $_POST superglobal
+   //
 
 
 
