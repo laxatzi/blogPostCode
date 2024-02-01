@@ -400,7 +400,6 @@ function get_students_age2() {
   // name="Lambros"
   // surname="Hatzinikolaou"
 
-  // The $_GET superglobal enables us to retrieve this variables
   // Regarding the previous example of a get request we would retrieve the variables 'name' and 'surname':
   {
     echo "This page is about ". $_GET['name']. " ". $_GET['surname']. "!"; // This page is about "Lambros" "Hatzinikolaou"!
@@ -409,7 +408,7 @@ function get_students_age2() {
   // We should avoid using GET requests for sensitive data as it can be easily viewed, cached, or bookmarked.
   // GET requests can be subject to XSS so it is good practice to be escaped before they are displayed on our web page.
   // Escaping means converting special characters in user input to HTML entities.
-  //This conversion prevents them from being interpreted as code by the browser.
+  // This conversion prevents them from being interpreted as code by the browser.
   // In PHP, we can use the htmlentities() built in function to achieve this. This function converts special characters in user input into their HTML entities.
 
    // Example:
@@ -426,22 +425,56 @@ function get_students_age2() {
    // <script>alert%28"This%20is%20XSS%20attack"%29</script>
    // Now when we load our page we get an alert box with the string "This is XSS attack"
 
-   // We could have prevent this by escaping our code in the previous example
+   // We can prevent this by escaping our code
   {
      $name = $_GET["name"];
     // Escape output using htmlentities()
-     $name = htmlentities($name);
-     echo isset($_GET['name']) ? "The name is " . $name : "No input";
+     $name = htmlspecialchars($name);
+     echo isset($name) ? "The name is " . $name : "No input";
    }
   // Now we get the string:
   // The name is <script>alert("This is XSS attack")</script>
-  // Now the malicious code the malevolent user inject in the input is displayed a simple text. So nothing to be executed by the browser.
-
-
+  // The malicious code the malevolent user injected in the input is displayed as simple text. So it can't be executed by the browser.
 
 
   // # The $_POST superglobal
-   //
+  // The $_POST superglobal is an associative array of variables sent via an HTTP POST request.
+  // POST requests are not cached and cannot be bookmarked or stored in a browser's history, thus they are suitable for sending sensitive information.
+  // The $_POST superglobal handles data submitted from a form using a POST request.
+  // Example:
+  ?>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>POST superglobal</title>
+    </head>
+    <body>
+      <form action="" method="post">
+        <label for="name">Name:</label><input type="text" name="name" id="name">
+        <label for="email">Email:</label><input type="email" name="email" id="email">
+        <input type="submit" value="Send">
+      </form>
+      <?php
+        $email = $_POST['email'];
+        $email = htmlspecialchars($email);
+          if (empty($email)) {
+            echo "<p>Email is Empty</p>";
+          } else {
+            echo "<p>You have submitted the ". $email.  " email</p>";
+        }
+      ?>
+    </body>
+  </html>
+<?php
+  // In the above example we have a form that asks for an email address. After submitting the form, we use the $_POST superglobal to store the variables we receive from the HTTP POST method to the variable $email.
+  // Then we use conditional statements to check if an email has been filled in, and if this is the case we echo a message to the browser.
+  // Here, similarly to the example with the GET request, we are depended on the honesty of the user. The user can input maliciuse code.
+  // It is unwise to trust external input so we 'd better escape our code:
+
+?>
+
+
+
 
 
 
