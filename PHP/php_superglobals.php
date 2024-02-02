@@ -491,7 +491,7 @@ function get_students_age2() {
 
 
  //# PHP $_FILES
-  // An HTML Form can be used not only for collecting user input but also files. Files it will submit to the server.
+  // An HTML Form can be used not only for collecting user input but also files.
   // PHP supports file uploads natively. It can receive files from the vast majority of browsers that support the “multipart/form-data” enctype attribute.
   // Before sent to the server, form data should be encoded. Τhe enctype attribute defines how.
   // The default value is “application/x-www-form-urlencoded”. This format is compatible with URLs.
@@ -501,38 +501,62 @@ function get_students_age2() {
 
   // Lets see an example:
 
-  // ?>
-        <form action="" method="post" enctype="multipart/form-data">
-          <div>
-            <input id="choose_file" name="choose_file" type="file">
-            <input value="Upload ►" type="submit">
-          </div>
-        </form>
+  //
+    echo "<pre>";
+     var_dump($_FILES);
+    echo "</pre>";
+    ?>
+    <form action="" method="post" enctype="multipart/form-data">
+      <div>
+          <input id="choose_file" name="choose_file" type="file">
+          <input value="Upload ►" type="submit">
+      </div>
+    </form>
   <?php
 
     // In the above example the enctype="multipart/form-data" attribute enables file submission to the server via the POST method, and the input element with type="file" enables us to use a file selection panel for finding the intended file.
-    // The $_FILES superglobal array's structure is multidimensional and it contains the following attributes
 
+    // To our example form, I upload the image 'abstract2.php' from a directory in my machine.
+    // I var_dump the $_FILES superglobal to look inside.
+    // The $_FILES superglobal array's structure is multidimensional and it contains the following file data.
 
-$_FILES = array(
-    'file_name' => array(
-        'name' => 'my_image.jpg',   // Original name of the uploaded file
-        'type' => 'image/jpeg',              // MIME type of the file
-        'tmp_name' => '/tmp/php/php2F4j1o',  // Temporary file name on the server
-        'error' => 0,                        // Error code (0 means no error)
-        'size' => 14345                       // Size of the uploaded file in bytes
-    ),
-    // ... additional file input fields if we need additional uploads
-);
+// array(1) {
+//   ["choose_file"]=>
+//   array(6) {
+//     ["name"]=>
+//     string(13) "abstract2.png"
+//     ["full_path"]=>
+//    string(13) "abstract2.png"
+//     ["type"]=>
+//     string(9) "image/png"
+//     ["tmp_name"]=>
+//     string(27) "C:\Windows\Temp\phpAD1D.tmp"
+//     ["error"]=>
+//     int(0)
+//     ["size"]=>
+//     int(561497)
+//   }
+// }
 
-// In the above example we see the $_FILES superglobal array which is multidimensional. It nest another array with the attributes of the file to be uploaded.
+// In the example we see the $_FILES superglobal associative array which is multidimensional. It nest another array associative array with 6 items all representing the attributes of the file to be uploaded.
 // The attributes are:
-// 'name' : Represents the original name of the uploaded file as it is named in client's machine
-// 'type' : Represents the nature and format of a document.
+// 'name' : Represents the original name of the uploaded file as it is named in user's machine
+// 'full_path': Represents the full path as submitted by the browser. Thanks to its value it is possible to store the relative paths, or reconstruct the same directory in the serve
+// 'type' : Represents the nature and format of a document. This can be obtained from the browser but should not be    completely trusted, as it can be manipulated. A better way is to use other PHP built-in functions [link: https://stackoverflow.com/questions/59986082/php-how-to-properly-check-mime-type-of-a-file]
 // 'tmp_name': Represents the name of the server's  temporary file in which the uploaded file will be stored
 // 'error' : Represents the error code[link: https://www.php.net/manual/en/features.file-upload.errors.php] for this file upload with 0 meaning no error.
 // 'size' : Represents the size of the uploaded file in bytes
 
+// NOTE: I run PHP 8.3 in my local server so we get six keys.
+// But If I 'd run a PHP version prior to PHP 8.1 I would get one less attribute.
+//
+// This is something to consider since roughly 30% of servers run previous PHP installations. [link: https://stitcher.io/blog/php-version-stats-january-2024]
+
+// We can access any of these attributes directly:
+    echo "<pre>";
+     echo "The uploaded files name is: ". $_FILES['choose_file']['name']; // The uploaded file's name is: abstract2.png
+    echo "</pre>";
+  ?>
   ?>
 
 
