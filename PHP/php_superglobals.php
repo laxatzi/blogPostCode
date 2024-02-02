@@ -440,38 +440,104 @@ function get_students_age2() {
   // # The $_POST superglobal
   // The $_POST superglobal is an associative array of variables sent via an HTTP POST request.
   // POST requests are not cached and cannot be bookmarked or stored in a browser's history, thus they are suitable for sending sensitive information.
-  // The $_POST superglobal handles data submitted from a form using a POST request.
+  // The $_POST superglobal can handle data submitted from a form using a POST request.
   // Example:
   ?>
-  <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>POST superglobal</title>
-    </head>
+
     <body>
-      <form action="" method="post">
+        <form action="" method="post">
         <label for="name">Name:</label><input type="text" name="name" id="name">
         <label for="email">Email:</label><input type="email" name="email" id="email">
         <input type="submit" value="Send">
       </form>
       <?php
         $email = $_POST['email'];
-        $email = htmlspecialchars($email);
-          if (empty($email)) {
-            echo "<p>Email is Empty</p>";
+        $name = $_POST['name'];
+          if (empty($email) || empty($name)) {
+            echo "<p>Data is Empty</p>";
           } else {
-            echo "<p>You have submitted the ". $email.  " email</p>";
+            echo "<p>You have submitted the ". $email.  " email and ".$name." name!</p>";
         }
       ?>
     </body>
-  </html>
+
 <?php
   // In the above example we have a form that asks for an email address. After submitting the form, we use the $_POST superglobal to store the variables we receive from the HTTP POST method to the variable $email.
   // Then we use conditional statements to check if an email has been filled in, and if this is the case we echo a message to the browser.
-  // Here, similarly to the example with the GET request, we are depended on the honesty of the user. The user can input maliciuse code.
-  // It is unwise to trust external input so we 'd better escape our code:
+  // Here, similarly to the example with the GET request, we are depended on the honesty of the user. The user can input malicious code.
+  // It is unwise to trust external input so we 'd better escape our code
+  // Suppose that a user enters the following script, <script>alert("This is XSS attack")</script>, in the name field of our form.
+  // This is just an alert code but it could a malicious script.
+  // We need to escape our code with the htmlspecialchars function.
+  ?>
+  <body>
+        <form action="" method="post">
+        <label for="name">Name:</label><input type="text" name="name" id="name">
+        <label for="email">Email:</label><input type="email" name="email" id="email">
+        <input type="submit" value="Send">
+      </form>
+      <?php
+        $email = htmlspecialchars($_POST['email']);
+        $name = htmlspecialchars($_POST['name']);
+          if (empty($email) || empty($name)) {
+            echo "<p>Data is Empty</p>";
+          } else {
+            echo "<p>You have submitted the ". $email.  " email and ".$name." name!</p>";
+        }
+      ?>
+    </body>
+<?php
+ // Now we get the malicious code displayed as text.
 
-?>
+
+ //# PHP $_FILES
+  // An HTML Form can be used not only for collecting user input but also files. Files it will submit to the server.
+  // PHP supports file uploads natively. It can receive files from the vast majority of browsers that support the “multipart/form-data” enctype attribute.
+  // Before sent to the server, form data should be encoded. Τhe enctype attribute defines how.
+  // The default value is “application/x-www-form-urlencoded”. This format is compatible with URLs.
+  // But if the form includes files, we need to use the “multipart/form-data” type of encoding.
+  // The $_FILES superglobal is an associative array that holds information about uploaded files such as names, sizes, and error types.
+  //  When a user submits a form that includes a file input field, the file data is sent to the server, and PHP inserts to the $_FILES array information about the uploaded file.
+
+  // Lets see an example:
+
+  // ?>
+        <form action="" method="post" enctype="multipart/form-data">
+          <div>
+            <input id="choose_file" name="choose_file" type="file">
+            <input value="Upload ►" type="submit">
+          </div>
+        </form>
+  <?php
+
+    // In the above example the enctype="multipart/form-data" attribute enables file submission to the server via the POST method, and the input element with type="file" enables us to use a file selection panel for finding the intended file.
+    // The $_FILES superglobal array's structure is multidimensional and it contains the following attributes
+
+
+$_FILES = array(
+    'file_name' => array(
+        'name' => 'my_image.jpg',   // Original name of the uploaded file
+        'type' => 'image/jpeg',              // MIME type of the file
+        'tmp_name' => '/tmp/php/php2F4j1o',  // Temporary file name on the server
+        'error' => 0,                        // Error code (0 means no error)
+        'size' => 14345                       // Size of the uploaded file in bytes
+    ),
+    // ... additional file input fields if we need additional uploads
+);
+
+// In the above example we see the $_FILES superglobal array which is multidimensional. It nest another array with the attributes of the file to be uploaded.
+// The attributes are:
+// 'name' : Represents the original name of the uploaded file as it is named in client's machine
+// 'type' : Represents the nature and format of a document.
+// 'tmp_name': Represents the name of the server's  temporary file in which the uploaded file will be stored
+// 'error' : Represents the error code[link: https://www.php.net/manual/en/features.file-upload.errors.php] for this file upload with 0 meaning no error.
+// 'size' : Represents the size of the uploaded file in bytes
+
+  ?>
+
+
+
+
 
 
 
