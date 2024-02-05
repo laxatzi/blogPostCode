@@ -557,7 +557,7 @@ function get_students_age2() {
      echo "The uploaded files name is: ". $_FILES['choose_file']['name']; // The uploaded file's name is: abstract2.png
     echo "</pre>";
   ?>
-  ?>
+
 
 
 
