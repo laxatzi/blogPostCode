@@ -496,6 +496,7 @@ function get_students_age2() {
   // Before sent to the server, form data should be encoded. Τhe enctype attribute defines how.
   // The default value is “application/x-www-form-urlencoded”. This format is compatible with URLs.
   // But if the form includes files, we need to use the “multipart/form-data” type of encoding.
+  // # The $_FILES superglobal
   // The $_FILES superglobal is an associative array that holds information about uploaded files such as names, sizes, and error types.
   //  When a user submits a form that includes a file input field, the file data is sent to the server, and PHP inserts to the $_FILES array information about the uploaded file.
 
@@ -538,7 +539,7 @@ function get_students_age2() {
 //   }
 // }
 
-// In the example we see the $_FILES superglobal associative array which is multidimensional. It nest another array associative array with 6 items all representing the attributes of the file to be uploaded.
+// In the example we see the $_FILES superglobal associative array nesting another associative array with 6 items, all representing the attributes of the file to be uploaded.
 // The attributes are:
 // 'name' : Represents the original name of the uploaded file as it is named in user's machine
 // 'full_path': Represents the full path as submitted by the browser. Thanks to its value it is possible to store the relative paths, or reconstruct the same directory in the serve
@@ -548,14 +549,19 @@ function get_students_age2() {
 // 'size' : Represents the size of the uploaded file in bytes
 
 // NOTE: I run PHP 8.3 in my local server so we get six keys.
-// But If I 'd run a PHP version prior to PHP 8.1 I would get one less attribute.
-//
+// But If I 'd run a PHP version prior to PHP 8.1 we would get one less attribute.
+// The full_path attribute would missing.
 // This is something to consider since roughly 30% of servers run previous PHP installations. [link: https://stitcher.io/blog/php-version-stats-january-2024]
 
 // We can access any of these attributes directly:
     echo "<pre>";
      echo "The uploaded files name is: ". $_FILES['choose_file']['name']; // The uploaded file's name is: abstract2.png
     echo "</pre>";
+
+  // Where to upload
+  // To handle file uploads, we use the PHP function move_uploaded_file() to move the file from the temporary directory to a location of our choice.
+
+
   ?>
 
 
