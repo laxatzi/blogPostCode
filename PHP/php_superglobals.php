@@ -1,7 +1,7 @@
 <?php
 // # Superglobal Variables in PHP
 
-// Superglobals are special built-in variables in PHP, that are available from any function, class, or file without previous declaration of them as global variables.
+// Superglobals are special built-in variables in PHP, that are available from any function, class, or file without a previous declaration of them as global variables.
 
 // That practically means, there is no need to use the global keyword to access them.
 
@@ -44,101 +44,103 @@ echo subtract(); // 8
     // $_SESSION: contains data stored in a user's session.
     // $_REQUEST: contains all the data sent by user's client.
     // $_SERVER: contains information about the server.
+    // $_FILES - contains data of files sent via an HTTP POST file upload.
     // $_ENV: contains information about the environment.
 
     // Becoming familiar with the basics of each superglobal makes data manipulation in web applications easy and simple.
+    // Lets see these superglobals one by one.
 
     // # The $_GLOBALS Variable in PHP
     // The $_GLOBALS variable is an associative array that references all variables in global scope, with the variable names being the keys of the array.
 
     // Let’s see how the $_GLOBALS variable can be used to access a global variable with an example:
 
-$age = 10;
-$name = "Tommy";
+    $age = 10;
+    $name = "Tommy";
 
-function get_students_age() {
+    function get_students_age() {
 
-  return $GLOBALS['name']. " is " .$GLOBALS['age'] ." years old!";
-}
+      return $GLOBALS['name']. " is " .$GLOBALS['age'] ." years old!";
+    }
 
-echo get_students_age(); //Tommy is 10 years old!
+    echo get_students_age(); //Tommy is 10 years old!
 
 // Apart from accessing global variables, $GLOBALS can be used to modifying them.
 // In the same example:
-{
-  $age = 10;
-  $name = "Tommy";
+    {
+      $age = 10;
+      $name = "Tommy";
 
-function get_students_age2() {
+    function get_students_age2() {
 
-  return $GLOBALS['name']. " is " .$GLOBALS['age']=12 ." years old!";
-}
+      return $GLOBALS['name']. " is " .$GLOBALS['age']=12 ." years old!";
+    }
 
- echo get_students_age2(); //Tommy is 12 years old!
-}
+    echo get_students_age2(); //Tommy is 12 years old!
+    }
 
 // We can possibly use this superglobal in order to pass variables between functions
 // Examples:
-{
-  function first(){
-    $GLOBALS['a'] = 1;
-    echo "First: " . $GLOBALS['a']."<br>";
-    ++$GLOBALS['a'];
+    {
+      function first(){
+        $GLOBALS['a'] = 1;
+        echo "First: " . $GLOBALS['a']."<br>";
+        ++$GLOBALS['a'];
 
-    // NOTE: This is a closure. We'll talk extensively about closures in a later post
-    $second = function(){
-        echo "Second: ". $GLOBALS['a'];
-    };
+        // NOTE: This is a closure. We'll talk extensively about closures in a later post
+        $second = function(){
+            echo "Second: ". $GLOBALS['a'];
+        };
 
-    $second();
-  };
+        $second();
+      };
 
- first(); // First: 1, Second: 2
-}
+    first(); // First: 1, Second: 2
+    }
 
 // But there is a better, less verbose, way to do the same thing with the USE keyword.
 // Used in an anonymous function the ‘use’ keyword enables us to introduce, in that function scope, variables from outer scope.
 
-{
-    function the_first(){
-      $a = 1;
-      echo "First: " . $a."<br>";
-      ++$a;
+    {
+        function the_first(){
+          $a = 1;
+          echo "First: " . $a."<br>";
+          ++$a;
 
-      // NOTE: This is a closure. We'll talk extensively about closures in a later post
-      $the_second = function() USE ($a){
-          echo "Second: ". $a;
+          // NOTE: This is a closure. We'll talk extensively about closures in a later post
+          $the_second = function() USE ($a){
+              echo "Second: ". $a;
+          };
+
+        $the_second();
       };
 
-    $the_second();
-  };
-
-  the_first(); //First: 1, Second: 2
-}
+      the_first(); //First: 1, Second: 2
+    }
 
 //NOTE:  As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
 // So for the post PHP 8.1 versions of PHP, global variables cannot be modified through its copy.
 
 //Example:
  // Before PHP 8.1:
-  $email = 'myemail@gmail.com';
-  $globals_copy = $GLOBALS;
-  $globals_copy['email'] = 'mysecondemail@gmail.com';
-  echo $email; // mysecondemail@gmail.com
-  echo $globals_copy['email']; // mysecondemail@gmail.com
-  echo $GLOBALS['email'];  // mysecondemail@gmail.com
- // Here by modifying the copy we modify the $GLOBALS array as well.
+      $email = 'myemail@gmail.com';
+      $globals_copy = $GLOBALS;
+      $globals_copy['email'] = 'mysecondemail@gmail.com';
+      echo $email; // mysecondemail@gmail.com
+      echo $globals_copy['email']; // mysecondemail@gmail.com
+      echo $GLOBALS['email'];  // mysecondemail@gmail.com
+  // Here by modifying the copy we modify the $GLOBALS array as well.
 
  // From version PHP 8.1 and on:
- {
-  $email = 'myemail@gmail.com';
-  $globals_copy = $GLOBALS;
-  $globals_copy['email'] = 'mysecondemail@gmail.com';
-  echo $email; // myemail@gmail.com
-  echo $globals_copy['email']; // mysecondemail@gmail.com
-  echo $GLOBALS['email'];  // myemail@gmail.com
- // Copy modification does not affect $GLOBALS
- }
+    {
+      $email = 'myemail@gmail.com';
+      $globals_copy = $GLOBALS;
+      $globals_copy['email'] = 'mysecondemail@gmail.com';
+      echo $email; // myemail@gmail.com
+      echo $globals_copy['email']; // mysecondemail@gmail.com
+      echo $GLOBALS['email'];  // myemail@gmail.com
+  // Copy modification does not affect $GLOBALS
+    }
 
 
 // ## The $SERVER superglobal
@@ -245,14 +247,13 @@ function get_students_age2() {
 // // $_SERVER['REMOTE_ADDR']:
 // It returns the IP address of the client.
 // NOTE: It gives the address of the machine where the connection is coming from, not the address of the connecting computer.
-// NOTE: In the case of a local connection, like in the bellow example, both client and server has (obviously) the same address, namely 124.0.0.1, so that is what is returned. This address is universally used by all computers, and is commonly called 'localhost'.
-//There is also a second IP address, in the form of 45.139.....,   which is provided from an ISP and is used for communicating with other computers. Since in a local connection our computer is both the server and the client, the former address is the one returned.
+// NOTE: In the case of a local connection, like in the bellow example, both client and server has (obviously) the same address, namely 124.0.0.1, so this address is what is returned. This address is universally used by all computers, and is commonly called 'localhost'.
+// There is also a second IP address, in the form of 45.139.....,   which is provided from an ISP and is used for communicating with other computers. Since in a local connection our computer is both the server and the client, the former address is the one returned.
 // Example:
 {
   echo "The remote address is: " . $_SERVER['REMOTE_ADDR']; // The remote address is, since I use my local host : 127.0.0.1
 
 }
-
 
 // // $_SERVER['HTTP_HOST']:
 // It returns the HTTP host header from the current request. The HTTP host specifies the domain name that the client try to access. If a user wants to visit mywebsite.com, their client needs to make a request with the HTTP host header as shown bellow:
@@ -558,11 +559,46 @@ function get_students_age2() {
      echo "The uploaded files name is: ". $_FILES['choose_file']['name']; // The uploaded file's name is: abstract2.png
     echo "</pre>";
 
-  // Where to upload
+  // Handling file uploads
   // To handle file uploads, we use the PHP function move_uploaded_file() to move the file from the temporary directory to a location of our choice.
 
+ // Here's a simple example of handling a file upload:
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+   // store file's name to a variable
+    $file = $_FILES['filename'];
+    // if no error occurs
+     if ($file['error'] === 0) {
+      // Specify where to upload
+      $upload_dir = 'upload';
+      // Create dir IF not created already
+      if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+      }
+      // Create unique filename
+      //
+      $file_name = uniqid() ."-". $file['name'];
 
+      // Upload file with a respective message
+      if (move_uploaded_file($file['tmp_name'], $upload_dir. "/".$file_name )) {
+        echo "<p style=\"color: green\">File has been uploaded successfully!</p>";
+      }else {
+        echo "<p style=\"color: red\">Error uploading the file.</p>";
+      }
+
+     }
+ }
   ?>
+   <form action="" method="post" enctype="multipart/form-data">
+    <h2>Upload a file of your choice:</h2>
+    <input type="file" id="filename" name="filename">
+    <input type="submit" value="Send" name='submit' style="background-color: lightblue; border-radius: 5px; border: none; padding: 5px 10px;">
+  </form>
+<?php
+     // In this example, the program checks if a file was uploaded successfully and then moves it to the uploads/ directory.
+
+     // So far we have talked about seven out of the nine superglobals available. We left Sessions and Cookies last since they are quite similar and are often getting mixed up that deserve a separate post.
+     // [Exploring Cookies and Sessions in PHP]
+?>
 
 
 
