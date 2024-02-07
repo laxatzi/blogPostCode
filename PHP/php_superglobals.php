@@ -3,7 +3,7 @@
 
 // Superglobals are special built-in variables in PHP, that are available from any function, class, or file without a previous declaration of them as global variables.
 
-// That practically means, there is no need to use the global keyword to access them.
+// That practically means there is no need to use the global keyword to access them.
 
 // Bellow is how we can access a common global variable from a function:
 
@@ -32,30 +32,41 @@ echo subtract(); // 8
   echo get_session(); // 1.1
 }
 
-// We're going to be talking about how the $_SESSION superglobal works later on, but for now just pay attention to how we get access to the global scope without the use of the 'global' keyword.
+// We’re going to be talking about how the $_SESSION superglobal works later on, but for now just pay attention to how we get access to the global scope without the use of the ‘global’ keyword.
 
 // There are nine superglobals in PHP.
+
 // These superglobal variables are:
 
-    // $_GLOBALS: It holds a reference to all the global variables that have been defined in a PHP script.
-    // $_GET: contains the parameters passed to the script through the query string.
-    // $_POST: contains data sent via an HTTP POST request.
-    // $_COOKIE: contains data passed to the script as cooky values.
-    // $_SESSION: contains data stored in a user's session.
-    // $_REQUEST: contains all the data sent by user's client.
-    // $_SERVER: contains information about the server.
-    // $_FILES - contains data of files sent via an HTTP POST file upload.
-    // $_ENV: contains information about the environment.
+  // $_GLOBALS: It holds a reference to all the global variables that have been defined in a PHP script.
 
-    // Becoming familiar with the basics of each superglobal makes data manipulation in web applications easy and simple.
-    // Lets see these superglobals one by one.
+  // $_GET: contains the parameters passed to the script through the query string.
 
-    // # The $_GLOBALS Variable in PHP
-    // The $_GLOBALS variable is an associative array that references all variables in global scope, with the variable names being the keys of the array.
+  // $_POST: contains data sent via an HTTP POST request.
 
-    // Let’s see how the $_GLOBALS variable can be used to access a global variable with an example:
+  // $_COOKIE: contains data passed to the script as cooky values.
 
-    $age = 10;
+  // $_SESSION: contains data stored in a user’s session.
+
+  // $_REQUEST: contains all the data sent by the user’s client.
+
+  // $_SERVER: contains information about the server.
+
+  // $_FILES - contains data of files sent via an HTTP POST file upload.
+
+  // $_ENV: contains information about the environment.
+
+  // Becoming familiar with the basics of each superglobal makes data manipulation in web applications easy.
+
+  // Lets see these superglobals one by one.
+
+  // # The $_GLOBALS Variable in PHP
+
+  // The $_GLOBALS variable is an associative array that references all variables in global scope, with the variable names being the keys to the array.
+
+  // Let’s see how the $_GLOBALS variable can access a global variable with an example:
+
+    ;$age = 10;
     $name = "Tommy";
 
     function get_students_age() {
@@ -79,7 +90,7 @@ echo subtract(); // 8
     echo get_students_age2(); //Tommy is 12 years old!
     }
 
-// We can possibly use this superglobal in order to pass variables between functions
+// We can use this superglobal in order to pass variables between functions
 // Examples:
     {
       function first(){
@@ -87,7 +98,7 @@ echo subtract(); // 8
         echo "First: " . $GLOBALS['a']."<br>";
         ++$GLOBALS['a'];
 
-        // NOTE: This is a closure. We'll talk extensively about closures in a later post
+        // NOTE: This is a closure. We'll talk extensively about closures in a later post.
         $second = function(){
             echo "Second: ". $GLOBALS['a'];
         };
@@ -99,7 +110,7 @@ echo subtract(); // 8
     }
 
 // But there is a better, less verbose, way to do the same thing with the USE keyword.
-// Used in an anonymous function the ‘use’ keyword enables us to introduce, in that function scope, variables from outer scope.
+// Used in an anonymous function, the ‘use’ keyword enables us to introduce in that function scope, variables from outer scope.
 
     {
         function the_first(){
@@ -118,8 +129,8 @@ echo subtract(); // 8
       the_first(); //First: 1, Second: 2
     }
 
-//NOTE:  As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
-// So for the post PHP 8.1 versions of PHP, global variables cannot be modified through its copy.
+//NOTE: As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
+// So for the post PHP 8.1 versions of PHP, modifying global variables through their copy is not possible.
 
 //Example:
  // Before PHP 8.1:
@@ -129,7 +140,7 @@ echo subtract(); // 8
       echo $email; // mysecondemail@gmail.com
       echo $globals_copy['email']; // mysecondemail@gmail.com
       echo $GLOBALS['email'];  // mysecondemail@gmail.com
-  // Here by modifying the copy we modify the $GLOBALS array as well.
+  // Here, by modifying the copy, we modify the $GLOBALS array as well.
 
  // From version PHP 8.1 and on:
     {
@@ -160,7 +171,7 @@ echo subtract(); // 8
  {
   foreach ($_SERVER as $param => $value)  echo "$param = '$value' <br>";
  }
- // It's going to print, depending in our server config, something similar to the above image:
+ // It's going to print, depending on our server config, something similar to the above image:
  // [site the image]
 
 // We are going to look at some of the most commonly used elements of the PHP $_SERVER superglobal.
@@ -218,7 +229,7 @@ echo subtract(); // 8
 
 
 // // $_SERVER['SCRIPT_FILENAME']:
-// It returns not just the filename as the name implies, but the absolute pathname of the currently executed PHP script.
+// It returns not just the filename as the name implies, but the absolute path-name of the currently executed PHP script.
 // Example:
 {
   echo "The script filename is: " . $_SERVER['SCRIPT_FILENAME']; //  C:/Users/LAMBROS/Local Sites/mywebsite/app/public/test.php
@@ -247,8 +258,8 @@ echo subtract(); // 8
 // // $_SERVER['REMOTE_ADDR']:
 // It returns the IP address of the client.
 // NOTE: It gives the address of the machine where the connection is coming from, not the address of the connecting computer.
-// NOTE: In the case of a local connection, like in the bellow example, both client and server has (obviously) the same address, namely 124.0.0.1, so this address is what is returned. This address is universally used by all computers, and is commonly called 'localhost'.
-// There is also a second IP address, in the form of 45.139.....,   which is provided from an ISP and is used for communicating with other computers. Since in a local connection our computer is both the server and the client, the former address is the one returned.
+// NOTE: In the case of a local connection, like in the bellow example, both client and server have (obviously) the same address, namely 124.0.0.1, so this address is what is returned. This address is universally used by all computers and is commonly called 'localhost'.
+// There is also a second IP address, in the form of 45.139....., which is provided by an ISP and is used for communicating with other computers. Since in a local connection our computer is both the server and the client, the former address is the one returned.
 // Example:
 {
   echo "The remote address is: " . $_SERVER['REMOTE_ADDR']; // The remote address is, since I use my local host : 127.0.0.1
@@ -256,7 +267,7 @@ echo subtract(); // 8
 }
 
 // // $_SERVER['HTTP_HOST']:
-// It returns the HTTP host header from the current request. The HTTP host specifies the domain name that the client try to access. If a user wants to visit mywebsite.com, their client needs to make a request with the HTTP host header as shown bellow:
+// It returns the HTTP host header from the current request. The HTTP host specifies the domain name that the client tries to access. If a user wants to visit mywebsite.com, their client needs to make a request with the HTTP host header, as shown below:
 // Host: mywebsite.com and this is the value returned by the $_SERVER['HTTP_HOST']
 // Example:
 {
@@ -270,14 +281,14 @@ echo subtract(); // 8
   echo "The referring page is: " . $_SERVER['HTTP_REFERER']; // Referer: https://example.com/page?q=123
 }
 
-//It is not always available though, since the current page could be accessed by typing the URL into the address bar or using a bookmark. In that case there will be no referring page and $_SERVER['HTTP_REFERER'] will not be set.
+//It is not always available though, since the current page could be accessed by typing the URL into the address bar or using a bookmark. In that case, there will be no referring page and $_SERVER['HTTP_REFERER'] will not be set.
 //
 // Example:
 {
   echo "The referring page is: " . $_SERVER['HTTP_REFERER']; // Undefined index: HTTP_REFERER
 }
 
-// For avoiding the later warning we can check this element's presence with the help of the isset() function
+// For avoiding the latter warning, we can check this element's presence with the help of the isset() function
 {
   if (isset($_SERVER['HTTP_REFERER'])) {
     $the_referrer = $_SERVER['HTTP_REFERER'];
@@ -291,13 +302,13 @@ echo subtract(); // 8
 }
 
 // // $_SERVER['HTTP_USER_AGENT']:
-// It returns the user agent string which gives information about the application type, operating system, software vendor or software version of the requesting software user agent.
+// It returns the user agent string, which gives information about the application type, operating system, software vendor or software version of the requesting software user agent.
 // Example:
 {
     echo $_SERVER['HTTP_USER_AGENT']; // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 }
 
-// NOTE: We see in our example, that although the use agent string indicates that I'm on a Chrome browser of the 120.0.0.0 version, we also get, at the beginning of the string, a 'Mozilla/5.0' token. We get this regardless of the browser that we use, even if it is Chrome, Safari, Opera or any other browser for that matter.
+// NOTE: We see in our example that although the use agent string indicates that I'm on a Chrome browser of the 120.0.0.0 version, we also get, at the beginning of the string, a 'Mozilla/5.0' token. We get this regardless of the browser that we use, even if it is Chrome, Safari, Opera or any other browser for that matter.
 // Mozilla/5.0 is the general token that says that the browser is Mozilla-compatible. For historical reasons, almost every browser today sends it.[link: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent]
 
 
@@ -310,7 +321,7 @@ echo subtract(); // 8
 
 
 // // $_SERVER['REQUEST_URI']:
-// It returns the URL of the request including the query string, if there is one.
+// It returns the URL of the request, including the query string, if there is one.
 // Example:
 {
     echo "This is the URI: " . $_SERVER['REQUEST_URI'];  //This is the URI: /test.php?page=home&category=php
@@ -324,16 +335,16 @@ echo subtract(); // 8
 // ## The $_ENV superglobal
  //The $_ENV superglobal is an associative array of variables passed from the environment in which PHP is running.
  // These variables are called environment variables and are set by the web server or the server's operating system.
- // They are not PHP specific, but rather system wide and can be accessed by other programming languages as well.
+ // They are not PHP specific, but rather system-wide and can be accessed by other programming languages as well.
 
  // # Using getenv
- // To retrieve an environment variable we use the getenv() function.
+ // To retrieve an environment variable, we use the getenv() function.
  // Example:
  {
     $root = getenv('SYSTEMROOT');
     echo "The system root directory is: ". $root; //The system root directory is: C:\WINDOWS
  }
- // If we want to get the values of all the available environment variables we can use the following script:
+ // If we want to get the values of all the available environment variables, we can use the following script:
  {
    $env_vars = getenv();
 
@@ -351,7 +362,7 @@ echo subtract(); // 8
    $max_requests = getenv('php_fcgi_max_requests');
    echo "A PHP job can handle up to " . $max_requests . " requests!"; // PHP can handle up to 1000 requests!
 }
-// Since I am on a Windows machine I can write the environment variable PHP_FCGI_MAX_REQUESTS in lowercase character.
+// Since I am on a Windows machine, I can write the environment variable PHP_FCGI_MAX_REQUESTS in lowercase character.
 // That wouldn't be the case in a Linux machine.
 //PHP_FCGI_MAX_REQUESTS determines how many requests a PHP job should handle before ending and restarting.
 
@@ -359,7 +370,7 @@ echo subtract(); // 8
 // # Using putenv()
   // By using this function, we can easily set a new environment variable, for the duration of the current request.
   //The putenv() function can alter the value of an existing environment variable or set the value of a newly created.
-  // Variables set with the putenv function, are only available by calling the getenv function.
+  // Variables set with the putenv function are only available by calling the getenv function.
  {
 // Echo out the existing environment variable, PHP_FCGI_MAX_REQUESTS current limit.
    echo getenv('PHP_FCGI_MAX_REQUESTS') . "<br>"; // 1000
@@ -392,8 +403,8 @@ echo subtract(); // 8
 // # The $_GET superglobal
 
   // The $_GET superglobal is an associative array of variables. These variables are received via the HTTP GET method.
-  // This method is one of the two ways browsers use to send information to the web server.
-  // The other is the POST method that we are going to talk later on.
+  // This method is one of the two ways browsers use in order to send information to the web server.
+  // The other is the POST method that we are going to talk about later on.
   // A GET request is sent as a URL containing a query string added to its end with a question mark. This query string has name-value pairs as parameters.
   // These parameters are separated by ampersands
   // Example: http://www.mywebsite.com/about.php?name="Lambros"&surname="Hatzinikolaou"
@@ -401,7 +412,7 @@ echo subtract(); // 8
   // name="Lambros"
   // surname="Hatzinikolaou"
 
-  // Regarding the previous example of a get request we would retrieve the variables 'name' and 'surname':
+  // Regarding the previous example of a get request, we would retrieve the variables 'name' and 'surname':
   {
     echo "This page is about ". $_GET['name']. " ". $_GET['surname']. "!"; // This page is about "Lambros" "Hatzinikolaou"!
   }
@@ -413,18 +424,18 @@ echo subtract(); // 8
   // In PHP, we can use the htmlentities() built in function to achieve this. This function converts special characters in user input into their HTML entities.
 
    // Example:
-   // Lets say we get user input from a from regarding a name and we store it in the $name variable
+   // Lets say we get user input from a form regarding a name and we store it in the $name variable
 
    {
      $name = $_GET["name"];
      echo isset($name) ? "The name is " . $name : "No input"; // The name is John
    }
 
-   // In the example a well meaning user with the name of John filled his name in and we get the respective string on our browser.
+   // In the example, a well-meaning user with the name of John filled his name in and we get the respective string on our browser.
    // But what if the user is not so benevolent?
    // Lets say he puts, instead of his name, something like:
    // <script>alert%28"This%20is%20XSS%20attack"%29</script>
-   // Now when we load our page we get an alert box with the string "This is XSS attack"
+   // Now when we load our page, we get an alert box with the string "This is XSS attack"
 
    // We can prevent this by escaping our code
   {
@@ -463,10 +474,10 @@ echo subtract(); // 8
     </body>
 
 <?php
-  // In the above example we have a form that asks for an email address. After submitting the form, we use the $_POST superglobal to store the variables we receive from the HTTP POST method to the variable $email.
-  // Then we use conditional statements to check if an email has been filled in, and if this is the case we echo a message to the browser.
+  // In the above example, we have a form that asks for an email address. After submitting the form, we use the $_POST superglobal to store the variables we receive from the HTTP POST method to the variable $email.
+  // Then we use conditional statements to check if an email has been filled in, and if this is the case, we echo a message to the browser.
   // Here, similarly to the example with the GET request, we are depended on the honesty of the user. The user can input malicious code.
-  // It is unwise to trust external input so we 'd better escape our code
+  // It is unwise to trust external input, so we 'd better escape our code
   // Suppose that a user enters the following script, <script>alert("This is XSS attack")</script>, in the name field of our form.
   // This is just an alert code but it could a malicious script.
   // We need to escape our code with the htmlspecialchars function.
@@ -492,14 +503,14 @@ echo subtract(); // 8
 
 
  //# PHP $_FILES
-  // An HTML Form can be used not only for collecting user input but also files.
+  // An HTML Form can be used not only for collecting user input but also for files.
   // PHP supports file uploads natively. It can receive files from the vast majority of browsers that support the “multipart/form-data” enctype attribute.
   // Before sent to the server, form data should be encoded. Τhe enctype attribute defines how.
   // The default value is “application/x-www-form-urlencoded”. This format is compatible with URLs.
   // But if the form includes files, we need to use the “multipart/form-data” type of encoding.
   // # The $_FILES superglobal
-  // The $_FILES superglobal is an associative array that holds information about uploaded files such as names, sizes, and error types.
-  //  When a user submits a form that includes a file input field, the file data is sent to the server, and PHP inserts to the $_FILES array information about the uploaded file.
+  // The $_FILES superglobal is an associative array that holds information about uploaded files, such as names, sizes, and error types.
+  // When a user submits a form that includes a file input field, the file data is sent to the server, and PHP inserts information about the uploaded file to the $_FILES array.
 
   // Lets see an example:
 
@@ -516,11 +527,11 @@ echo subtract(); // 8
     </form>
   <?php
 
-    // In the above example the enctype="multipart/form-data" attribute enables file submission to the server via the POST method, and the input element with type="file" enables us to use a file selection panel for finding the intended file.
+    // In the above example, the enctype="multipart/form-data" attribute enables file submission to the server via the POST method, and the input element with type="file" enables us to use a file selection panel for finding the intended file.
 
     // To our example form, I upload the image 'abstract2.php' from a directory in my machine.
     // I var_dump the $_FILES superglobal to look inside.
-    // The $_FILES superglobal array's structure is multidimensional and it contains the following file data.
+    // The $_FILES superglobal array structure is multidimensional, and it contains the following file data.
 
 // array(1) {
 //   ["choose_file"]=>
@@ -540,18 +551,18 @@ echo subtract(); // 8
 //   }
 // }
 
-// In the example we see the $_FILES superglobal associative array nesting another associative array with 6 items, all representing the attributes of the file to be uploaded.
+// In the example, we see the $_FILES superglobal associative array nesting another associative array with 6 items, all representing the attributes of the file to be uploaded.
 // The attributes are:
-// 'name' : Represents the original name of the uploaded file as it is named in user's machine
-// 'full_path': Represents the full path as submitted by the browser. Thanks to its value it is possible to store the relative paths, or reconstruct the same directory in the serve
-// 'type' : Represents the nature and format of a document. This can be obtained from the browser but should not be    completely trusted, as it can be manipulated. A better way is to use other PHP built-in functions [link: https://stackoverflow.com/questions/59986082/php-how-to-properly-check-mime-type-of-a-file]
+// 'name' : Represents the original name of the uploaded file as it is named in the user's machine
+// 'full_path': Represents the full path as submitted by the browser. Thanks to its value, it is possible to store the relative paths, or reconstruct the same directory in the serve.
+// 'type' : Represents the nature and format of a document. This can be obtained from the browser but should not be   completely trusted, as it can be manipulated. A better way is to use other PHP built-in functions [link: https://stackoverflow.com/questions/59986082/php-how-to-properly-check-mime-type-of-a-file]
 // 'tmp_name': Represents the name of the server's  temporary file in which the uploaded file will be stored
 // 'error' : Represents the error code[link: https://www.php.net/manual/en/features.file-upload.errors.php] for this file upload with 0 meaning no error.
 // 'size' : Represents the size of the uploaded file in bytes
 
-// NOTE: I run PHP 8.3 in my local server so we get six keys.
+// NOTE: I run PHP 8.3 on my local server so we get six keys.
 // But If I 'd run a PHP version prior to PHP 8.1 we would get one less attribute.
-// The full_path attribute would missing.
+// The full_path attribute would be missing.
 // This is something to consider since roughly 30% of servers run previous PHP installations. [link: https://stitcher.io/blog/php-version-stats-january-2024]
 
 // We can access any of these attributes directly:
@@ -596,7 +607,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 <?php
      // In this example, the program checks if a file was uploaded successfully and then moves it to the uploads/ directory.
 
-     // So far we have talked about seven out of the nine superglobals available. We left Sessions and Cookies last since they are quite similar and are often getting mixed up that deserve a separate post.
+     // So far, we have talked about seven out of the nine superglobals available. We left Sessions and Cookies last since they are quite similar and are often getting mixed up that deserve a separate post.
      // [Exploring Cookies and Sessions in PHP]
 ?>
 
