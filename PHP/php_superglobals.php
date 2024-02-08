@@ -1,11 +1,11 @@
 <?php
 // # Superglobal Variables in PHP
 
-// Superglobals are special built-in variables in PHP, that are available from any function, class, or file without a previous declaration of them as global variables.
+//Superglobals are special built-in variables in PHP, that are available from any function, class, or file without a previous declaration of them as global variables.
 
-// That practically means there is no need to use the global keyword to access them.
+//That practically means there is no need to use the global keyword to access them.
 
-// Bellow is how we can access a common global variable from a function:
+//Bellow is how we can access a common global variable from a function:
 
 $x = 10;
 $y = 2;
@@ -34,9 +34,7 @@ echo subtract(); // 8
 
 // We’re going to be talking about how the $_SESSION superglobal works later on, but for now just pay attention to how we get access to the global scope without the use of the ‘global’ keyword.
 
-// There are nine superglobals in PHP.
-
-// These superglobal variables are:
+// There are nine superglobals in PHP. These superglobal variables are:
 
   // $_GLOBALS: It holds a reference to all the global variables that have been defined in a PHP script.
 
@@ -132,7 +130,7 @@ echo subtract(); // 8
 //NOTE: As of PHP 8.1.0, $GLOBALS is now a read-only copy of the global symbol table.
 // So for the post PHP 8.1 versions of PHP, modifying global variables through their copy is not possible.
 
-//Example:
+//Examples:
  // Before PHP 8.1:
       $email = 'myemail@gmail.com';
       $globals_copy = $GLOBALS;
@@ -220,7 +218,7 @@ echo subtract(); // 8
   echo "The server admin is: " . $_SERVER['SERVER_ADMIN']; // The server admin is: webmaster@localhost
 }
 
-// // $_SERVER['DOCUMENT_ROOT']:
+// // $_SERVER['DOCUMENT_ROOT']
 // It returns the root of the document. That's where the script that we are running resides.
 // Example:
 {
@@ -228,7 +226,7 @@ echo subtract(); // 8
 }
 
 
-// // $_SERVER['SCRIPT_FILENAME']:
+// // $_SERVER['SCRIPT_FILENAME']
 // It returns not just the filename as the name implies, but the absolute path-name of the currently executed PHP script.
 // Example:
 {
@@ -236,14 +234,14 @@ echo subtract(); // 8
 }
 
 
-// // $_SERVER['SCRIPT_NAME']:
+// // $_SERVER['SCRIPT_NAME']
 // It returns the script name of the currently executed PHP file. It doesn't include the path-info nor a URL query string. It always includes a leading slash.
 // Example:
 {
   echo "The script name is: " . $_SERVER['SCRIPT_NAME']; // /test.php
 }
 
-// // $_SERVER['PHP_SELF']:
+// // $_SERVER['PHP_SELF']
 // Just like $SERVER['SCRIPT_NAME'], it returns the file name of the script currently executed on the server. It can include the URL query string though.
 // Example:
 {
@@ -255,7 +253,7 @@ echo subtract(); // 8
 
 
 
-// // $_SERVER['REMOTE_ADDR']:
+// // $_SERVER['REMOTE_ADDR']
 // It returns the IP address of the client.
 // NOTE: It gives the address of the machine where the connection is coming from, not the address of the connecting computer.
 // NOTE: In the case of a local connection, like in the bellow example, both client and server have (obviously) the same address, namely 124.0.0.1, so this address is what is returned. This address is universally used by all computers and is commonly called 'localhost'.
@@ -266,7 +264,7 @@ echo subtract(); // 8
 
 }
 
-// // $_SERVER['HTTP_HOST']:
+// // $_SERVER['HTTP_HOST']
 // It returns the HTTP host header from the current request. The HTTP host specifies the domain name that the client tries to access. If a user wants to visit mywebsite.com, their client needs to make a request with the HTTP host header, as shown below:
 // Host: mywebsite.com and this is the value returned by the $_SERVER['HTTP_HOST']
 // Example:
@@ -274,7 +272,7 @@ echo subtract(); // 8
   echo "The client wants to access: " . $_SERVER['HTTP_HOST']; // mywebsite.com
 }
 
-// // $_SERVER['HTTP_REFERER']:
+// // $_SERVER['HTTP_REFERER']
 // It returns, if available, an absolute or partial address from which a resource has been requested.
 // Example:
 {
@@ -301,7 +299,7 @@ echo subtract(); // 8
   }
 }
 
-// // $_SERVER['HTTP_USER_AGENT']:
+// // $_SERVER['HTTP_USER_AGENT']
 // It returns the user agent string, which gives information about the application type, operating system, software vendor or software version of the requesting software user agent.
 // Example:
 {
@@ -607,7 +605,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 <?php
      // In this example, the program checks if a file was uploaded successfully and then moves it to the uploads/ directory.
 
-     // So far, we have talked about seven out of the nine superglobals available. We left Sessions and Cookies last since they are quite similar and are often getting mixed up that deserve a separate post.
+     // So far, we have talked about seven out of the nine superglobals available. We left $_Session and $_Cookie superglobals last since the mechanism of Cookies and Sessions are quite similar and are often getting mixed up that deserve a separate post.
      // [Exploring Cookies and Sessions in PHP]
 ?>
 
