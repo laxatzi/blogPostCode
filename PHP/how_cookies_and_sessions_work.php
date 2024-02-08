@@ -1,0 +1,10 @@
+<?php
+  //[  Cookies are small pieces of data stored in the user's web browser by the website they are visiting. These cookies can contain information such as user preferences, login status, and other data that helps the website remember the user and their preferences for future visits. Sessions, on the other hand, are a way for the web server to store information about the user as they interact with the website. A unique session ID is often stored in a cookie on the user's browser, and this ID is used to retrieve the user's session data from the server. In summary, cookies are used to store small pieces of data in the user's browser, while sessions are used to store and manage user-specific data on the web server. Cookies can be used to maintain the continuity of a session by storing the session ID, allowing the server to identify the user and retrieve their session data.
+  // ]
+
+
+
+  // Sessions and cookies are useful mechanisms that allow us to store data about a user's activities on a website. But they do it in diff way and they are serve diff purposes. We are going to dig in both in this article.
+
+  // Sessions
+  // [Use sessions when you want to store sensitive information about a user, such as their login credentials or personal details. Sessions are stored on the server, and the session ID is typically stored in a cookie on the client's browser. This makes sessions more secure than cookies for sensitive data. Use cookies when you want to store non-sensitive information, such as user preferences or shopping cart items. Cookies are stored on the client's browser, and they can be set to expire after a certain period of time. In summary, use sessions for sensitive information that should be stored securely on the server, and use cookies for non-sensitive information that can be stored on the client's browser.]
