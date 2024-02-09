@@ -21,7 +21,7 @@
 // Let's describe these parameters in some detail
 // Name: It is the only required parameter, containing the name of the cookie.
 // Value: Optional parameter. Is used to set the cookie's value. If not specified the default value is an empty string.
-// Expire: Optional parameter. Is used to set the expiration date of the cookie. If not set, the cookie expires at the end of the current session.
+// Expire: Optional parameter. Is used to set the expiration date of the cookie in seconds since the Unix Epoch. If not set, the cookie expires at the end of the current session.
 // Path: Optional parameter. Contains the path on the server where the cookie is available. If not set the cookie is available on the entire domain.
 // Domain: Optional parameter. Specifies the domain for which the cookie is available. If not specified, the cookie is available on the domain of the request.
 // Secure: Optional parameter. Indicates that the cookie is intended for secure connections (HTTPS) only. It set to a boolean value. If TRUE, the cookie will only be available via an HTTPS protocol. If not specified, it default to FALSE.
@@ -39,23 +39,25 @@
 
 // #Accessing Cookies
   // We can access cookies using the $_COOKIE superglobal.
-  // PHP's $_COOKIE superglobal is an associative array that stores the values of cookies sent by the browser in the current request. The records are organized in a list, with the cookie name acting as the key.
+  // PHP's $_COOKIE superglobal is an associative array that stores the values of cookies sent by the browser in the current request. The values are organized in a list, with the cookie name acting as the key.
   // Continuing from the previous example:
-  echo "<pre>";
-   print_r($_COOKIE); //[username] => john_doe
-  echo "</pre>";
+if (isset($_COOKIE)) {
+    print_r($_COOKIE); //Array ( [the_cookie] => the_value )
+} else {
+    echo "Cookie not found.";
+}
+
 
 // # Deleting Cookies
  // To delete a cookie, you can set its expiration time to a past date:
 
-setcookie('username', 'john_doe', time() - 3600, '/');
-// The above cookie is now expired and will be deleted
+setcookie('username', 'john_doe', 1, '/');
+// The above cookie is now expired and will be deleted.
+// The expiration time is set to one, that means 1 second after the epoch (1 January 1970 00:00:00 UTC).
+// NOTE: We should pass the same parameters of the cookie we want to delete, that we passed at the time of creation in order for the cookie to be deleted. If the parameters are not the same, the cookie will remain set.
 
-// NOTE: We should pass the same arguments to the parameters of the cookie we want to delete, that we passed at the time of creation in order for the cookie to be deleted. If the arguments are not the same, the cookie will remain set.
-
-// Example:
-
-
+// Let's take a simple example of using cookies for user authentication:
+// Consider an e-commerce website that requires users to log in. Having in mind user experience, the website wants to remember the user and keep them logged-in even if they close the browser or leave the site.
 
 // *This is applicable in cases where are we adding things to the cart as a guest (unauthenticated).
 
