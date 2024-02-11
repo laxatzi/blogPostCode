@@ -56,13 +56,11 @@ setcookie('username', 'john_doe', 1, '/');
 // The expiration time is set to one, that means 1 second after the epoch (1 January 1970 00:00:00 UTC).
 // NOTE: We should pass the same parameters of the cookie we want to delete, that we passed at the time of creation in order for the cookie to be deleted. If the parameters are not the same, the cookie will remain set.
 
-// Let's take a simple example of using cookies for user authentication:
-// Consider an e-commerce website that requires users to log in. Having in mind user experience, the website wants to remember the user and keep them logged-in even if they close the browser or leave the site.
-
+##############
 // *This is applicable in cases where are we adding things to the cart as a guest (unauthenticated).
 
 // However, if logged-in, storing stuff in the backend is the preferred way so that users can visit later from another browser or device without losing their selected items.
-##############
+
 // ##SESSIONS
 
 // A session is a way to store information about the user’s interaction with a website to be used across multiple pages or requests. Sessions are stored on the server, and PHP uses a session ID to associate a user’s data with their specific session. This session ID is usually stored in a cookie on the client’s browser. Let’s see how sessions work in PHP:
