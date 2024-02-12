@@ -8,9 +8,9 @@
 
 // In an e-commerce website, we are able to put things we consider buying in the cart or on a wish list and then continue shopping and browsing on other pages without losing our selected items. We do this by using cookies*.
 
-// When visiting a website, small pieces of data in the form of key=value pairs, called cookies, are stored as text files in the user’s web browser.
+//When visiting a website, small pieces of data in the form of key=value pairs, called cookies, are stored as text files in the user’s web browser.
 
-// These cookies contain information that is sent with each HTTP request to the server, enabling us to remember the user their behavior, and their preferences.
+//These cookies contain information that is sent with each HTTP request to the server, enabling us to remember the user their behavior, and their preferences.
 
 // #Setting Cookies
 
@@ -24,7 +24,7 @@
 // Expire: Optional parameter. Is used to set the expiration date of the cookie in seconds since the Unix Epoch. If not set, the cookie expires at the end of the current session.
 // Path: Optional parameter. Contains the path on the server where the cookie is available. If not set the cookie is available on the entire domain.
 // Domain: Optional parameter. Specifies the domain for which the cookie is available. If not specified, the cookie is available on the domain of the request.
-// Secure: Optional parameter. Indicates that the cookie is intended for secure connections (HTTPS) only. It set to a boolean value. If TRUE, the cookie will only be available via an HTTPS protocol. If not specified, it default to FALSE.
+// Secure: Optional parameter. Indicates that the cookie is intended for secure connections (HTTPS) only. It set to a boolean value. If TRUE, the cookie will only be available via an HTTPS protocol. If not specified, it defaults to FALSE.
 
 // Example of a cookie set with the setcookie() function.
 
@@ -34,13 +34,17 @@
 // ...
 
 }
-###############
-// We see that the cookie we created is data persistent since we can set it to expire on the client in a time we want beyond the current session. In our example we set it to expire in one month. That means we can close the browser, reopen it a couple of weeks later and it will still "remember" our username.
 
-// #Accessing Cookies
-  // We can access cookies using the $_COOKIE superglobal.
-  // PHP's $_COOKIE superglobal is an associative array that stores the values of cookies sent by the browser in the current request. The values are organized in a list, with the cookie name acting as the key.
-  // Continuing from the previous example:
+//We see that the cookie we created is data persistent since we can set it to expire on the client in a time we want beyond the current session. In our example we set it to expire in one month. That means we can close the browser, reopen it a couple of weeks later and it will still "remember" our username.
+//Checking for a cookie is very easy with the help of the dev tools.
+// [img]
+//Selecting the Application tab and the Cookies section enables us to see all the active cookies on a page.
+//This is the reason we don't want to store sensitive data in a cookie.
+
+//#Accessing Cookies
+  //We can access cookies using the $_COOKIE superglobal.
+  //PHP's $_COOKIE superglobal is an associative array that stores the values of cookies sent by the browser in the current request. The values are organized in a list, with the cookie name acting as the key.
+  //Continuing from the previous example:
 if (isset($_COOKIE)) {
     print_r($_COOKIE); //Array ( [the_cookie] => the_value )
 } else {
@@ -54,12 +58,11 @@ if (isset($_COOKIE)) {
 setcookie('username', 'john_doe', 1, '/');
 // The above cookie is now expired and will be deleted.
 // The expiration time is set to one, that means 1 second after the epoch (1 January 1970 00:00:00 UTC).
-// NOTE: We should pass the same parameters of the cookie we want to delete, that we passed at the time of creation in order for the cookie to be deleted. If the parameters are not the same, the cookie will remain set.
+// NOTE: We should pass the same parameters of the cookie we want to delete that we passed at the time of creation in order for the cookie to be deleted. If the parameters are not the same, the cookie will remain set.
 
-##############
-// *This is applicable in cases where are we adding things to the cart as a guest (unauthenticated).
+//*This is applicable in cases where are we adding things to the cart as a guest (unauthenticated).
 
-// However, if logged-in, storing stuff in the backend is the preferred way so that users can visit later from another browser or device without losing their selected items.
+//However, if logged-in, storing stuff in the backend is the preferred way so that users can visit later from another browser or device without losing their selected items.
 
 // ##SESSIONS
 
