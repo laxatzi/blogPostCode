@@ -104,14 +104,7 @@ setcookie('username', 'john_doe', 1, '/');
     // Rest of code...
   }
 
-// ]
-  // [Without sessions users would have no way to recognize and/or remember individual users.
-    // That means we'd have to login in the same website with each visit
-    // you could save the user’s name in the session so that you don’t have to query the database every time you need it or you could store data in the session to save state between pages
-
-  //]
-  //[, for a web application, a server has multiple clients, how does it know which session is yours? ]
-
+// We see sessions are very important since without them, servers would have no way to recognize and/or remember individual users, and every time we visit, or browse between the pages of the website, we'll have to log in.
 
 // ##SUMMARY
 
