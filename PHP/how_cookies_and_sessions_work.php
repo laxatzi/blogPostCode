@@ -66,22 +66,44 @@ setcookie('username', 'john_doe', 1, '/');
 
 // ##SESSIONS
 
-// A session is a mechanism to store data about the user’s interaction with a website. This data is intended to be used across multiple pages or requests, and is useful only during the time a user is interacting with the website. After the connection is  ended or the browser is closed the session is usually destroyed. Sessions are stored on the server, and PHP uses a session ID to associate a user’s data with their specific session. This session ID is usually stored in a cookie on the client’s browser.
-// The server is responsible for generating and managing the session IDs. For every user connected to the server, there will be a corresponding session ID. If a thousand users are visiting a website, there will be a thousands respective session IDs on the server.
-// So, although a server has multiple clients for a website, thanks to these unique session IDs it manage to know which session is ours.
+// A session is a mechanism to store data about the user’s interaction with a website. This data is intended to be used across multiple pages or requests, and is useful only during the time a user is interacting with the website. After the connection is ended or the browser is closed the session is usually destroyed.
+// Sessions are stored on the server, and PHP uses a session ID to associate a user’s data with their specific session. This session ID is usually stored in a cookie on the client’s browser.
+// The server is responsible for generating and managing the session IDs. For every user connected to the server, there will be a corresponding session ID. If a thousand users are visiting a website, there will be a thousand respective session IDs on the server.
+// So, although a server has multiple clients for a website, thanks to these unique session IDs, it manages to know which session belong to whom.
 // The basic idea is that the client provides the server with a session id, and then the server looks up for this session id in its session data-store. If it finds it there, it gives the client access to their session data.
-
-// It is like a bank ATM permitting us access to our bank account after it checks that the password we have entered is valid.
+// It is like a hotel guest asking the hotel reception for the room keys. The person at the desk will ask for the room number and an ID, and if that ID matches the name of the guest on the room's file, they will issue the room key. With that room key the guest gain access to their allocated room but not to any of the dozens of other rooms in the premise.
 
 //Let’s see how sessions work in detail:
 
   // Session initialization
    // To start a session, you use the session_start() function. Typically, this is called at the beginning of each page where you want to use session data.
+ {
+    session_start();
+    // Rest of code...
+ }
 
   // Data  Storage
     // You can store data in the session using the $_SESSION superglobal. For example:
+  {
+      session_start();
+      $_SESSION['username'] = 'john_doe';
+      // Rest of code...
+  }
   // Data retrieval
+  // Later on, you can access the stored data:
+  {
+    session_start();
+    echo 'Username: ' . $_SESSION['username'];
+    // Rest of code...
+  }
   // Session Termination
+  // To terminate a session and remove all session data, you use session_destroy().
+  {
+    session_start();
+    session_destroy();
+    // Rest of code...
+  }
+
 // ]
   // [Without sessions users would have no way to recognize and/or remember individual users.
     // That means we'd have to login in the same website with each visit
