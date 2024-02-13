@@ -10,15 +10,15 @@
 
 //When visiting a website, small pieces of data in the form of key=value pairs, called cookies, are stored as text files in the user’s web browser.
 
-//These cookies contain information that is sent with each HTTP request to the server, enabling us to remember the user their behavior, and their preferences.
+//These cookies contain information that is sent with each HTTP request to the server, enabling us to remember the user, their behavior, and their preferences.
 
 // #Setting Cookies
 
 // In order to create a cookie, we use the setcookie() function.
-// This function accepts up to 6 parameters.
 // Syntax:
 // setcookie(name, value, expire, path, domain, secure)
-// Let's describe these parameters in some detail
+// This function accepts some parameters.
+// Let's describe the most important of these parameters in some detail:
 // Name: It is the only required parameter, containing the name of the cookie.
 // Value: Optional parameter. Is used to set the cookie's value. If not specified the default value is an empty string.
 // Expire: Optional parameter. Is used to set the expiration date of the cookie in seconds since the Unix Epoch. If not set, the cookie expires at the end of the current session.
@@ -66,7 +66,30 @@ setcookie('username', 'john_doe', 1, '/');
 
 // ##SESSIONS
 
-// A session is a way to store information about the user’s interaction with a website to be used across multiple pages or requests. Sessions are stored on the server, and PHP uses a session ID to associate a user’s data with their specific session. This session ID is usually stored in a cookie on the client’s browser. Let’s see how sessions work in PHP:
+// A session is a mechanism to store data about the user’s interaction with a website. This data is intended to be used across multiple pages or requests, and is useful only during the time a user is interacting with the website. After the connection is  ended or the browser is closed the session is usually destroyed. Sessions are stored on the server, and PHP uses a session ID to associate a user’s data with their specific session. This session ID is usually stored in a cookie on the client’s browser.
+// The server is responsible for generating and managing the session IDs. For every user connected to the server, there will be a corresponding session ID. If a thousand users are visiting a website, there will be a thousands respective session IDs on the server.
+// So, although a server has multiple clients for a website, thanks to these unique session IDs it manage to know which session is ours.
+// The basic idea is that the client provides the server with a session id, and then the server looks up for this session id in its session data-store. If it finds it there, it gives the client access to their session data.
+
+// It is like a bank ATM permitting us access to our bank account after it checks that the password we have entered is valid.
+
+//Let’s see how sessions work in detail:
+
+  // Session initialization
+   // To start a session, you use the session_start() function. Typically, this is called at the beginning of each page where you want to use session data.
+
+  // Data  Storage
+    // You can store data in the session using the $_SESSION superglobal. For example:
+  // Data retrieval
+  // Session Termination
+// ]
+  // [Without sessions users would have no way to recognize and/or remember individual users.
+    // That means we'd have to login in the same website with each visit
+    // you could save the user’s name in the session so that you don’t have to query the database every time you need it or you could store data in the session to save state between pages
+
+  //]
+  //[, for a web application, a server has multiple clients, how does it know which session is yours? ]
+
 
 // ##SUMMARY
 
