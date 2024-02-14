@@ -500,13 +500,13 @@ echo subtract(); // 8
  // Now we get the malicious code displayed as text.
 
 
- //# PHP $_FILES
+ //# PHP $_FILES superglobal
   // An HTML Form can be used not only for collecting user input but also for files.
   // PHP supports file uploads natively. It can receive files from the vast majority of browsers that support the “multipart/form-data” enctype attribute.
   // Before sent to the server, form data should be encoded. Τhe enctype attribute defines how.
   // The default value is “application/x-www-form-urlencoded”. This format is compatible with URLs.
   // But if the form includes files, we need to use the “multipart/form-data” type of encoding.
-  // # The $_FILES superglobal
+  // # The $_FILES
   // The $_FILES superglobal is an associative array that holds information about uploaded files, such as names, sizes, and error types.
   // When a user submits a form that includes a file input field, the file data is sent to the server, and PHP inserts information about the uploaded file to the $_FILES array.
 
