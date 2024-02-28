@@ -29,7 +29,7 @@ if ($age >= 18) {
   echo "Welcome to our Bar!";
 }
 
-// Here, if the customer is old enough to drink, thus at least 18 years of age, is granted access in the Bar, and a welcome message is printed.
+// Here, if the customer is old enough to drink, thus at least 18 years of age, a welcome message is printed.
 
 // NOTE: The curly braces can be omitted entirely if there is only one statement to execute;
 
@@ -52,7 +52,7 @@ if ($age >= 18) {
    // There are cases when executing either one piece of code or another would not suffice.
    // In these cases we need to use the elseif keyword.
 
-   // Let's say we want to response to a question about age eligibility for driving a car.
+   // Let's say we want to respond to a question about age eligibility for driving a car.
    // In certain countries you can drive a car at 17 if accompanied by a licensed driver at least 25 years old.
   $age = 19;
   if ($age >= 18 ) {
@@ -93,11 +93,12 @@ if ($age >= 18) {
     echo "You cannot drive a car yet!";
    }
    // Output: You can drive a car if you have a license and you are accompanied by a licensed driver at least 25 years old
-
+   // Here we have reversed the order of the conditions to check for. The 17 years benchmark is checked first, but it leads to
+   // an inaccurate result.
   ##Nested If statements
 
 
-  //Conditional statements can be nested inside other conditional statements in cases where there many conditions. In such nested If statements, we can greatly enhance readability with consistent indentation.
+  //Conditional statements can be nested inside other conditional statements in cases where there are many conditions. In such nested If statements, we can greatly enhance readability with consistent indentation.
 
   // Let's say we want to add another condition in our previous example. With proper indentation and proper nesting we can avoid a the mess of too many conditions:
 
@@ -151,14 +152,12 @@ elseif ($age > 18) {
 }
 
 // Our code now is a little cleaner, but not neccesarrily more readable. Readability has a lot to do with the context.
-// Our code should tell a story that is easily comprehensible by other programmers. Here if our main goal is to answer the question "When can a teenager drive a car?", then the former example is more readable. If we want to answer the question "What are the rights of a teenager regarding driving respective to his/her age?" then the later is the one more readable.
-
-// [alternate syntax]
+// Our code should tell a story that is easily comprehensible by other programmers. Here if our main goal is to answer the question "At what age can a teenager drive a car?", then the former example is more readable. If we want to answer the question "What are the rights of a teenager regarding driving respective to his/her age?" then the later is the one more readable.
 
 ## Alternate syntax for conditional statements
 // PHP provides an alternative syntax for if/else conditional statements.
 // The basic change is to replace the opening brace with a colon (:) and the closing brace with the endif statement;
-// Regarding our previous example:
+// Regarding our previous example if we used the alternate syntax it would be as follow:
   $age = 19;
 
   if ($age >= 18 ) :
@@ -182,7 +181,7 @@ elseif ($age > 18) {
    endif;
 
 ##Embedding if statements in HTML
-  // When embedding if/else conditions inside HTML it is recommended for better readability the alternate syntax in order to define if/elseif conditions.
+  // When embedding if/else conditions inside HTML the alternate syntax is recommended for better readability.
   ?>
 <div class="message-display">
 
@@ -196,7 +195,8 @@ elseif ($age > 18) {
 
 </div>
 <?php
-  ## The ternary operator
+
+  ## The Ternary Operator
 // The ternary operator offers a sorter syntax for an if-else statement. It is great for simple expressions with clear intent where a boolean expression is expected.
 // Syntax:
 // expression1 ? expression2 : expression3;
@@ -210,6 +210,68 @@ elseif ($age > 18) {
   ?>
   <div style='background-color: <?php echo ($count > $limit) ? "red" : "green" ?>'><?php echo $message ?></div>
 <?php
-  ##The Switch statement
 
- ?>
+  ## The Null Coalescing Operator
+  // As of PHP7 a new logical operator has been introduced that is very similar to the ternary operator.
+  // It is the null coalescing operator (??) that returns its first operand if it is not null or undefined; otherwise it returns its second operand.
+  // Syntax:
+  $first_operand ?? $second_operand;
+
+  // The Null Coalescing Operator is in esense syntactic sugar for cases where we need to use a ternary operator along with the isset() method.
+// The following example uses a ternary operator:
+$fav_color = "red";
+
+$color = isset($fav_color) ? $fav_color : "green";
+
+echo "The chosen color is: " . $color;
+// Output: The chosen color is: red
+// The same example with the use of the Null coalescing operator:
+
+$color = $fav_color ?? "green";
+// Output: The chosen color is: red
+
+
+  ## The Switch Statement
+
+  //[ The switch statement is similar to an if statement, except that it does not work with a range of values. A switch statement requires each case to be based on a single value. Depending on the value of the variable used for switching, the program will execute the correct block of code. ]
+
+    // The switch conditional statement, evaluates an expression based on different cases, with each case based on a single value. The program executes the respective statements, depending on each value, when the expression is matched and until the break statement is reached.
+    // There can be a default, optional, case denoted with the default statement, which is used when all previous cases remain unmatched.
+
+    // Syntax:
+    // switch (variable used for switching) {
+      // case firstCase: statements;
+      // break;
+      // case secondCase: statements;
+      // break;
+      // default: statements;
+    // }
+
+    // Example:
+
+echo "Enter your grade: ";
+$userGrade = "A";
+
+switch ($userGrade) {
+    case "A+":
+    case "A":
+        echo "Distinction\n";
+        echo "Well Done!\n";
+        break;
+    case "B":
+        echo "B Grade\n";
+        break;
+    case "C":
+        echo "C Grade\n";
+        break;
+    default:
+        echo "Fail\n";
+}
+
+/* [
+    After getting the user’s grade, we use the switch statement that follows to determine the output. If the grade entered is “A+” (Line 15), the program executes the next statement until it reaches the break statement. This means it’ll execute lines 16 to 19. Thus, the output is “Distinction”, followed by “Well Done!”. If grade is “A” (Line 16), the program executes lines 17 to 19. Similarly, the output is “Distinction”, followed by “Well Done!”. If grade is not “A+” or “A”, the program checks the next case. It keeps checking from top to bottom until a case is satisfied. If none of the cases apply, the default case is executed.]
+
+
+*/
+?>
+
