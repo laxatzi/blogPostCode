@@ -31,7 +31,7 @@ if ($age >= 18) {
 
 // Here, if the customer is old enough to drink, thus at least 18 years of age, is granted access in the Bar, and a welcome message is printed.
 
-// NOTE: The curly braces can be omitted entirely if there is only one expression after the condition.
+// NOTE: The curly braces can be omitted entirely if there is only one statement to execute;
 
 // In that case the previous example would be written as:
   if ($age  >= 18 ) echo "Welcome to our Bar";
@@ -115,6 +115,24 @@ if ($age >= 18) {
          }
     }
 
+// NOTE: PHP accepts spaces between else and if thus the above code could be written as:
+      $age = 19;
+
+
+      if ($age >= 17) {
+         if ($age > 18) {
+             echo "You can certainly drive drive a car if you have a license!";
+         } else {
+             echo "You can drive a car if you have a license and you are accompanied by a licensed driver at least 25 years old";
+         }
+    } else if ($age < 17) {
+         if ($age < 16) {
+             echo "You cannot drive a car yet!";
+         } else {
+             echo "You cannot drive a car yet. But you can drive a motorbike!";
+         }
+    }
+
 // Nesting is not the only option when dealing with a lot of conditions:
 // Regarding the prev example, we could remove nesting with the use of elseif statements as some small changes in the conditional statements.
 
@@ -141,14 +159,27 @@ elseif ($age > 18) {
 // PHP provides an alternative syntax for if/else conditional statements.
 // The basic change is to replace the opening brace with a colon (:) and the closing brace with the endif statement;
 // Regarding our previous example:
-$age = 19;
-if ($age >= 17 ) :
-    echo "You can drive a car if you have a license and you are accompanied by a licensed driver at least 25 years old";
-elseif ($age >= 18):
-    echo "You can certainly drive a car if you have a license";
-else :
+  $age = 19;
+
+  if ($age >= 18 ) :
+           echo "You can certainly drive a car if you have a license";
+  elseif ($age >= 17) :
+           echo "You can drive a car if you have a license and you are accompanied by a licensed driver at least 25 years old";
+  else :
     echo "You cannot drive a car yet!";
-endif;
+   endif;
+
+// NOTE:
+// Using a space between if and else is not acceptable in the alternate syntax.
+  $age = 19;
+
+  if ($age >= 18 ) :
+           echo "You can certainly drive a car if you have a license";
+  else if ($age >= 17) :
+           echo "You can drive a car if you have a license and you are accompanied by a licensed driver at least 25 years old";
+  else :
+    echo "You cannot drive a car yet!";
+   endif;
 
 ##Embedding if statements in HTML
   // When embedding if/else conditions inside HTML it is recommended for better readability the alternate syntax in order to define if/elseif conditions.
@@ -165,6 +196,20 @@ endif;
 
 </div>
 <?php
+  ## The ternary operator
+// The ternary operator offers a sorter syntax for an if-else statement. It is great for simple expressions with clear intent where a boolean expression is expected.
+// Syntax:
+// expression1 ? expression2 : expression3;
+// First we have expression1, which is the condition to check.
+// If the condition is true, it returns expression2, separated by a question mark.
+// If the condition is false, it returns expression3, separated by a colon:
 
+  // If you need to assign a value to a variable based on a condition, the ternary operator (?) is a convenient alternative to an if statement.
+  $is_admin = ($user['permissions'] == 'admin') ? true : false;
+  // it is also handy when we are working with HTML elements.
+  ?>
+  <div style='background-color: <?php echo ($count > $limit) ? "red" : "green" ?>'><?php echo $message ?></div>
+<?php
   ##The Switch statement
+
  ?>
