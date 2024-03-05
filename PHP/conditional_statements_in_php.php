@@ -3,9 +3,7 @@
 
    /*
 
-  When we want to submit a form by clicking the send button, or show a warning message next to empty required fields, we use conditional statements.
-
-  With the use of conditional statements, we are able to evaluate conditions and determine which code should be executed.
+  When we want to submit a form by clicking the send button, or show a warning message next to empty required fields, we use conditional statements. With the use of conditional statements, we are able to evaluate conditions and determine which code should be executed.
 
   We create conditional statements using the if, else, elseif, and switch keywords together with comparison operators.
 
@@ -117,7 +115,10 @@ if ($age >= 18) {
          }
     }
 
-// NOTE: PHP accepts spaces between else and if thus, the above code could be written as:
+// NOTE: PHP accepts spaces between else and if thus.
+
+// the above code could be written as:
+
       $age = 19;
 
 
@@ -159,6 +160,7 @@ elseif ($age > 18) {
 // PHP provides an alternative syntax for if/else conditional statements.
 // The basic change is to replace the opening brace with a colon (:) and the closing brace with the endif statement;
 // Regarding our previous example if we used the alternate syntax it would be as follow:
+
   $age = 19;
 
   if ($age >= 18 ) :
@@ -169,8 +171,7 @@ elseif ($age > 18) {
            echo "You cannot drive a car yet!";
   endif;
 
-// NOTE:
-// Using a space between if and else is not acceptable in the alternate syntax.
+// NOTE: Using a space between if and else is not acceptable in the alternate syntax.
   $age = 19;
 
   if ($age >= 18 ) :
@@ -214,12 +215,17 @@ elseif ($age > 18) {
 <?php
 
   ## The Null Coalescing Operator
-  // As of PHP 7,  a new logical operator has been introduced that is very similar to the ternary operator.
-  // It is the null coalescing operator (??) that returns its first operand if it is not null or undefined; otherwise it returns its second operand.
+  //PHP 7 introduced a new logical operator that is very similar to the ternary operator.
+
+// It is the null coalescing operator (??).
+
+// This operator returns its first operand if it is not null or undefined. Otherwise it returns its second operand.
+
+
   // Syntax:
   $first_operand ?? $second_operand;
 
-  // The Null Coalescing Operator is in reality syntactic sugar for cases where we need to use a ternary operator along with the isset() method.
+// The Null Coalescing Operator is in fact syntactic sugar for cases where we need to use a ternary operator along with the isset() method.
 // The following example uses a ternary operator:
 $fav_color = "red";
 
