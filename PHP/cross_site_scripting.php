@@ -45,7 +45,6 @@
 
 //## How to remedy the $_SERVER[‘PHP_SELF’]) XSS issue?
 
-
 // //# Implement Input Validation
 
 // //# Implement Character Escaping
@@ -61,7 +60,9 @@
 // For one, we should not use an empty action attribute since this is [specifically mentioned in the HTML spec][https://html.spec.whatwg.org/#attr-fs-action].
   // Regarding the $_SERVER['PHP_NAME'], although it is less deceivable we should sanitize it anyway, adhering to the never trust output of dynamic data principle.
 
-//#Additionally, employing Content Security Policy (CSP) headers on the server side can provide an additional layer of protection against XSS attacks.
+//# Employ Content Security Policy
+//Additionally, employing Content Security Policy (CSP) headers on the server side can provide an additional layer of protection against XSS attacks.
+// [...]
 
 //# Use a vulnerability scanner
 // Fortunately, running an automated web scan with a vulnerability scanner is a simple way to test if a website is vulnerable to XSS and other vulnerabilities.
