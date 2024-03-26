@@ -70,7 +70,7 @@ Example:
 
 [//]: # "https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors"
 
-With an attribute selector we select all elements that have this specific attribute.
+With an attribute selector [link] we select all elements that have this specific attribute explicitly set.
 
 Example:
 
@@ -89,6 +89,20 @@ input[type="email"] {
 }
 ```
 
+### Pseudo-class Selectors
+
+A CSS pseudo-class is a selector keyword that indicates a specific state of the selected element(s).
+
+A pseudo-class is made up of a colon (:) and the name of the pseudo-class.
+
+Example of a pseudo-class selector:
+
+```css
+a:hover {
+  color: pink;
+}
+```
+
 ### Type Selectors
 
 CSS Type selectors are used to match all element nodes of a given name.
@@ -99,6 +113,32 @@ Example:
 small {
   font-weight: bold;
   color: blue;
+}
+```
+
+### Pseudo-elements
+
+Adding pseudo-elements is similar to including a completely new HTML element in the markup.
+
+Pseudo-elements are denoted by the use of double colons (::).
+
+Example of pseudo-element syntax:
+
+```css
+.box::before {
+  content: "\2192";
+}
+```
+
+The "before" pseudo-element is used here along with the "content" property in order to insert an arrow, which can then be styled like a normal element.
+
+```css
+.box::before {
+  content: "\2192";
+  color: red;
+  font-weight: bold;
+  font-size: 1.54rem;
+  margin-right: 3px;
 }
 ```
 
@@ -176,7 +216,8 @@ In this case the cascade resolves the conflicts by comparing the specificity of 
 The declaration with the highest specificity prevails.
 In order to calculate specificity the algorithm uses a specificity score. The highest the score, the highest the specificity.
 
-The specificity algorithm is a three-column value with each column representing different weight of importance and different type of selector. All three types of selectors - ID, Class, Type - are represented in the columns with each column in the left weight more than the one on its right.
+The specificity algorithm is a three-column value with each column representing different weight of importance and different type of selector. All types of selectors are represented in the columns with each column in the left weight more than the one on its right.
+The ID selectors are represented in the first, leftmost column, the class, pseudo-class\* and attribute selectors in the second, and the type and pseudo-element selectors in the third column.
 
 Example of specificity:
 
@@ -250,8 +291,35 @@ And now the winner is the second rule since it gets two points in the second col
 The fact that the third column type selectors in the first rule are five doesn't matter.
 It wouldn't make any difference if a hundred type selectors were denoted in the rule.
 From the example it is obvious that there is no meaning in evaluate the specificity score from right to left.
-We do the opposite. First we compare the leftmost column and only if the score is a draw we move to the one on the right.
+We do the opposite. First we compare the leftmost column (ID) and only if the score is a draw we move to the one on the right and so on.
 
 The value of the winning declaration is called the cascaded value.
 
+- Regarding the pseudo-classes's specificity
+  The :is(), :has(), and :not() pseudo-classes don’t add any specificity weight, making them an exception to this rule.
+  But the parameters in these selectors, do add specificity weight, which is dependant on parameters specificity weight.
+
+```html
+<p class="content content-last">Content in a paragraph.</p>
+```
+
+```css
+:is(.content) {
+  /* 0-1-0 */
+  color: green;
+}
+
+:is(.content.content-last) {
+  /* 0-2-0 */
+  color: red;
+}
+
+:is(p) {
+  /* 0-0-1 */
+  color: blue;
+}
+```
+
 But what happens if selectors have the same specificity?
+
+If there is a tie at this point, then the last declaration in the code (top to bottom) will override all other declarations and will be applied.
