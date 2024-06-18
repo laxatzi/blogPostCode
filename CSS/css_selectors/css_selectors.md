@@ -482,4 +482,4 @@ a {
 }
 ```
 
-So now we can overwrite the default link color with one of our liking.
+And now we can overwrite the default link color with one of our liking.
