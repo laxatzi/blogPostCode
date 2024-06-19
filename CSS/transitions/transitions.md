@@ -10,10 +10,10 @@ div {
 transition: <property> <duration> <timing-function> <delay>;
 }
 
-property: The CSS property to apply the transition to (e.g., width, background-color).
-duration: The time needed for the transition to be fully executed (e.g., 0.5s, 200ms).
-timing-function: The transition’s speed curve options (e.g., ease, linear, ease-in-out…)
-delay: The amount of time to delay before beginning the transition (e.g., 0s, 1s).
+property: The CSS property to apply the transition to (e.g., height, margin).
+duration: The time needed for the transition to be fully executed (e.g., 0.4s, 300ms).
+timing-function: The transition’s speed curve options (e.g., jump-start, linear, ease-in…)
+delay: The amount of time to delay before beginning the transition (e.g., 0s, .5s).
 
 Example:
 
@@ -217,3 +217,15 @@ button:hover {
   border-color: yellow;
 }
 ```
+
+Here, using transition-duration: .4s; transition-delay: -0.2s will cause the transition to jump one second into the play cycle before continuing.
+
+When using a negative transition-delay value, we can achieve a more concise transition experience by shortening its perceived duration.
+
+### transition-timing-function
+
+By using the [transition-timing-function CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function), we can control how intermediate values are calculated during a transition effect.
+
+Essentially, this property enables variable speed during the transition.
+We can affect what kind of transition effect we'd like to achieve by using several keyword values such as linear, ease-in, and ease-out.
+A linear transition moves at a steady pace, while ease-in and ease-out, accelerates, and decelerates respectively.
