@@ -1,8 +1,8 @@
 # Introduction to CSS Transitions
 
-Unlike print media, the internet is a dynamic medium. Elements are not neceserily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions. With transitions we can control animations' duration and speed.
-
-They enable us to make property changes occurring smoothly and gradually over a certain duration on time, enhancing the interactivity of a page and user experience.
+Unlike print media, the internet is a dynamic medium. Page components are not neceserily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions.
+With transitions we can control animations' duration and speed.
+They enable us to make property changes occurring smoothly and gradually over a certain duration on time, making pages interactive and improving user experience.
 
 The following is the CSS syntax for transitions:
 
@@ -32,7 +32,7 @@ Here, when the user hovers over the .button element, the background color smooth
 
 ## Understanding Transition Properties
 
-Transitions are done with the transition-\* family of properties.
+Transitions use the transition-\* family of properties.
 
 By using the sub-properties below, we can manipulate each component of the transition.
 
@@ -61,7 +61,7 @@ button {
   padding: 0.3em 1em;
   border-radius: 1em;
   transition-property: background-color;
-  transition-duration: 1s;
+  transition-duration: 0.4s;
 }
 
 button:hover {
@@ -85,7 +85,7 @@ button {
   border-color: darkgrey;
   border-radius: 1em;
   transition-property: background-color, color;
-  transition-duration: 2s;
+  transition-duration: 0.4s;
 }
 
 button:hover {
@@ -110,7 +110,7 @@ button {
   border-color: darkgrey;
   border-radius: 1em;
   transition-property: all;
-  transition-duration: 1s;
+  transition-duration: 0.4s;
 }
 
 button:hover {
@@ -139,7 +139,7 @@ The default value is set to 0s, indicating that there will be no animation.
   border-color: darkgrey;
   border-radius: 1em;
   transition-property: all;
-  transition-duration: 1s;
+  transition-duration: .4s;
 }
 
 button:hover {
@@ -148,5 +148,72 @@ button:hover {
   border-color: yellow;
 }
 ```
-In the example, the transition-duration property indicates that the transition will last for 1 second.
+In the example, the transition-duration property indicates that the transition will last for 400 milliseconds.
 ````
+
+Adjusting the speed of transitions help users to better comprehend UI changes.
+Transition duration is not a one size fits all metric.
+A slower animation (600ms) will feel tedious to most users when it is repeated multiple times, such as in a contextual menu. Most people will notice micro-animations of around 250ms, but they won’t feel like they’re waiting for them.
+On the other hand, a lengthy transition, like one that bounce, may still be acceptable for something that doesn’t require immediate attention.
+
+### transition-delay
+
+With transition-delay, we can define a waiting period before the transition starts after the property value changes.
+
+When a button has a transition delay of 0.5 s, the change won’t start until half a second after the mouse hovers over it.
+
+#### Syntax
+
+```css
+button {
+  transition-delay: 3s;
+}
+```
+
+If we want to apply two different transitions to two different properties, add multiple transition rules with commas between them.
+
+```css
+button {
+  background-color: hsl(180, 50%, 50%);
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.3em 1em;
+  border: 2px solid;
+  border-color: darkgrey;
+  border-radius: 1em;
+  transition-property: border-color, background-color;
+  transition-duration: 0.4s;
+  transition-delay: 0.2s, 0.6s;
+}
+
+button:hover {
+  background-color: hsl(0, 50%, 50%);
+  border-color: yellow;
+}
+```
+
+When transition-delay is set to a negative time offset, the transition will start immediately but will appear to have started at the specified offset.
+
+The transition will seem to start in the middle of its play cycle.
+
+```css
+button {
+  background-color: hsl(180, 50%, 50%);
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.3em 1em;
+  border: 2px solid;
+  border-color: darkgrey;
+  border-radius: 1em;
+  transition-property: border-color, background-color;
+  transition-duration: 0.4s;
+  transition-delay: 0.2s, -0.2s;
+}
+
+button:hover {
+  background-color: hsl(0, 50%, 50%);
+  border-color: yellow;
+}
+```
