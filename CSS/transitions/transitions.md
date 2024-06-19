@@ -30,13 +30,13 @@ Example:
 
 Here, when the user hovers over the .button element, the background color smoothly changes from blue to red over a duration of 0.3 seconds.
 
-## 2. Understanding Transition Properties
+## Understanding Transition Properties
 
 Transitions are done with the transition-\* family of properties.
 
 By using the sub-properties below, we can manipulate each component of the transition.
 
-1. transition-property
+### transition-property
 
 [The transition-property property specifies which properties to transition.](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)
 
@@ -95,7 +95,58 @@ button:hover {
 }
 ```
 
-Here, both color and background-color properties will transition for 1s
+Here, both color and background-color properties will transition for 1s.
 
-In this
-case, the special keyword all means to transition any properties that change.
+3. All Properties Transition:
+
+```css
+button {
+  background-color: hsl(180, 50%, 50%);
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.3em 1em;
+  border: 2px solid;
+  border-color: darkgrey;
+  border-radius: 1em;
+  transition-property: all;
+  transition-duration: 1s;
+}
+
+button:hover {
+  background-color: hsl(0, 50%, 50%);
+  color: yellow;
+  border-color: yellow;
+}
+```
+
+In this case, the special keyword all, which is the default transition-property value, will transition any properties that change (in our case: background-color, color, border-color).
+
+### transition-duration
+
+The transition-duration transition sub-property, determines how long a transition animation lasts.
+
+The default value is set to 0s, indicating that there will be no animation.
+
+````css
+ button {
+  background-color: hsl(180, 50%, 50%);
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: 0.3em 1em;
+  border: 2px solid;
+  border-color: darkgrey;
+  border-radius: 1em;
+  transition-property: all;
+  transition-duration: 1s;
+}
+
+button:hover {
+  background-color: hsl(0, 50%, 50%);
+  color: yellow;
+  border-color: yellow;
+}
+```
+In the example, the transition-duration property indicates that the transition will last for 1 second.
+````
