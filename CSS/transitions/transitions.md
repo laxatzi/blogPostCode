@@ -1,6 +1,6 @@
 # Introduction to CSS Transitions
 
-Unlike print media, the internet is a dynamic medium. Page components are not neceserily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions.
+Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions.
 With transitions we can control animations' duration and speed.
 They enable us to make property changes occurring smoothly and gradually over a certain duration on time, making pages interactive and improving user experience.
 
