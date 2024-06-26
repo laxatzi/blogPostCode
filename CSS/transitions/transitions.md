@@ -227,7 +227,7 @@ When using a negative transition-delay value, we can achieve a more concise tran
 By using the [transition-timing-function CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function), we can control speed during the transition.
 
 We can affect what kind of transition effect we'd like to achieve by using several keyword values such as linear, ease-in, and ease-out.
-A linear transition moves at a steady pace, while ease-in and ease-out, accelerates, and decelerates respectively.
+A linear transition moves at a steady pace, while ease-in and ease-out, accelerates, and decelerates respectively. These are just few of the available transition function values.[https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function#values]
 
 ```css
 .container {
@@ -255,3 +255,15 @@ A linear transition moves at a steady pace, while ease-in and ease-out, accelera
   </div>
 </body>
 ```
+
+When we run this example, a small red circle appears in the top left corner of the page. When
+
+we hover over the container, the box transitions to the right. Pay attention to how it moves in
+
+in a consistent pace.
+
+We can edit to see how different timing functions behave. We can try ease-in (transition: all 1s ease-in) or ease-out (transition: all 1s ease-out).
+
+These keyword values are sufficient for carrying out most tasks but sometimes we need more control.
+
+We can achieve this by defining our own timing functions.
