@@ -2,7 +2,7 @@
 
 Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions.
 With transitions we can control animations' duration and speed.
-They enable us to make property changes occurring smoothly and gradually over a certain duration on time, making pages interactive and improving user experience.
+We can make property changes occurring smoothly and gradually over a certain period of time, making pages interactive and improving user experience.
 
 The following is the CSS syntax for transitions:
 
@@ -154,7 +154,7 @@ In the example, the transition-duration property indicates that the transition w
 Adjusting the speed of transitions help users to better comprehend UI changes.
 Transition duration is not a one size fits all metric.
 A slower animation (600ms) will feel tedious to most users when it is repeated multiple times, such as in a contextual menu. Most people will notice micro-animations of around 250ms, but they won’t feel like they’re waiting for them.
-On the other hand, a lengthy transition, like one that bounce, may still be acceptable for something that doesn’t require immediate attention.
+On the other hand, for an element that doesn’t require immediate attention, a lengthy transition, like a bounce, would be fine.
 
 ### transition-delay
 
@@ -224,8 +224,34 @@ When using a negative transition-delay value, we can achieve a more concise tran
 
 ### transition-timing-function
 
-By using the [transition-timing-function CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function), we can control how intermediate values are calculated during a transition effect.
+By using the [transition-timing-function CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function), we can control speed during the transition.
 
-Essentially, this property enables variable speed during the transition.
 We can affect what kind of transition effect we'd like to achieve by using several keyword values such as linear, ease-in, and ease-out.
 A linear transition moves at a steady pace, while ease-in and ease-out, accelerates, and decelerates respectively.
+
+```css
+.container {
+  position: relative;
+  height: 25px;
+}
+.box {
+  position: absolute;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: hsl(0, 80%, 50%);
+  transition: all 1s linear;
+}
+.container:hover .box {
+  left: 200px;
+}
+```
+
+```html
+<body>
+  <div class="container">
+    <div class="box"></div>
+  </div>
+</body>
+```
