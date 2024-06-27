@@ -1,6 +1,11 @@
 # Introduction to CSS Transitions
 
-Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values. The best way to achieve any of these is with CSS transitions.
+Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values.
+In the real world nothing happens in an instant.
+Things don’t magically appear or vanish.
+Our brains perceive changes in the position of things by observing their movement.
+So changes in the web should also follow a similar pattern of gradual movement.
+The best way to achieve this is with CSS transitions.
 With transitions we can control animations' duration and speed.
 We can make property changes occurring smoothly and gradually over a certain period of time, making pages interactive and improving user experience.
 
@@ -285,7 +290,7 @@ We can represent the animation-timing-function value on our example, on a X and 
 
 If we add the two properties in our previous example we notice the red circle start accelerating, then almost stops, and then accelerates again.
 
-This our own custom movement. If we'd like to use a predefined one, like ease-in what we would actually used would be a cubic-bezier with predefined coords.
+This ισ our own custom movement. If we'd like to use a predefined one, like ease-in what we would actually used would be a cubic-bezier with predefined coords.
 
 Ease-in is the equivalent of:
 
@@ -294,3 +299,26 @@ transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
 ```
 
 The x axis depicts the transition’s duration. The y-axis represents the rate at which the transition occurs.
+Curves are defined with the x and y axes spanning from 0 to 1.
+
+The bottom-left corner is 0, 0; the top-right is 1, 1.
+
+### Best Practices
+
+#### Transition Duration
+
+In most cases movement shouldn't last too long. Transitions should be quick, but not too short to be missed.
+As a rule of thumb, single transitions work best within the 150–500 millisecond range (0.15 to 0.5 seconds).
+
+Bear in mind that the code’s technical duration is less important compared to how the transition feels.
+The start of a transition with a very slow ease-in may not be noticeable right away, although technically transition delay may be set to nil.
+
+#### Movement affects UX
+
+Movement is essential for creating the desired feel and branding of your website or web app.
+
+For example, in the case of something important that should be known about immediately, speed and obviousness would be a priority.
+
+If the situation is extremely crucial, we can use a stronger physical gesture, like shaking,in order to communicate how important the thing is.
+
+So it is best practice to always question whether the movement communicates the desired feeling effectively.
