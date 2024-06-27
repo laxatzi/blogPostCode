@@ -322,3 +322,135 @@ For example, in the case of something important that should be known about immed
 If the situation is extremely crucial, we can use a stronger physical gesture, like shaking,in order to communicate how important the thing is.
 
 So it is best practice to always question whether the movement communicates the desired feeling effectively.
+
+#### Make UI components more natural
+
+In the real world, it’s very rare for any type of movement to immediately accelerate or come to a sudden halt.
+
+When an animation appears odd, it’s probably because it starts or finishes suddenly, without a natural flow.
+
+It’s considered best practice to include a touch of easing in and out to our cubic-bezier curves, even if it’s subtle.
+
+This slight easing can make all the difference in achieving a smooth transition.
+
+```html
+<body>
+  <div class="container">
+    <div class="ball red-ball"></div>
+    <div class="ball blue-ball"></div>
+  </div>
+</body>
+```
+
+```css
+.container {
+  position: relative;
+  height: 25px;
+}
+.ball {
+  position: absolute;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  transition-duration: 1s;
+  transition-property: all;
+}
+/* sudden end*/
+.red-ball {
+  top: 0;
+  background-color: hsl(0, 80%, 50%);
+  transition-timing-function: cubic-bezier(0.68, 0.53, 0.265, 1.55);
+}
+/* smooth end */
+.blue-ball {
+  top: 30px;
+  background-color: hsl(240, 100%, 25%);
+  transition-timing-function: cubic-bezier(0.5, 0.53, 0.14, 1);
+}
+
+.container:hover .ball {
+  left: 200px;
+}
+```
+
+We notice that the first circle (red) ends abruptly, which is not ideal.
+
+The custom curve of the first one (blue) provides a smoother ease in and out.
+
+#### Regarding Transitions it’s usually best to be modest rather than exaggerated.
+
+Excessive movement can often make things look worst rather than better.
+
+When it comes to CSS transitions, it’s best to be moderate rather than excessive.
+
+```html
+<div class="demo">
+  <div class="container container1">Red Box</div>
+
+  <div class="container container2">Blue Boc</div>
+</div>
+```
+
+```css
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Arial", sans-serif;
+}
+
+.demo {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 1rem;
+  border: 1px solid black;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.box {
+  text-align: left;
+  padding: 2rem;
+  background: skyblue;
+  animation-name: fade_in;
+  opacity: 0;
+}
+
+.container1 {
+  background: red;
+  color: white;
+}
+
+.container1:hover {
+  transform: scale(1.03);
+  transition: all 0.5s ease-in;
+}
+
+.container2:hover {
+  transform: scale(1.03);
+  transition: all 0.15s ease;
+}
+
+.container2 {
+  color: white;
+  background: skyblue;
+  animation: fade_in_2 3s cubic-bezier(0.14, 0.18, 0.16, 1.02) infinite;
+}
+```
+
+In the example the transition in the red box lasts a few milliseconds more than it should be adequate.
+The scaling on hover feels weird. Compare with the blue box where the transition last just .15s and feels more natural.
+Excessive action can be worse than taking no action.
+There is a point at which the transition is just adequate and from there we should go no further.
+
+#### Don't be too generic
+
+Browser built-in curves like ease-in, ease, and linear, are very convenient but also too generic giving UIs a predictable and identical look.
+
+It is a good practice to take some time to experiment and play around with cubic-bezier, making subtle but meaningful tweaks.
+VS Code’s autocomplete for cubic-bezier curves is great, offering a broad range of options.
+(image)
