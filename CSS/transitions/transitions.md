@@ -267,3 +267,30 @@ We can edit to see how different timing functions behave. We can try ease-in (tr
 These keyword values are sufficient for carrying out most tasks but sometimes we need more control.
 
 We can achieve this by defining our own timing functions.
+
+#### Cubic Bezier Curves
+
+A [Cubic Bezier Curve](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function#cubic_b%C3%A9zier_easing_function) is a curved line defined by four numbers. This line defines the easing of a web component's movement.
+We've seen that there are available to us predefined Cubic Bezier Curves like ease-in and ease-out, but we can insert our preferred values as well.
+
+```css
+transition-timing-function: cubic-bezier(0.47, 1.22, 0.72, 0.35);
+transition-duration: 1.5s;
+```
+
+In the example we use the cubic-bezier keyword with a parenthesis. In there we define four points that actually represent the coordinates on a X and Y Axis.
+We can represent the animation-timing-function value on our example, on a X and Y axis graph as follow:
+
+(image)
+
+If we add the two properties in our previous example we notice the red circle start accelerating, then almost stops, and then accelerates again.
+
+This our own custom movement. If we'd like to use a predefined one, like ease-in what we would actually used would be a cubic-bezier with predefined coords.
+
+Ease-in is the equivalent of:
+
+```css
+transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+```
+
+The x axis depicts the transition’s duration. The y-axis represents the rate at which the transition occurs.
