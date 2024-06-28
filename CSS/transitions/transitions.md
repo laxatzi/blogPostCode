@@ -167,6 +167,11 @@ With transition-delay, we can define a waiting period before the transition star
 
 When a link has a transition delay of 0.5 s, the change won’t start until half a second after the mouse hovers over it.
 
+A practical example of how transition-delay works is in the case of a dropdown menu.
+The dropdown will only stay open if we keep hovering over it.
+
+If we move the mouse diagonally to select a child, the menu will close due to our cursor being off limits.
+
 ```html
 <body>
 <h2>Dropdown Menu</h2>
@@ -178,7 +183,7 @@ When a link has a transition delay of 0.5 s, the change won’t start until half
 
   <li class="menu-item"><a>Menu Item</a></li>
   <li class="dropbtn">Dropdown &#9658;
-    <ul class="dropdown-content">
+    <ul style="padding: 0;" class="dropdown-content">
       <li><a href="#">Link 1</a></li>
       <li><a href="#">Link 2</a></li>
       <li><a href="#">Link 3</a></li>
@@ -200,6 +205,9 @@ When a link has a transition delay of 0.5 s, the change won’t start until half
   z-index: 1;
   display: flex;
   width: 150px;
+  opacity: 1;
+  transition: opacity 100ms;
+  transition-delay: 0ms;
 }
 
 .dropbtn:hover,
@@ -218,14 +226,16 @@ When a link has a transition delay of 0.5 s, the change won’t start until half
 }
 
 .dropdown-content {
-  display: none;
+  opacity: 0;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   left: 232px;
-  bottom: -100px;
+  bottom: 0;
+  transition: opacity 150ms;
+  transition-delay: 400ms;
 }
 
 .dropdown-content a {
@@ -236,17 +246,20 @@ When a link has a transition delay of 0.5 s, the change won’t start until half
 }
 
 .dropbtn:hover .dropdown-content {
-  display: block;
+  opacity: 1;
+  transition: opacity 150ms;
+  transition-delay: 0ms;
 }
 ```
 
-#### Syntax
+In the example we manage to fix this by delaying the transition.
+If the user moves their mouse outside of .dropbtn, nothing happens for 400ms.
 
-```css
-button {
-  transition-delay: 3s;
-}
-```
+If the mouse goes back into the element within that 400ms timeframe, the transition is canceled.
+
+Once 400ms pass, the transition starts as expected.
+
+### Transitioning two or more properties
 
 If we want to apply two different transitions to two different properties, add multiple transition rules with commas between them.
 
