@@ -165,7 +165,80 @@ On the other hand, for an element that doesn’t require immediate attention, a 
 
 With transition-delay, we can define a waiting period before the transition starts after the property value changes.
 
-When a button has a transition delay of 0.5 s, the change won’t start until half a second after the mouse hovers over it.
+When a link has a transition delay of 0.5 s, the change won’t start until half a second after the mouse hovers over it.
+
+```html
+<body>
+<h2>Dropdown Menu</h2>
+<p>Move the mouse over the Dropdown menu item to open the dropdown menu.</p>
+
+<ul class="dropdown">
+  <li class="menu-item"><a>Menu Item</a></li>
+  <li class="menu-item"><a>Menu Item</a></li>
+
+  <li class="menu-item"><a>Menu Item</a></li>
+  <li class="dropbtn">Dropdown &#9658;
+    <ul class="dropdown-content">
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+    <ul>
+  </li>
+</div>
+</body>
+```
+
+```css
+.dropbtn,
+.menu-item {
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: flex;
+  width: 150px;
+}
+
+.dropbtn:hover,
+.menu-item:hover {
+  background-color: #f3f3f3;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown li {
+  list-style: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: 232px;
+  bottom: -100px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn:hover .dropdown-content {
+  display: block;
+}
+```
 
 #### Syntax
 
@@ -301,7 +374,7 @@ transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
 The x axis depicts the transition’s duration. The y-axis represents the rate at which the transition occurs.
 Curves are defined with the x and y axes spanning from 0 to 1.
 
-The bottom-left corner is 0, 0; the top-right is 1, 1.
+The coordinates for the bottom-left corner are 0, 0 and for the top-right is 1, 1.
 
 ### Best Practices
 
@@ -388,7 +461,7 @@ When it comes to CSS transitions, it’s best to be moderate rather than excessi
 <div class="demo">
   <div class="container container1">Red Box</div>
 
-  <div class="container container2">Blue Boc</div>
+  <div class="container container2">Blue Box</div>
 </div>
 ```
 
