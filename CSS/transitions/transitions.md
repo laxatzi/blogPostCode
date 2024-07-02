@@ -3,7 +3,7 @@
 Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values.
 In the real world nothing happens in an instant.
 Things don’t magically appear or vanish.
-Our brains perceive changes in the position of things by observing their movement.
+Our brains perceive changes in the status of things by observing their movement.
 So changes in the web should also follow a similar pattern of gradual movement.
 The best way to achieve this is with CSS transitions.
 With transitions we can control animations' duration and speed.
@@ -417,7 +417,7 @@ When an animation appears odd, it’s probably because it starts or finishes sud
 
 It’s considered best practice to include a touch of easing in and out to our cubic-bezier curves, even if it’s subtle.
 
-This slight easing can make all the difference in achieving a smooth transition.
+This slight easing can make the difference in achieving a smooth transition.
 
 ```html
 <body>
