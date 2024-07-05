@@ -1,10 +1,9 @@
 # Introduction to CSS Transitions
 
 Unlike print media, the internet is a dynamic medium. Page components are not necessarily static. They can bounce or rotate. Menus can drop down. Colors can change values.
-In the real world nothing happens in an instant.
-Things don’t magically appear or vanish.
-Our brains perceive changes in the status of things by observing their movement.
-So changes in the web should also follow a similar pattern of gradual movement.
+In the real world things don’t appear or vanish in an instant.
+Our brains perceive changes in the status of things by observing how they gradually move.
+Similarly changes in the web should also follow a pattern of gradual movement.
 The best way to achieve this is with CSS transitions.
 With transitions we can control animations' duration and speed.
 We can make property changes occurring smoothly and gradually over a certain period of time, making pages interactive and improving user experience.
@@ -158,7 +157,7 @@ In the example, the transition-duration property indicates that the transition w
 
 Adjusting the speed of transitions help users to better comprehend UI changes.
 Transition duration is not a one size fits all metric.
-A slower animation (600ms) will feel tedious to most users when it is repeated multiple times, such as in a contextual menu. Most people will notice micro-animations of around 250ms, but they won’t feel like they’re waiting for them.
+A slower animation (600ms) will feel boring to most users when it is repeated multiple times, such as in a contextual menu. Most people will notice micro-animations of around 250ms, without feeling like they’re waiting for them.
 On the other hand, for an element that doesn’t require immediate attention, a lengthy transition, like a bounce, would be fine.
 
 ### transition-delay
@@ -171,6 +170,7 @@ A practical example of how transition-delay works is in the case of a dropdown m
 The dropdown will only stay open if we keep hovering over it.
 
 If we move the mouse diagonally to select a child, the menu will close due to our cursor being off limits.
+This is a headache. Let's try to remedy it:
 
 ```html
 <body>
@@ -255,7 +255,7 @@ If we move the mouse diagonally to select a child, the menu will close due to ou
 In the example we manage to fix this by delaying the transition.
 If the user moves their mouse outside of .dropbtn, nothing happens for 400ms.
 
-If the mouse goes back into the element within that 400ms timeframe, the transition is canceled.
+If the mouse goes back into the element within that 400ms time-frame, the transition is canceled.
 
 Once 400ms pass, the transition starts as expected.
 
@@ -540,3 +540,112 @@ Browser built-in curves like ease-in, ease, and linear, are very convenient but 
 It is a good practice to take some time to experiment and play around with cubic-bezier, making subtle but meaningful tweaks.
 VS Code’s autocomplete for cubic-bezier curves is great, offering a broad range of options.
 (image)
+
+#### Respect motion preferences
+
+Transition effects may make some people uncomfortable.
+
+Transitions and animations are quite similar but differ on how complex they are and how they are being triggered.
+
+The former are depended on user interaction and are less complex than the later, creating a simple change from one state to another.
+While this case of visitors getting uncomfortable with transitions is not as frequent or severe as with animations, it can still be an issue.
+
+Thankfully, CSS has a media feature called prefers-reduced-motion that can identifies a user’s preference for less motion on their device.
+
+```css
+a {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+a::before,
+a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+a::before {
+  background-color: #2c2ecd;
+  height: 2px;
+  bottom: 0;
+  transform-origin: 100% 50%;
+  transform: scaleX(0);
+  transition: transform 0.4s;
+  transition-timing-function: (0.86, 0, 0.07, 1);
+}
+a::after {
+  content: attr(data-replace);
+  height: 100%;
+  top: 0;
+  transform-origin: 0% 50%;
+  transform: translate3d(300%, 0, 0);
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  color: #2c2ecd;
+}
+
+a:hover::before,
+a:focus-within::before {
+  transform-origin: 100% 50%;
+  transform: scaleX(1);
+}
+a:hover::after,
+a:focus-within::after {
+  transform: translate3d(0, 0, 0);
+}
+
+a span {
+  display: inline-block;
+  transition: transform 0.4s;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+a:hover span,
+a:focus-within span {
+  transform: translate3d(-300%, 0, 0);
+}
+
+/* Presentational Styles */
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 22px;
+  line-height: 1.6;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #1a1d23;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a span,
+  a::after,
+  a::before {
+    transition: none;
+  }
+}
+```
+
+```html
+<body>
+  <h1>Transitions</h1>
+
+  <p>
+    Hover
+    <a href="https://google.com" id="style-2" data-replace="this link"
+      ><span>this link</span></a
+    >
+  </p>
+</body>
+```
+
+Here the hovering effect may someone with cognitive impairments to feel confused since she wouldn't expect such an animation from a simple hovering
